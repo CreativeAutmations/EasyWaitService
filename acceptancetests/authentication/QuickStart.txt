@@ -1,7 +1,7 @@
 *** Settings ***
 Library       String
 Library      ReusableModule
-Library     ./libraries/AuthenticationManager.py	192.168.0.8	8000
+Library     ./libraries/AuthenticationManager.py	vagrant-ubuntu-trusty-64	8000
 
 
 *** Test Cases ***
