@@ -1,0 +1,22 @@
+*** Settings ***
+Library       String
+Library      ReusableModule
+Library     ./libraries/AuthenticationManager.py	192.168.0.8	8000
+
+
+*** Test Cases ***
+Simple Calculation
+	${str1} =	Convert To Lowercase	ABC
+	${str2} =	Convert To Lowercase	1A2c3D
+	Should Be Equal	${str1}	abc
+	Should Be Equal	${str2}	1a2c3d
+	Play Button	test
+	
+
+Authentication Manager Skeleton
+	Verify Host And Port
+	Register User	amit1	amit1@gmail.com	Test@123	
+	Register User	amit2	amit2@gmail.com	Test@123	
+	
+	
+	

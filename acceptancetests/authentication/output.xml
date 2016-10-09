@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20161009 12:50:57.874" generator="Robot 3.0 (Python 2.7.6 on linux2)">
+<suite source="/home/vagrant/EasyWait1/EasyWait/EasyWaitService/acceptancetests/authentication/QuickStart.txt" id="s1" name="QuickStart">
+<test id="s1-t1" name="Simple Calculation">
+<kw name="Convert To Lowercase" library="String">
+<doc>Converts string to lowercase.</doc>
+<arguments>
+<arg>ABC</arg>
+</arguments>
+<assign>
+<var>${str1}</var>
+</assign>
+<msg timestamp="20161009 12:50:57.958" level="INFO">${str1} = abc</msg>
+<status status="PASS" endtime="20161009 12:50:57.958" starttime="20161009 12:50:57.958"></status>
+</kw>
+<kw name="Convert To Lowercase" library="String">
+<doc>Converts string to lowercase.</doc>
+<arguments>
+<arg>1A2c3D</arg>
+</arguments>
+<assign>
+<var>${str2}</var>
+</assign>
+<msg timestamp="20161009 12:50:57.960" level="INFO">${str2} = 1a2c3d</msg>
+<status status="PASS" endtime="20161009 12:50:57.960" starttime="20161009 12:50:57.959"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${str1}</arg>
+<arg>abc</arg>
+</arguments>
+<status status="PASS" endtime="20161009 12:50:57.961" starttime="20161009 12:50:57.961"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${str2}</arg>
+<arg>1a2c3d</arg>
+</arguments>
+<status status="PASS" endtime="20161009 12:50:57.963" starttime="20161009 12:50:57.962"></status>
+</kw>
+<kw name="Play Button" library="ReusableModule">
+<arguments>
+<arg>test</arg>
+</arguments>
+<msg timestamp="20161009 12:50:57.964" level="INFO">Pressed Play</msg>
+<status status="PASS" endtime="20161009 12:50:57.964" starttime="20161009 12:50:57.964"></status>
+</kw>
+<status status="PASS" endtime="20161009 12:50:57.964" critical="yes" starttime="20161009 12:50:57.957"></status>
+</test>
+<test id="s1-t2" name="Authentication Manager Skeleton">
+<kw name="Verify Host And Port" library="AuthenticationManager">
+<msg timestamp="20161009 12:50:57.967" level="INFO">Testing with HOST: 192.168.0.8 and PORT: 8000</msg>
+<status status="PASS" endtime="20161009 12:50:57.968" starttime="20161009 12:50:57.967"></status>
+</kw>
+<kw name="Register User" library="AuthenticationManager">
+<arguments>
+<arg>amit1</arg>
+<arg>amit1@gmail.com</arg>
+<arg>Test@123</arg>
+</arguments>
+<msg timestamp="20161009 12:50:57.978" level="INFO">Starting new HTTP connection (1): 192.168.0.8</msg>
+<msg timestamp="20161009 12:50:58.140" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit1@gmail.com' for key 'users_email_unique'"]</msg>
+<status status="PASS" endtime="20161009 12:50:58.140" starttime="20161009 12:50:57.968"></status>
+</kw>
+<kw name="Register User" library="AuthenticationManager">
+<arguments>
+<arg>amit2</arg>
+<arg>amit2@gmail.com</arg>
+<arg>Test@123</arg>
+</arguments>
+<msg timestamp="20161009 12:50:58.142" level="INFO">Starting new HTTP connection (1): 192.168.0.8</msg>
+<msg timestamp="20161009 12:50:58.227" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit2@gmail.com' for key 'users_email_unique'"]</msg>
+<status status="PASS" endtime="20161009 12:50:58.227" starttime="20161009 12:50:58.140"></status>
+</kw>
+<status status="PASS" endtime="20161009 12:50:58.228" critical="yes" starttime="20161009 12:50:57.966"></status>
+</test>
+<status status="PASS" endtime="20161009 12:50:58.229" starttime="20161009 12:50:57.874"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="QuickStart" pass="2">QuickStart</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
