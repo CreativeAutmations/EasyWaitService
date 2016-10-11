@@ -5,3 +5,7 @@
 Homestead.json
 Homestead.yaml
 .env
+report.html
+log.html
+output.xml
+
