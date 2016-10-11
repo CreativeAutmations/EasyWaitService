@@ -8,4 +8,4 @@ Homestead.yaml
 report.html
 log.html
 output.xml
-
+*.pyc
