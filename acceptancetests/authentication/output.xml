@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20161009 18:00:47.800" generator="Robot 3.0 (Python 2.7.6 on linux2)">
-<suite source="/home/vagrant/EasyWait1/EasyWait/EasyWaitService/acceptancetests/authentication/QuickStart.txt" id="s1" name="QuickStart">
+<robot generated="20161011 06:30:44.975" generator="Robot 3.0 (Python 2.7.6 on linux2)">
+<suite source="/home/vagrant/EasyWaitService/acceptancetests/authentication/QuickStart.txt" id="s1" name="QuickStart">
 <test id="s1-t1" name="Simple Calculation">
 <kw name="Convert To Lowercase" library="String">
 <doc>Converts string to lowercase.</doc>
@@ -10,8 +10,8 @@
 <assign>
 <var>${str1}</var>
 </assign>
-<msg timestamp="20161009 18:00:47.880" level="INFO">${str1} = abc</msg>
-<status status="PASS" endtime="20161009 18:00:47.880" starttime="20161009 18:00:47.879"></status>
+<msg timestamp="20161011 06:30:45.055" level="INFO">${str1} = abc</msg>
+<status status="PASS" endtime="20161011 06:30:45.055" starttime="20161011 06:30:45.053"></status>
 </kw>
 <kw name="Convert To Lowercase" library="String">
 <doc>Converts string to lowercase.</doc>
@@ -21,8 +21,8 @@
 <assign>
 <var>${str2}</var>
 </assign>
-<msg timestamp="20161009 18:00:47.881" level="INFO">${str2} = 1a2c3d</msg>
-<status status="PASS" endtime="20161009 18:00:47.881" starttime="20161009 18:00:47.881"></status>
+<msg timestamp="20161011 06:30:45.059" level="INFO">${str2} = 1a2c3d</msg>
+<status status="PASS" endtime="20161011 06:30:45.059" starttime="20161011 06:30:45.058"></status>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <doc>Fails if the given objects are unequal.</doc>
@@ -30,7 +30,7 @@
 <arg>${str1}</arg>
 <arg>abc</arg>
 </arguments>
-<status status="PASS" endtime="20161009 18:00:47.882" starttime="20161009 18:00:47.882"></status>
+<status status="PASS" endtime="20161011 06:30:45.061" starttime="20161011 06:30:45.060"></status>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <doc>Fails if the given objects are unequal.</doc>
@@ -38,21 +38,21 @@
 <arg>${str2}</arg>
 <arg>1a2c3d</arg>
 </arguments>
-<status status="PASS" endtime="20161009 18:00:47.885" starttime="20161009 18:00:47.883"></status>
+<status status="PASS" endtime="20161011 06:30:45.062" starttime="20161011 06:30:45.061"></status>
 </kw>
 <kw name="Play Button" library="ReusableModule">
 <arguments>
 <arg>test</arg>
 </arguments>
-<msg timestamp="20161009 18:00:47.885" level="INFO">Pressed Play</msg>
-<status status="PASS" endtime="20161009 18:00:47.886" starttime="20161009 18:00:47.885"></status>
+<msg timestamp="20161011 06:30:45.063" level="INFO">Pressed Play</msg>
+<status status="PASS" endtime="20161011 06:30:45.063" starttime="20161011 06:30:45.062"></status>
 </kw>
-<status status="PASS" endtime="20161009 18:00:47.886" critical="yes" starttime="20161009 18:00:47.878"></status>
+<status status="PASS" endtime="20161011 06:30:45.064" critical="yes" starttime="20161011 06:30:45.051"></status>
 </test>
 <test id="s1-t2" name="Authentication Manager Skeleton">
 <kw name="Verify Host And Port" library="AuthenticationManager">
-<msg timestamp="20161009 18:00:47.890" level="INFO">Testing with HOST: vagrant-ubuntu-trusty-64 and PORT: 8000</msg>
-<status status="PASS" endtime="20161009 18:00:47.890" starttime="20161009 18:00:47.890"></status>
+<msg timestamp="20161011 06:30:45.070" level="INFO">Testing with HOST: vagrant-ubuntu-trusty-64 and PORT: 8000</msg>
+<status status="PASS" endtime="20161011 06:30:45.071" starttime="20161011 06:30:45.070"></status>
 </kw>
 <kw name="Register User" library="AuthenticationManager">
 <arguments>
@@ -60,9 +60,9 @@
 <arg>amit1@gmail.com</arg>
 <arg>Test@123</arg>
 </arguments>
-<msg timestamp="20161009 18:00:47.902" level="INFO">Starting new HTTP connection (1): vagrant-ubuntu-trusty-64</msg>
-<msg timestamp="20161009 18:00:48.178" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit1@gmail.com' for key 'users_email_unique'"]</msg>
-<status status="PASS" endtime="20161009 18:00:48.178" starttime="20161009 18:00:47.891"></status>
+<msg timestamp="20161011 06:30:45.078" level="INFO">Starting new HTTP connection (1): vagrant-ubuntu-trusty-64</msg>
+<msg timestamp="20161011 06:30:45.367" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit1@gmail.com' for key 'users_email_unique'"]</msg>
+<status status="PASS" endtime="20161011 06:30:45.367" starttime="20161011 06:30:45.071"></status>
 </kw>
 <kw name="Register User" library="AuthenticationManager">
 <arguments>
@@ -70,13 +70,13 @@
 <arg>amit2@gmail.com</arg>
 <arg>Test@123</arg>
 </arguments>
-<msg timestamp="20161009 18:00:48.180" level="INFO">Starting new HTTP connection (1): vagrant-ubuntu-trusty-64</msg>
-<msg timestamp="20161009 18:00:48.266" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit2@gmail.com' for key 'users_email_unique'"]</msg>
-<status status="PASS" endtime="20161009 18:00:48.266" starttime="20161009 18:00:48.179"></status>
+<msg timestamp="20161011 06:30:45.369" level="INFO">Starting new HTTP connection (1): vagrant-ubuntu-trusty-64</msg>
+<msg timestamp="20161011 06:30:45.458" level="INFO">[u'23000', 1062, u"Duplicate entry 'amit2@gmail.com' for key 'users_email_unique'"]</msg>
+<status status="PASS" endtime="20161011 06:30:45.458" starttime="20161011 06:30:45.368"></status>
 </kw>
-<status status="PASS" endtime="20161009 18:00:48.266" critical="yes" starttime="20161009 18:00:47.888"></status>
+<status status="PASS" endtime="20161011 06:30:45.458" critical="yes" starttime="20161011 06:30:45.066"></status>
 </test>
-<status status="PASS" endtime="20161009 18:00:48.267" starttime="20161009 18:00:47.802"></status>
+<status status="PASS" endtime="20161011 06:30:45.459" starttime="20161011 06:30:44.975"></status>
 </suite>
 <statistics>
 <total>
