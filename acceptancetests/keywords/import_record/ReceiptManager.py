@@ -21,11 +21,12 @@ class ReceiptManager(object):
                         value = param_val_array[1]
                         json_payload_list.append("'" + key + "'" + ":" + "'" + value + "'" )
 
-
         json_payload = ","
         json_payload.join(json_payload_list)
         json_payload = json_payload.join(json_payload_list)
         json_payload = '{' + json_payload + '}'
+        print json_payload
+
         r = requests.post(url, json=json_payload)
         server_response = r.json()
         if 'message' in server_response.keys():
