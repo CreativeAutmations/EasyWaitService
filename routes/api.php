@@ -47,8 +47,7 @@ Route::post('/receipts',
    function () {
 	$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 	return Response::json(['message' => 'Unauthorized Access',
-				'count' => count($bill_details),
-				'bill_number' =>  implode(" ",$bill_details) ]);
+				'bill_number' => $bill_details['bill_number'] ]);
 						
 });
 
