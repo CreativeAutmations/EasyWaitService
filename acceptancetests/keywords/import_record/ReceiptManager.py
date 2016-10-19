@@ -8,12 +8,9 @@ class ReceiptManager(object):
         self._port = port
         self._hostURL = 'http://' + host + ':' + port
 
- 
     def create_receipt(self, bill_details, server_message):
         url = self._hostURL +'/api/receipts'
-		
 		bill_detaials_array = str.splitlines()
-
 		json_payload_list = []
 		for param_val in bill_detaials_array:
 			param_val_array = param_val.split(':')
@@ -24,8 +21,6 @@ class ReceiptManager(object):
 		json_payload.join(json_payload_list)
 		json_payload = json_payload.join(json_payload_list)
 		json_payload = '{' + json_payload + '}'
-		
-        #bill_details = {'name': username , 'email':email, 'password':password}
         r = requests.post(url, json=json_payload)
         server_response = r.json()
         if 'message' in server_response.keys():
