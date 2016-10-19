@@ -42,6 +42,14 @@ Route::post('/signin', function () {
    return Response::json(compact('token'));
 });
 
+
+Route::get('/receipts', [
+   function () {
+	   
+	return Response::json(['message' => 'Unauthorized Access']);
+]);
+
+
 Route::get('/restricted', [
    'before' => 'jwt-auth',
    function () {
