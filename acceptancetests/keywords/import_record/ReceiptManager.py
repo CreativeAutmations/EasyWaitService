@@ -18,15 +18,14 @@ class ReceiptManager(object):
                 param_val_array = param_val.split(':')
                 if len(param_val_array) == 2:
                         key = param_val_array[0]
-                        key = key.lower().replace(" ","_")
+                        key = key.lower().replace(" ","_").strip()
                         value = param_val_array[1]
-                        json_payload_list[key] = value
+                        json_payload_list[key] = value.strip()
 
-        json_payload = json.dumps(json_payload_list)
 
-        print 'payload: ' + json_payload
+        print json_payload_list
 
-        r = requests.post(url, json=json_payload)
+        r = requests.post(url, json=json_payload_list)
         server_response = r.json()
         print server_response
         print 'expected message: ' + server_message
