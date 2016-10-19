@@ -11,23 +11,28 @@ class ReceiptManager(object):
     def create_receipt(self, bill_details, server_message):
         url = self._hostURL +'/api/receipts'
         print url
-	bill_detaials_array = bill_details.splitlines()
-	json_payload_list = []
-	for param_val in bill_detaials_array:
-		param_val_array = param_val.split(':')
-		if len(param_val_array) == 2:
-			json_payload_list.append("'" + param_val_array[0] + "'" + ":" + "'" + param_val_array[1] + "'" )
-				
-	json_payload = ","
-	json_payload.join(json_payload_list)
-	json_payload = json_payload.join(json_payload_list)
-	json_payload = '{' + json_payload + '}'
+        bill_detaials_array = bill_details.splitlines()
+        json_payload_list = []
+        for param_val in bill_detaials_array:
+                param_val_array = param_val.split(':')
+                if len(param_val_array) == 2:
+                        key = param_val_array[0]
+                        key = key.lower().replace(" ","_")
+                        value = param_val_array[1]
+                        json_payload_list.append("'" + key + "'" + ":" + "'" + value + "'" )
+
+
+        json_payload = ","
+        json_payload.join(json_payload_list)
+        json_payload = json_payload.join(json_payload_list)
+        json_payload = '{' + json_payload + '}'
         r = requests.post(url, json=json_payload)
         server_response = r.json()
         if 'message' in server_response.keys():
-		print server_response["message"]
-		if server_message != server_response["message"] :
-			raise Exception('Expected: ' + server_message + ' Recieved: ' + server_response["message"])
+                print server_response["message"]
+
+        if server_message != server_response["message"] :
+                raise Exception('Expected: ' + server_message + ' Recieved: ' + server_response["message"])
         else:
-		raise Exception('Connection with server failed!')
+                raise Exception('Connection with server failed!')
 
