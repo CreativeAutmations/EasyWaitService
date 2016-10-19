@@ -43,11 +43,10 @@ Route::post('/signin', function () {
 });
 
 
-Route::post('/receipts', [
+Route::post('/receipts', 
    function () {
-	   
 	return Response::json(['message' => 'Unauthorized Access']);
-]);
+});
 
 
 Route::get('/restricted', [
