@@ -10,6 +10,7 @@ class ReceiptManager(object):
 
     def create_receipt(self, bill_details, server_message):
         url = self._hostURL +'/api/receipts'
+        print url
 	bill_detaials_array = bill_details.splitlines()
 	json_payload_list = []
 	for param_val in bill_detaials_array:
