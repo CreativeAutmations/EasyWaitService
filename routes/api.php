@@ -43,7 +43,7 @@ Route::post('/signin', function () {
 });
 
 
-Route::get('/receipts', [
+Route::post('/receipts', [
    function () {
 	   
 	return Response::json(['message' => 'Unauthorized Access']);
