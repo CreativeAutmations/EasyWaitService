@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Response as HttpResponse;
-
+use App\Receipts as Receipts;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,7 +24,6 @@ Route::post('/signup', function () {
        $user = User::create($credentials);
    } catch (Exception $e) {
      return Response::json($e); 
-	//	return Response::json(['error' => 'User already exists.'], HttpResponse::HTTP_CONFLICT);
    }
 
    $token = JWTAuth::fromUser($user);
@@ -46,8 +45,16 @@ Route::post('/signin', function () {
 Route::post('/receipts', 
    function () {
 	$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
-	return Response::json(['message' => 'Unauthorized Access',
-				'bill_number' => $bill_details['bill_number'] ]);
+
+
+	try {
+		$receipt = Receipts::create($bill_details);
+		return Response::json(['message' => 'Receipt Recorded']);
+	} catch (\Illuminate\Database\QueryException $e) {
+		return Response::json( ['message' => $e->getMessage()] );
+	} 
+
+	return Response::json(['message' => 'Unauthorized Access']);
 						
 });
 
