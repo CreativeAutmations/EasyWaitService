@@ -16,13 +16,13 @@ class CreateReceiptsTable extends Migration
         Schema::create('receipts', function (Blueprint $table) {
 		$table->increments('id');
 		$table->string('bill_number')->unique();
-		$table->string('bill_date');
+		$table->date('bill_date');
 		$table->string('b17_debit');
 		$table->string('description');
 		$table->string('invoice_no')->nullable();
-		$table->string('invoice_date')->nullable();
+		$table->date('invoice_date')->nullable();
 		$table->string('procurement_certificate')->nullable();
-		$table->string('procurement_date')->nullable();
+		$table->date('procurement_date')->nullable();
 		$table->string('unit_weight')->nullable();
 		$table->string('unit_quantity')->nullable();
 		$table->string('value');
