@@ -1,6 +1,6 @@
 *** Settings ***
 Library       String
-Library     ./libraries/AuthenticationManager.py	vagrant-ubuntu-trusty-64	8000
+Library     ./libraries/AuthenticationManager.py	${HOSTNAME}	8000
 
 
 *** Test Cases ***
