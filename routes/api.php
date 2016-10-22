@@ -47,16 +47,19 @@ Route::post('/receipts',
 	$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 
 	$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
-	#return Response::json($receipt);
 
+	if( $receipt -> first()){
 
+			return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
+	}else{
+		try {
+			$receipt = Receipts::create($bill_details);
+			return Response::json(['message' => 'Receipt Recorded']);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
+		} 
+	}
 
-	try {
-		$receipt = Receipts::create($bill_details);
-		return Response::json(['message' => 'Receipt Recorded']);
-	} catch (\Illuminate\Database\QueryException $e) {
-		return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
-	} 
 
 	return Response::json(['message' => 'Unauthorized Access']);
 						
