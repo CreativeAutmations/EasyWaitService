@@ -45,21 +45,27 @@ Route::post('/signin', function () {
 Route::post('/receipts', [
    'before' => 'jwt-auth',
    function () {
-		$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
+		$token = JWTAuth::getToken();
 
-		$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
+		try { 
+			$user = JWTAuth::toUser($token);
+			$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 
-		if( $receipt -> first()){
-			return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
-		}else{
-			try {
-				$receipt = Receipts::create($bill_details);
-				return Response::json(['message' => 'Receipt Recorded']);
-			} catch (\Illuminate\Database\QueryException $e) {
-				return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
-			} 
-		}
-		return Response::json(['message' => 'Unauthorized Access']);
+			$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
+
+			if( $receipt -> first()){
+				return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
+			}else{
+				try {
+					$receipt = Receipts::create($bill_details);
+					return Response::json(['message' => 'Receipt Recorded']);
+				} catch (\Illuminate\Database\QueryException $e) {
+					return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
+				} 
+			}
+		} catch (Exception $e) {
+			return Response::json(['error' => 'Unauthorized Access']);
+		}	
 	}
 ]);
 
@@ -67,21 +73,19 @@ Route::post('/receipts', [
 Route::get('/restricted', [
    'before' => 'jwt-auth',
    function () {
-       $token = JWTAuth::getToken();
-      try { 
-	
-	$user = JWTAuth::toUser($token);
-
-       return Response::json([
-           'data' => [
-               'email' => $user->email,
-               'registered_at' => $user->created_at->toDateTimeString()
-           ]
-       ]);
-	} catch (Exception $e) {
-      		 return Response::json(['error' => 'Unauthorized Access']);
-   	}	
-   }
+		$token = JWTAuth::getToken();
+		try { 
+			$user = JWTAuth::toUser($token);
+			return Response::json([
+				'data' => [
+				'email' => $user->email,
+				'registered_at' => $user->created_at->toDateTimeString()
+				]
+			]);
+		} catch (Exception $e) {
+			return Response::json(['error' => 'Unauthorized Access']);
+		}	
+	}
 ]);
 
 Route::get('/signout', [
