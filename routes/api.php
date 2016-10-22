@@ -64,7 +64,7 @@ Route::post('/receipts', [
 				} 
 			}
 		} catch (Exception $e) {
-			return Response::json(['error' => 'Unauthorized Access']);
+			return Response::json(['message' => 'Unauthorized Access']);
 		}	
 	}
 ]);

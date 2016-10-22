@@ -16,10 +16,12 @@ class AuthenticationManager(object):
         payload = {'name': username , 'email':email, 'password':password}
         r = requests.post(url, json=payload)
         signupresponse = r.json()
+        signupresponse = r.json()
         if 'token' in signupresponse.keys():
-				return signupresponse["token"]
+                return signupresponse["token"]
         else:
-                raise Exception('Sign Up Error: ' + signupresponse["errorInfo"])
+                print signupresponse["errorInfo"]
+                raise Exception('Sign Up Failed')
 
 
     def sign_in(self, email, password):
@@ -27,7 +29,9 @@ class AuthenticationManager(object):
         payload = {'email':email, 'password':password}
         r = requests.post(url, json=payload)
         signupresponse = r.json()
-        if 'token' in signupresponse.keys():
-				return signupresponse["token"]
+        if ( type(signupresponse) is dict ):
+                return signupresponse["token"]
         else:
-                raise Exception('Sign Up Error: ' + signupresponse["errorInfo"])
+                raise Exception('Sign In Failed')
+
+
