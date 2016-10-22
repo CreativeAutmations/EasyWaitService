@@ -22,7 +22,7 @@ class AuthenticationManager(object):
                 raise Exception('Sign Up Error: ' + signupresponse["errorInfo"])
 
 
-    def sign_in(self, username, email, password):
+    def sign_in(self, email, password):
         url = self._hostURL +'/api/signin'
         payload = {'email':email, 'password':password}
         r = requests.post(url, json=payload)
