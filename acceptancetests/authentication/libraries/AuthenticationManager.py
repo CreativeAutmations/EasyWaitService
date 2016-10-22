@@ -17,8 +17,17 @@ class AuthenticationManager(object):
         r = requests.post(url, json=payload)
         signupresponse = r.json()
         if 'token' in signupresponse.keys():
-                print signupresponse["token"]
+				return signupresponse["token"]
         else:
-                print signupresponse["errorInfo"]
+                raise Exception('Sign Up Error: ' + signupresponse["errorInfo"])
 
 
+    def sign_in(self, username, email, password):
+        url = self._hostURL +'/api/signin'
+        payload = {'email':email, 'password':password}
+        r = requests.post(url, json=payload)
+        signupresponse = r.json()
+        if 'token' in signupresponse.keys():
+				return signupresponse["token"]
+        else:
+                raise Exception('Sign Up Error: ' + signupresponse["errorInfo"])

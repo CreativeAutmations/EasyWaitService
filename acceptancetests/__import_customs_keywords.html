@@ -11,9 +11,16 @@
 				<td>Settings</td>
 			</tr>
 
+
 			<tr>
 				<td>Library</td>
 				<td>./keywords/import_record/ReceiptManager.py</td>
+				<td>${HOSTNAME}</td>
+				<td>8000</td>
+			</tr>
+			<tr>
+				<td>Library</td>
+				<td>./authentication/libraries/AuthenticationManager.py</td>
 				<td>${HOSTNAME}</td>
 				<td>8000</td>
 			</tr>
@@ -137,33 +144,32 @@
 				<td></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td>Old Create Receipt</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>[Arguments]</td>
-				<td>${a1}</td>
-				<td>${a2}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Log</td>
-				<td>${a1}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+
+<tr>	<td>Create Users And Assign Roles</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>admin</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>viewer</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td>${access_token}</td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt As Administrator</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td>${access_token}</td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt As Viewer</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td>${access_token}</td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt Without Authentication</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td>NA</td>	</tr>
+			
+			
 		</tbody>
 	</table>
 

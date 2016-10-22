@@ -9,7 +9,7 @@ class ReceiptManager(object):
         self._port = port
         self._hostURL = 'http://' + host + ':' + port
 
-    def create_receipt(self, bill_details, server_message):
+    def create_receipt(self, bill_details, server_message, access_token):
         url = self._hostURL +'/api/receipts'
         print url
         bill_detaials_array = bill_details.split(',')
@@ -25,7 +25,8 @@ class ReceiptManager(object):
 
         print json_payload_list
 
-        r = requests.post(url, json=json_payload_list)
+        call_headers = {'Authorization': 'Bearer '+ access_token}
+        r = requests.post(url, json=json_payload_list, headers=call_headers)
         server_response = r.json()
         print server_response
         print 'expected message: ' + server_message
