@@ -69,6 +69,50 @@ Route::post('/receipts', [
 	}
 ]);
 
+Route::put('/receipts/{bill_number}', [
+   'before' => 'jwt-auth',
+   function () {
+		$token = JWTAuth::getToken();
+
+		try { 
+			$user = JWTAuth::toUser($token);
+			$bill_details = Input::only('bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
+
+			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+
+			if( $receipts -> first()){
+				$receipts -> first()->update($bill_details);
+				return Response::json(['message' => 'Receipt Updated']);
+			}else{
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
+			}
+		} catch (Exception $e) {
+			return Response::json(['message' => 'Unauthorized Access']);
+		}	
+	}
+]);
+
+Route::get('/receipts/{bill_number}', [
+   'before' => 'jwt-auth',
+   function () {
+		$token = JWTAuth::getToken();
+
+		try { 
+			$user = JWTAuth::toUser($token);
+			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+
+			if( $receipts -> first()){
+				$receipts -> first()->update($bill_details);
+				return Response::json($receipts -> first());
+			}else{
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
+			}
+		} catch (Exception $e) {
+			return Response::json(['message' => 'Unauthorized Access']);
+		}	
+	}
+]);
+
 
 Route::get('/restricted', [
    'before' => 'jwt-auth',

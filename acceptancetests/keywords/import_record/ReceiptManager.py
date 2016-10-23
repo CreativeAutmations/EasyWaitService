@@ -30,3 +30,35 @@ class ReceiptManager(object):
         server_response = r.json()
         print server_response
         return server_response
+
+    def update_receipt(self, bill_number, fields_to_update, access_token):
+        url = self._hostURL +'/api/receipts/' + bill_number
+        print url
+        fields_to_update_array = fields_to_update.split(',')
+        json_payload_list = {}
+        for param_val in fields_to_update_array:
+                param_val_array = param_val.split(':')
+                if len(param_val_array) == 2:
+                        key = param_val_array[0]
+                        key = key.lower().replace(" ","_").strip()
+                        value = param_val_array[1]
+                        json_payload_list[key] = value.strip()
+
+
+        print json_payload_list
+
+        call_headers = {'Authorization': 'Bearer '+ access_token}
+        r = requests.put(url, json=json_payload_list, headers=call_headers)
+        server_response = r.json()
+        print server_response
+        return server_response
+
+    def get_receipt(self, bill_number, access_token):
+        url = self._hostURL +'/api/receipts/' + bill_number
+        print url
+
+        call_headers = {'Authorization': 'Bearer '+ access_token}
+        r = requests.get(url, headers=call_headers)
+        server_response = r.json()
+        print server_response
+        return server_response

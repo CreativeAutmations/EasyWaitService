@@ -179,6 +179,14 @@
 <tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>NA</td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Verify Value In Dictionary</td>	<td>${create_receipt_response}</td>	<td>message</td>	<td>${server_message}</td>	<td></td>	<td></td>	</tr>
 			
+<tr>	<td>Update Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${fields_to_update}</td>	<td>${updated_bill}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${bill_number}=</td>	<td>Extract Value From Dictionary</td>	<td>${bill_details}</td>	<td>bill_number</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${fields_to_update}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${receipt}=</td>	<td>Get Receipt</td>	<td>${bill_number}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Verify Subset In Dictionary</td>	<td>${receipt}</td>	<td>${fields_to_update}</td>	<td></td>	<td></td>	<td></td>	</tr>
 			
 		</tbody>
 	</table>
