@@ -72,6 +72,7 @@ Route::post('/receipts', [
 Route::put('/receipts/{bill_number}', [
    'before' => 'jwt-auth',
    function ( $bill_number) {
+
 		$token = JWTAuth::getToken();
 		try { 
 			$user = JWTAuth::toUser($token);
@@ -81,7 +82,7 @@ Route::put('/receipts/{bill_number}', [
 
 		try { 
 			$user = JWTAuth::toUser($token);
-			$bill_details = Input::only('bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
+			$bill_details = Input::except('bill_number');
 
 			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
 
