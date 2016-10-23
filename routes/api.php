@@ -71,8 +71,13 @@ Route::post('/receipts', [
 
 Route::put('/receipts/{bill_number}', [
    'before' => 'jwt-auth',
-   function () {
+   function ( $bill_number) {
 		$token = JWTAuth::getToken();
+		try { 
+			$user = JWTAuth::toUser($token);
+		} catch (Exception $e) {
+			return Response::json(['message' => 'Unauthorized Access']);
+		}	
 
 		try { 
 			$user = JWTAuth::toUser($token);
@@ -87,14 +92,14 @@ Route::put('/receipts/{bill_number}', [
 				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Unauthorized Access']);
+			return Response::json(['message' => 'Failure Updating Receipt Details for bill_number: ' + $bill_number ]);
 		}	
 	}
 ]);
 
 Route::get('/receipts/{bill_number}', [
    'before' => 'jwt-auth',
-   function () {
+   function ( $bill_number ) {
 		$token = JWTAuth::getToken();
 		try { 
 			$user = JWTAuth::toUser($token);
