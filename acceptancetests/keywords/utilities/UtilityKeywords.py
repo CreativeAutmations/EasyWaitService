@@ -43,6 +43,6 @@ class UtilityKeywords(object):
                         value = param_val_array[1]
                         if key in ref_dictioary.keys():
                                 if value != ref_dictioary[key]: 
-                                    raise Exception('Key: ' + key +' => Expected: ' + ref_dictioary[key] + ' ,Found: ' + value) 
+                                    raise Exception('Key: ' + key +' => Expected: ' + value.strip() + ' ,Found: ' + ref_dictioary[key].strip()) 
                         else:
                                 raise Exception('Key: ' + key +' Not Found')
