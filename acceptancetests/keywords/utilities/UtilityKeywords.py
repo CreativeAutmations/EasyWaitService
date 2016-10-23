@@ -40,9 +40,9 @@ class UtilityKeywords(object):
                 if len(param_val_array) == 2:
                         key = param_val_array[0]
                         key = key.lower().replace(" ","_").strip()
-                        value = param_val_array[1]
+                        value = param_val_array[1].strip()
                         if key in ref_dictioary.keys():
                                 if value != ref_dictioary[key]: 
-                                    raise Exception('Key: ' + key +' => Expected: ' + value.strip() + ' ,Found: ' + ref_dictioary[key].strip()) 
+                                    raise Exception('Key: ' + key +' => Expected: ' + value + ' ,Found: ' + ref_dictioary[key]) 
                         else:
                                 raise Exception('Key: ' + key +' Not Found')
