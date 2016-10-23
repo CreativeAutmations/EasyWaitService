@@ -17,11 +17,21 @@ class UtilityKeywords(object):
 
 
     def extract_value_from_dictionary(self, ref_dictioary, search_key):
-        if search_key in ref_dictioary.keys():
-                return ref_dictioary[search_key] 
+        ref_dictionary_list = {}
+
+        ref_dictioary_array = ref_dictioary.split(',')
+        for param_val in ref_dictioary_array:
+                param_val_array = param_val.split(':')
+                if len(param_val_array) == 2:
+                        key = param_val_array[0]
+                        key = key.lower().replace(" ","_").strip()
+                        value = param_val_array[1]
+                        ref_dictionary_list[key] = value.strip()
+
+        if search_key in ref_dictionary_list.keys():
+                return ref_dictionary_list[search_key] 
         else:
                 raise Exception('Key: ' + search_key +' Not Found')
-
 
     def verify_subset_in_dictionary(self, ref_dictioary, search_dictionary):
         search_dictionary_array = search_dictionary.split(',')
