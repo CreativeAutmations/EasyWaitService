@@ -58,6 +58,9 @@ Route::post('/receipts', [
 			}else{
 				try {
 					$receipt = Receipts::create($bill_details);
+					
+					# Create Audit Record 
+					
 					return Response::json(['message' => 'Receipt Recorded']);
 				} catch (\Illuminate\Database\QueryException $e) {
 					return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
@@ -134,11 +137,10 @@ Route::get('/audit/{bill_number}', [
 
 		try { 
 			$audit = Audit::where('bill_number', '=', $bill_number )->get();
-
-			if( $audit -> first()){
-				return Response::json($audit);
-			}else{
+			if( $audit->isEmpty()){
 				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' + $bill_number + " Not Found"]);
+			}else{
+				return Response::json($audit);
 			}
 		} catch (Exception $e) {
 			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' + $bill_number , 'exception' => $e->getMessage()]);
