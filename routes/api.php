@@ -5,6 +5,7 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Response as HttpResponse;
 use App\Receipts as Receipts;
+use App\Audit as Audit;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -136,15 +137,15 @@ Route::get('/audit/{bill_number}', [
 		}	
 
 		try { 
-			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+			$audit = Audit::where('bill_number', '=', $bill_number )->get();
 
-			if( $receipts -> first()){
-				return Response::json($receipts -> first());
+			if( $audit -> isEmpty()){
+				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' + $bill_number + " Not Found"]);
 			}else{
-				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
+				return Response::json($audit);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' + $bill_number ]);
+			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' + $bill_number ]);
 		}	
 	}
 ]);
