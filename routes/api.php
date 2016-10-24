@@ -136,14 +136,15 @@ Route::get('/audit/{bill_number}', [
 		}	
 
 		try { 
-			$audit = Audit::where('bill_number', '=', $bill_number )->get();
-			if( $audit->isEmpty()){
-				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' + $bill_number + " Not Found"]);
+			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+
+			if( $receipts -> first()){
+				return Response::json($receipts -> first());
 			}else{
-				return Response::json($audit);
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' + $bill_number , 'exception' => $e->getMessage()]);
+			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' + $bill_number ]);
 		}	
 	}
 ]);
