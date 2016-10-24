@@ -122,6 +122,29 @@ Route::get('/receipts/{bill_number}', [
 	}
 ]);
 
+Route::get('/audit/{bill_number}', [
+   'before' => 'jwt-auth',
+   function ( $bill_number ) {
+		$token = JWTAuth::getToken();
+		try { 
+			$user = JWTAuth::toUser($token);
+		} catch (Exception $e) {
+			return Response::json(['message' => 'Unauthorized Access']);
+		}	
+
+		try { 
+			$audit = Audit::where('bill_number', '=', $bill_number )->get();
+
+			if( $audit -> first()){
+				return Response::json($audit);
+			}else{
+				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' + $bill_number + " Not Found"]);
+			}
+		} catch (Exception $e) {
+			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' + $bill_number , 'exception' => $e->getMessage()]);
+		}	
+	}
+]);
 
 Route::get('/restricted', [
    'before' => 'jwt-auth',

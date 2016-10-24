@@ -62,3 +62,14 @@ class ReceiptManager(object):
         server_response = r.json()
         print server_response
         return server_response
+
+    def get_audit_trail(self, bill_number, access_token):
+        url = self._hostURL +'/api/audit/' + bill_number
+        print url
+
+        call_headers = {'Authorization': 'Bearer '+ access_token}
+        r = requests.get(url, headers=call_headers)
+        server_response = r.json()
+        print server_response
+        return server_response
+
