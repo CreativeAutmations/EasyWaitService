@@ -27,8 +27,10 @@ class AuthenticationManager(object):
     def sign_in(self, email, password):
         url = self._hostURL +'/api/signin'
         payload = {'email':email, 'password':password}
+        print payload
         r = requests.post(url, json=payload)
         signupresponse = r.json()
+        print signupresponse
         if ( type(signupresponse) is dict ):
                 return signupresponse["token"]
         else:
