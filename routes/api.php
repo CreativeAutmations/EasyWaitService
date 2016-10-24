@@ -94,10 +94,10 @@ Route::put('/receipts/{bill_number}', [
 				$receipts -> first()->update($bill_details);
 				return Response::json(['message' => 'Receipt Updated']);
 			}else{
-				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Updating Receipt Details for bill_number: ' + $bill_number ]);
+			return Response::json(['message' => 'Failure Updating Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
@@ -118,10 +118,10 @@ Route::get('/receipts/{bill_number}', [
 			if( $receipts -> first()){
 				return Response::json($receipts -> first());
 			}else{
-				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' + $bill_number + " Not Found"]);
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' + $bill_number ]);
+			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
@@ -139,13 +139,13 @@ Route::get('/audit/{bill_number}', [
 		try { 
 			$audit = Audit::where('bill_number', '=', $bill_number )->get();
 
-			if( $audit -> isEmpty()){
-				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' + $bill_number + " Not Found"]);
-			}else{
+			if( $audit->isEmpty()){
+				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' . $bill_number . " Not Found"]);
+			} else {
 				return Response::json($audit);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' + $bill_number ]);
+			return Response::json(['message' => 'Failure Getting Audit Trail for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
