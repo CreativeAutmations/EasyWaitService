@@ -48,12 +48,9 @@ class UtilityKeywords(object):
                         else:
                                 raise Exception('Key: ' + key +' Not Found')
 
-    def compare_recordsets(self, ref_dictioary, search_dictionary_string):
-        n = json.dumps(search_dictionary_string)  
+    def get_record_count_from_dictionary(self, string_recordset):
+        n = json.dumps(string_recordset)  
         o = json.loads(n)
-        search_dictionary = json.loads(n)
-        if len(search_dictionary) != len(ref_dictioary):
-                raise Exception('ref_dictioary size: ' + len(ref_dictioary) +' Search Dictionary Size' + len(search_dictionary))
-        else:
-                print 'ref_dictioary size: ' + len(ref_dictioary) +' Search Dictionary Size' + len(search_dictionary)
-                                
+        dictionary_recordset = json.loads(n)
+        return len(dictionary_recordset)
+
