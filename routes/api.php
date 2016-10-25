@@ -67,9 +67,9 @@ Route::post('/receipts', [
 					$action = 'Added';
 					
 					$audit_record_data = array ('bill_number' => $bill_details['bill_number'], 
-												'email' => 'audit_email', 
-												'action' => 'action', 
-												'change_log' => 'audit_change_log', 
+												'email' => $audit_email, 
+												'action' => $action, 
+												'change_log' => $audit_change_log, 
 												'category' => $category);
 					$audit = Audit::create($audit_record_data);
 					
@@ -112,9 +112,9 @@ Route::put('/receipts/{bill_number}', [
 					$action = 'Updated';
 					
 					$audit_record_data = array ('bill_number' => $bill_number, 
-												'email' => 'audit_email', 
-												'action' => 'action', 
-												'change_log' => 'audit_change_log', 
+												'email' => $audit_email, 
+												'action' => $action, 
+												'change_log' => $audit_change_log, 
 												'category' => $category);
 					$audit = Audit::create($audit_record_data);
 
