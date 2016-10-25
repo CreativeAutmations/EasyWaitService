@@ -60,7 +60,19 @@ Route::post('/receipts', [
 				try {
 					$receipt = Receipts::create($bill_details);
 					
-					# Create Audit Record 
+					# Create Audit Record
+					$audit_change_log = json_encode($bill_details);
+					$audit_email = $user->email;
+					$category = 'Receipt';
+					$action = 'Added';
+					
+					$audit_record_data = array ('bill_number' => $bill_details['bill_number'], 
+												'email' => 'audit_email', 
+												'action' => 'action', 
+												'change_log' => 'audit_change_log', 
+												'category' => $category);
+					$audit = Audit::create($audit_record_data);
+					
 					
 					return Response::json(['message' => 'Receipt Recorded']);
 				} catch (\Illuminate\Database\QueryException $e) {
@@ -92,6 +104,21 @@ Route::put('/receipts/{bill_number}', [
 
 			if( $receipts -> first()){
 				$receipts -> first()->update($bill_details);
+				
+					# Create Audit Record
+					$audit_change_log = json_encode($bill_details);
+					$audit_email = $user->email;
+					$category = 'Receipt';
+					$action = 'Updated';
+					
+					$audit_record_data = array ('bill_number' => $bill_number, 
+												'email' => 'audit_email', 
+												'action' => 'action', 
+												'change_log' => 'audit_change_log', 
+												'category' => $category);
+					$audit = Audit::create($audit_record_data);
+
+					
 				return Response::json(['message' => 'Receipt Updated']);
 			}else{
 				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
