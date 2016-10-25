@@ -1,6 +1,7 @@
 __version__ = '0.1'
 import requests
 import json
+import ast
 
 class UtilityKeywords(object):
 
@@ -46,3 +47,13 @@ class UtilityKeywords(object):
                                     raise Exception('Key: ' + key +' => Expected: ' + value + ' ,Found: ' + ref_dictioary[key]) 
                         else:
                                 raise Exception('Key: ' + key +' Not Found')
+
+    def compare_recordsets(self, ref_dictioary, search_dictionary_string):
+        n = json.dumps(search_dictionary_string)  
+        o = json.loads(n)
+        search_dictionary = json.loads(n)
+        if len(search_dictionary) != len(ref_dictioary):
+                raise Exception('ref_dictioary size: ' + len(ref_dictioary) +' Search Dictionary Size' + len(search_dictionary))
+        else:
+                print 'ref_dictioary size: ' + len(ref_dictioary) +' Search Dictionary Size' + len(search_dictionary)
+                                
