@@ -200,7 +200,8 @@
 <tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${first_update}</td>	<td>${access_token_first_upd_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${second_update}</td>	<td>${access_token_second_upd_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${audit_trail}=</td>	<td>Get Audit Trail</td>	<td>${bill_number}</td>	<td>${access_token_added_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Compare Recordsets</td>	<td>${expected_audit_trail}</td>	<td>${audit_trail}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${record_count}=</td>	<td>Get Record Count From Dictionary</td>	<td>${audit_trail}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Should Be True</td>	<td>${record_count} == 3</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 
 			
 		</tbody>
