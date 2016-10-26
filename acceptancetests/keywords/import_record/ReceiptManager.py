@@ -74,7 +74,7 @@ class ReceiptManager(object):
         return server_response
 
     def get_receipts_on_or_after_bill_date(self, bill_date, access_token):
-        url = self._hostURL +'/api/receipts/search' + bill_number
+        url = self._hostURL +'/api/receipts/search'
         print url
         payload = {'bill_date': {'value': bill_date, 'operation': '>='}}
         call_headers = {'Authorization': 'Bearer '+ access_token}
