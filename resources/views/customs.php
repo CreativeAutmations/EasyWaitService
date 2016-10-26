@@ -28,11 +28,12 @@
 	<body ng-app="customsregister" ng-controller="CustomsRecordManager as vm" data-ng-init="vm.init()">
 		<div id="navbar"></div>
 		<!-- Grid System      ====================================== -->
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
 				<h3></h3>
 				<h3></h3>
 			</div>
+			<!-- Authentication      ====================================== -->
 			<div class="row">
 				<div class="col-md-4">
 					<div class="input-group">
@@ -43,6 +44,79 @@
 					<!-- /input-group -->
 				</div>
 			</div>
+			<!-- Receipt Creation      ====================================== -->
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+			<form novalidate class="simple-form">
+				*Bill Number: <input type="text" ng-model="vm.receipt_to_add.bill_number" />
+				*Bill Date: <input type="text" ng-model="vm.receipt_to_add.bill_date" />
+				*B17 Debit: <input type="text" ng-model="vm.receipt_to_add.b17_debit" />
+				*Description: <input type="text" ng-model="vm.receipt_to_add.description" /><br/><p></p>
+				Invoice No: <input type="text" ng-model="vm.receipt_to_add.invoice_no" />
+				Invoice Date: <input type="text" ng-model="vm.receipt_to_add.invoice_date" /><br /><p></p>
+				Procurement Certificate: <input type="text" ng-model="vm.receipt_to_add.procurement_certificate" />
+				Procurement Date: <input type="text" ng-model="vm.receipt_to_add.procurement_date" /><br /><p></p>
+				Unit Weight: <input type="text" ng-model="vm.receipt_to_add.unit_weight" />
+				Unit Quantity: <input type="text" ng-model="vm.receipt_to_add.unit_quantity" />
+				*Value: <input type="text" ng-model="vm.receipt_to_add.value" />
+				*Duty: <input type="text" ng-model="vm.receipt_to_add.duty" /><br/><p></p>
+				Transport Registration: <input type="text" ng-model="vm.receipt_to_add.transport_registration" />
+				Receipt Timestamp: <input type="text" ng-model="vm.receipt_to_add.receipt_timestamp" /><br /><p></p>
+				*Balance Quantity: <input type="text" ng-model="vm.receipt_to_add.balance_quantity" />
+				*Balance Value: <input type="text" ng-model="vm.receipt_to_add.balance_value" /><br /><p></p>
+				<input type="button" ng-click="vm.reset()" value="Reset" />
+				<input type="submit" ng-click="vm.update(vm.receipt_to_add)" value="Save" />
+			</form>
+
+			<!-- Receipt Retrieval      ====================================== -->
+			<hr>
+				<h3>Receipt Created:</h3>
+				<table border>
+					<thead>
+						<tr>
+						<td>	BILL NUMBER	</td>
+						<td>	BILL DATE	</td>
+						<td>	B17 DEBIT	</td>
+						<td>	DESCRIPTION	</td>
+						<td>	INVOICE NO	</td>
+						<td>	INVOICE DATE	</td>
+						<td>	PROCUREMENT CERTIFICATE	</td>
+						<td>	PROCUREMENT DATE	</td>
+						<td>	UNIT WEIGHT	</td>
+						<td>	UNIT QUANTITY	</td>
+						<td>	VALUE	</td>
+						<td>	DUTY	</td>
+						<td>	TRANSPORT REGISTRATION	</td>
+						<td>	RECEIPT TIMESTAMP	</td>
+						<td>	BALANCE QUANTITY	</td>
+						<td>	BALANCE VALUE	</td>
+						</tr>
+					
+					</thead>
+					<tbody>
+					<tr>
+					<td>	{{ vm.retrieved.receipt.bill_number }}	</td>
+					<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
+					<td>	{{  vm.retrieved.receipt.b17_debit }}	</td>
+					<td>	{{  vm.retrieved.receipt.description }}	</td>
+					<td>	{{  vm.retrieved.receipt.invoice_no }}	</td>
+					<td>	{{  vm.retrieved.receipt.invoice_date }}	</td>
+					<td>	{{  vm.retrieved.receipt.procurement_certificate }}	</td>
+					<td>	{{  vm.retrieved.receipt.procurement_date }}	</td>
+					<td>	{{  vm.retrieved.receipt.unit_weight }}	</td>
+					<td>	{{  vm.retrieved.receipt.unit_quantity }}	</td>
+					<td>	{{  vm.retrieved.receipt.value }}	</td>
+					<td>	{{  vm.retrieved.receipt.duty }}	</td>
+					<td>	{{  vm.retrieved.receipt.transport_registration }}	</td>
+					<td>	{{  vm.retrieved.receipt.receipt_timestamp }}	</td>
+					<td>	{{  vm.retrieved.receipt.balance_quantity }}	</td>
+					<td>	{{  vm.retrieved.receipt.balance_value }}	</td>
+					</tr>
+					</tbody>
+				</table>
+
+		</div>
 		</div>
 			<!-- Include all compiled plugins (below), or include individual files            as needed -->
 	</body>
