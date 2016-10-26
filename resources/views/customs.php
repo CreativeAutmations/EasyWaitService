@@ -41,7 +41,6 @@
 						<button class="btn btn-primary" ng-click="vm.signin(vm.email, vm.password)">Sign In</button>
 					</div>
 					<!-- /input-group -->
-					<span>{{vm.token}}</span>
 				</div>
 			</div>
 		</div>
