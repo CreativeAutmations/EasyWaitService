@@ -59,9 +59,30 @@ angular.module('customsregister')
 	};
 
 	
+  var getAuditTrail = function(bill_number , token) {
+	    var url = 'http://54.190.12.210:8000/api/audit/' + bill_number ;
+		return $http({
+			url: url,
+			method: "GET",
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
+	
+	
 	return {
     signin: signin,
 	addreceipt: addreceipt,
-	getReceiptsByDate: getReceiptsByDate
+	getReceiptsByDate: getReceiptsByDate,
+	getAuditTrail: getAuditTrail
   };
 }]);

@@ -134,13 +134,16 @@
 			<table border>
 				<thead>
 				<tr>
+					<td></td>
 					<td ng-repeat="column in vm.searchByDateResultsHeaders">{{column}}</td>
 				</tr>
 				</thead>
 			
 			
+			
 				<tbody>
 				<tr ng-repeat="row in vm.searchByDateResults">
+					<td><button type="button" class="btn btn-default" ng-click="vm.getAuditTrail(row.bill_number)">Audit</button></td>
 					<td>{{ row.bill_number }} </td>
 					<td>{{ row.bill_date }} </td>
 					<td>{{ row.description }} </td>

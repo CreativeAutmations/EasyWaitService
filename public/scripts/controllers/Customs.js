@@ -22,25 +22,8 @@
 				vm.token = $cookies.get('auth_token');
 				
 				vm.retrieved = {};
-				vm.retrieved.receipt = {
-						b17_debit:"24000/-",
-						balance_quantity:"1300",
-						balance_value:"6,89,567/-",
-						bill_date:"2011-08-17",
-						bill_number:"123456",
-						description:"New Imported Item",
-						duty:"2,12,145/-",
-						invoice_date:"2011-07-17",
-						invoice_no:"TY123/78",
-						procurement_certificate:"132-98",
-						procurement_date:"2011-08-17",
-						receipt_timestamp:"2011-08-17 11:11:11",
-						transport_registration:"UX12 5614M",
-						unit_quantity:"1300",
-						unit_weight:"1600 Kg",
-						value:"6,89,567/-"
-					}
 				vm.retrieved.receipt = {};	
+
 				vm.searchByDateResults = {};
 				vm.searchByDateResultsHeaders = {
 					bill_number: "Bill Number",
@@ -60,6 +43,8 @@
 					transport_registration: "Transport Registration",
 					receipt_timestamp: "Receipt Timestamp"
 				};
+				
+				vm.auditTrail = {};
          	}
             
 			// ++ Sign In Function Started
@@ -120,5 +105,23 @@
 				console.log("OK");
             }
 			// -- Get Receipts By Date Ends
+			
+			// ++ Get Audit Trail For a Bill Starts
+            vm.getAuditTrail = function(bill_number) {
+				customs.getAuditTrail(bill_number , vm.token).then(function(results) {
+                	if ( results.data ) {
+						vm.auditTrail = results.data;
+						console.log(results.data);
+					} else {
+						bootbox.alert("Recipt Search Failed" , function() {});
+					}
+                    console.log(results);
+                }, function(error) {
+                  console.log(error);
+                });
+				
+				console.log("OK");
+            }
+			// -- Get Audit Trail For a Bill Ends
     }
 })();
