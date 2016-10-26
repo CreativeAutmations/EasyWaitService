@@ -3,7 +3,6 @@ angular.module('customsregister')
   
   var signin = function(email,pwd) {
 	    var url = 'http://54.190.12.210:8000//api/signin' ;
-	    // return $http.post(url).success(function(data) { });
 		return $http({
 			url: url,
 			method: "POST",
@@ -19,8 +18,29 @@ angular.module('customsregister')
 		});
 	};
 
+  var addreceipt = function(formdata, token) {
+	    var url = 'http://54.190.12.210:8000/api/receipts' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: formdata,
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
+
 	
 	return {
-    signin: signin
+    signin: signin,
+	addreceipt: addreceipt
   };
 }]);
