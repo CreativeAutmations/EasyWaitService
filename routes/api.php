@@ -156,7 +156,7 @@ Route::get('/receipts/{bill_number}', [
 
 Route::post('/receipts/search', [
    'before' => 'jwt-auth',
-   function ( $bill_number ) {
+   function ( ) {
 		$token = JWTAuth::getToken();
 		try { 
 			$user = JWTAuth::toUser($token);
