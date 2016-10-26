@@ -205,6 +205,17 @@
 			
 			
 			<!-- Include all compiled plugins (below), or include individual files            as needed -->
+			<br/><br/><br/><br/><br/>
+			<p></p>
+			   <div class="footer">
+      <div class="container">
+      <p class="text-muted">
+			Powered By <a href="mailto:allied.service.14@gmail.com?Subject=Contact Us" target="_top">allied.service.14@gmail.com</a>
+		</p>
+      </div>
+    </div>
+ 
+			
 	</body>
 </html>
 
