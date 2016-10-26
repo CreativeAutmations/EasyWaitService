@@ -44,7 +44,30 @@
 					receipt_timestamp: "Receipt Timestamp"
 				};
 				
+				
 				vm.auditTrail = {};
+				vm.auditTrailHeaders = {
+					user_id: "User Id",
+					action: "Action",
+					category: "Section",
+					update_date: "Updated At",
+					bill_number: "Bill Number",
+					bill_date: "Bill Date",
+					description: "Description",
+					unit_quantity: "Unit Quantity",
+					unit_weight: "Unit Weight",
+					value: "Value",
+					duty: "Duty",
+					balance_quantity: "Balance Quantity",
+					balance_value: "Balance Value",
+					b17_debit: "B17 Debit",
+					invoice_date: "Invoice Date",
+					invoice_no: "Invoice No",
+					procurement_certificate: "Procurement Certificate",
+					procurement_date: "Procurement Date",
+					transport_registration: "Transport Registration",
+					receipt_timestamp: "Receipt Timestamp"
+				};
          	}
             
 			// ++ Sign In Function Started
