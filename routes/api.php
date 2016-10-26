@@ -153,6 +153,38 @@ Route::get('/receipts/{bill_number}', [
 	}
 ]);
 
+
+Route::post('/receipts/search', [
+   'before' => 'jwt-auth',
+   function ( $bill_number ) {
+		$token = JWTAuth::getToken();
+		try { 
+			$user = JWTAuth::toUser($token);
+		} catch (Exception $e) {
+			return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
+		}	
+		
+		$filter_conditions = Input::all();
+		$field = array_keys($filter_conditions)[0];
+		$field_value = $filter_conditions[$field]["value"];
+		$operator = $filter_conditions[$field]["operation"];
+
+		try { 
+			$receipts = Receipts::where($field, $operator , $field_value )->get();
+
+			if( $receipts->isEmpty()){
+				return Response::json( false, ['message' => 'No Matching Records Found'] );
+			} else {
+				return Response::json($receipts);
+			}
+		} catch (Exception $e) {
+			return Response::json( false, ['message' => 'System Error', 'exception' => $e->getMessage()] );
+		}	
+	}
+]);
+
+
+
 Route::get('/audit/{bill_number}', [
    'before' => 'jwt-auth',
    function ( $bill_number ) {
