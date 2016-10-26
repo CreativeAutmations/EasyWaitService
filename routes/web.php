@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/customs', function () {
+    return view('customs');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
