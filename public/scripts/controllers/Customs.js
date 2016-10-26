@@ -41,7 +41,25 @@
 						value:"6,89,567/-"
 					}
 				vm.retrieved.receipt = {};	
-
+				vm.searchByDateResults = {};
+				vm.searchByDateResultsHeaders = {
+					bill_number: "Bill Number",
+					bill_date: "Bill Date",
+					description: "Description",
+					unit_quantity: "Unit Quantity",
+					unit_weight: "Unit Weight",
+					value: "Value",
+					duty: "Duty",
+					balance_quantity: "Balance Quantity",
+					balance_value: "Balance Value",
+					b17_debit: "B17 Debit",
+					invoice_date: "Invoice Date",
+					invoice_no: "Invoice No",
+					procurement_certificate: "Procurement Certificate",
+					procurement_date: "Procurement Date",
+					transport_registration: "Transport Registration",
+					receipt_timestamp: "Receipt Timestamp"
+				};
          	}
             
 			// ++ Sign In Function Started
@@ -83,6 +101,24 @@
 				console.log("OK");
             }
 			// -- Sign In Function Ended
-			
+						
+			// ++ Get Receipts By Date Starts
+            vm.getReceiptsByDate = function(bill_date) {
+				customs.getReceiptsByDate(bill_date , vm.token).then(function(results) {
+                	if ( results.data ) {
+						vm.receipt_to_search.bill_date = '';
+						vm.searchByDateResults = results.data;
+						console.log(results.data);
+					} else {
+						bootbox.alert("Recipt Search Failed" , function() {});
+					}
+                    console.log(results);
+                }, function(error) {
+                  console.log(error);
+                });
+				
+				console.log("OK");
+            }
+			// -- Get Receipts By Date Ends
     }
 })();

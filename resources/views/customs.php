@@ -120,7 +120,49 @@
 		</div>
 
 			<!-- Receipt List      ====================================== -->
+			<hr>
+			<h3>Receipt Search</h3>
+			<div class="row">
+				<div class="col-md-12">
+					<form novalidate class="simple-form">
+						*Bill Date: <input type="text" ng-model="vm.receipt_to_search.bill_date" />
+						<input type="submit" ng-click="vm.getReceiptsByDate(vm.receipt_to_search.bill_date)" value="Search" />
+					</form>
+				</div>
+			</div>
+			<br/><br/>
+			<table border>
+				<thead>
+				<tr>
+					<td ng-repeat="column in vm.searchByDateResultsHeaders">{{column}}</td>
+				</tr>
+				</thead>
 			
+			
+				<tbody>
+				<tr ng-repeat="row in vm.searchByDateResults">
+					<td>{{ row.bill_number }} </td>
+					<td>{{ row.bill_date }} </td>
+					<td>{{ row.description }} </td>
+					<td>{{ row.unit_quantity }} </td>
+					<td>{{ row.unit_weight }} </td>
+					<td>{{ row.value }} </td>
+					<td>{{ row.duty }} </td>
+					<td>{{ row.balance_quantity }} </td>
+					<td>{{ row.balance_value }} </td>
+					<td>{{ row.b17_debit }} </td>
+					<td>{{ row.invoice_date }} </td>
+					<td>{{ row.invoice_no }} </td>
+					<td>{{ row.procurement_certificate }} </td>
+					<td>{{ row.procurement_date }} </td>
+					<td>{{ row.transport_registration }} </td>
+					<td>{{ row.receipt_timestamp }} </td>
+				</tr>
+				</tbody>
+			</table>
+		
+			
+			<hr>
 			
 			
 			

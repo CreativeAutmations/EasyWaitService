@@ -38,9 +38,30 @@ angular.module('customsregister')
 		});
 	};
 
+  var getReceiptsByDate = function(bill_date , token) {
+	    var url = 'http://54.190.12.210:8000/api/receipts/search' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: {'bill_date' : {'value': bill_date, 'operation': '>='}},
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
+
 	
 	return {
     signin: signin,
-	addreceipt: addreceipt
+	addreceipt: addreceipt,
+	getReceiptsByDate: getReceiptsByDate
   };
 }]);
