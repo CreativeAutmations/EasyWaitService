@@ -40,6 +40,7 @@
 						unit_weight:"1600 Kg",
 						value:"6,89,567/-"
 					}
+				vm.retrieved.receipt = {};	
 
          	}
             
