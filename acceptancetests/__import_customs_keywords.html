@@ -209,7 +209,7 @@
 <tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt1}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt2}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt3}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>${retrieved_receipts}=</td>	<td>Get Receipts On Or After Bill Date</td>	<td>${query_date}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${retrieved_receipts}=</td>	<td>Get Receipts On Or After Bill Date</td>	<td>${query_date}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${record_count}=</td>	<td>Get Record Count From Dictionary</td>	<td>${retrieved_receipts}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Should Be True</td>	<td>${record_count} == 2</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 			
