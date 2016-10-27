@@ -49,7 +49,7 @@
 			<div class="row">
 				<div class="col-md-12">
 			<form novalidate class="simple-form">
-				*Bill Number: <input type="text" ng-model="vm.receipt_to_add.bill_number" />
+				*Bill Number: <input type="text" ng-readonly="vm.readonlyBillNumber" ng-model="vm.receipt_to_add.bill_number" />
 				*Bill Date: <input type="text" ng-model="vm.receipt_to_add.bill_date" />
 				*B17 Debit: <input type="text" ng-model="vm.receipt_to_add.b17_debit" />
 				*Description: <input type="text" ng-model="vm.receipt_to_add.description" /><br/><p></p>

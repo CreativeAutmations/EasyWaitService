@@ -27,7 +27,7 @@
 				
 				vm.retrieved = {};
 				vm.retrieved.receipt = {};	
-				vm.addUpdateAction = 'Add';
+				vm.resetAddEditWindow();
 
 				vm.searchByDateResults = {};
 				vm.searchByDateResultsHeaders = {
@@ -118,6 +118,7 @@
 			vm.resetAddEditWindow = function() {
 				vm.addUpdateAction = 'Add';
 				vm.receipt_to_add = {};
+				vm.readonlyBillNumber = false;
 			};
 
 			// ++ Prepare For Edit
@@ -127,7 +128,8 @@
 				// Set the button text to Update
 				// Set the flag to execute update instead of Add
 				vm.addUpdateAction = 'Update';
-				vm.receipt_to_add = receipt_data;
+				vm.receipt_to_add = angular.copy(receipt_data);
+				vm.readonlyBillNumber = true;
             }
 			// -- Prepare For Edit
 
