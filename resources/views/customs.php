@@ -72,7 +72,8 @@
 			<!-- Receipt Retrieval      ====================================== -->
 			<hr>
 				<h3>Receipt Created:</h3>
-				<table border>
+				<div class="table-responsive">
+				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
 						<td>	BILL NUMBER	</td>
@@ -115,6 +116,7 @@
 					</tr>
 					</tbody>
 				</table>
+				</div>
 
 		</div>
 		</div>
@@ -131,7 +133,8 @@
 				</div>
 			</div>
 			<br/><br/>
-			<table border>
+			<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover">
 				<thead>
 				<tr>
 					<td></td>
@@ -163,13 +166,14 @@
 				</tr>
 				</tbody>
 			</table>
-		
+			</div>
 			
 			<!-- Audit Trail      ====================================== -->
 			<hr>
 			<h3>Audit Trail</h3>
 			<br/><br/>
-			<table border>
+			<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover">
 				<thead>
 				<tr>
 					<td ng-repeat="column in vm.auditTrailHeaders">{{column}}</td>
@@ -201,7 +205,7 @@
 				</tr>
 				</tbody>
 			</table>
-			
+			</div>
 			
 			
 			<!-- Include all compiled plugins (below), or include individual files            as needed -->
