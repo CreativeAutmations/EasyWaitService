@@ -127,8 +127,11 @@
 			<div class="row">
 				<div class="col-md-12">
 					<form novalidate class="simple-form">
-						*Bill Date: <input type="text" ng-model="vm.receipt_to_search.bill_date" />
+						*Bill Date: <input type="date" id="receipt_to_search_bill_date" name="input" ng-model="vm.receipt_to_search.bill_date"
+       placeholder="yyyy-MM-dd" required /> 
 						<input type="submit" ng-click="vm.getReceiptsByDate(vm.receipt_to_search.bill_date)" value="Search" />
+						   
+	   
 					</form>
 				</div>
 			</div>

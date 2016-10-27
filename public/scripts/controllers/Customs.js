@@ -19,6 +19,12 @@
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
+				
+				
+				vm.receipt_to_search = {};
+				var default_date = new Date();
+				vm.receipt_to_search.bill_date =  new Date(default_date.getFullYear() -1 , default_date.getMonth() , 1);
+				
 				vm.token = $cookies.get('auth_token');
 				
 				vm.retrieved = {};
@@ -112,9 +118,18 @@
 						
 			// ++ Get Receipts By Date Starts
             vm.getReceiptsByDate = function(bill_date) {
-				customs.getReceiptsByDate(bill_date , vm.token).then(function(results) {
+				
+					
+				var mm = bill_date.getMonth() + 1;
+				var dd = bill_date.getDate();
+				var yyyy = bill_date.getFullYear();
+				mm = (mm < 10) ? '0' + mm : mm;
+				dd = (dd < 10) ? '0' + dd : dd;
+				
+				var date = yyyy + '-' + mm + '-' + dd ;
+
+				customs.getReceiptsByDate(date , vm.token).then(function(results) {
                 	if ( results.data ) {
-						vm.receipt_to_search.bill_date = '';
 						vm.searchByDateResults = results.data;
 						console.log(results.data);
 					} else {
