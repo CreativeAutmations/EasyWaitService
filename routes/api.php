@@ -201,6 +201,9 @@ Route::get('/audit/{bill_number}', [
 			if( $audit->isEmpty()){
 				return Response::json(['message' => 'Operation Failed: Audit Trail with Bill Number: ' . $bill_number . " Not Found"]);
 			} else {
+				foreach ( $audit as $audit_record ) {
+					$audit_record['change_log'] = json_decode($audit_record['change_log']);
+				}
 				return Response::json($audit);
 			}
 		} catch (Exception $e) {
