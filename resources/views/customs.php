@@ -65,17 +65,18 @@
 				Receipt Timestamp: <input type="text" ng-model="vm.receipt_to_add.receipt_timestamp" /><br /><p></p>
 				*Balance Quantity: <input type="text" ng-model="vm.receipt_to_add.balance_quantity" />
 				*Balance Value: <input type="text" ng-model="vm.receipt_to_add.balance_value" /><br /><p></p>
-				<input type="button" ng-click="vm.reset()" value="Reset" />
-				<input type="submit" ng-click="vm.update(vm.receipt_to_add)" value="Save" />
+				<input type="button" ng-click="vm.resetAddEditWindow()" value="Reset" />
+				<input type="submit" ng-click="vm.update(vm.receipt_to_add)" value="{{ vm.addUpdateAction }}" />
 			</form>
 
 			<!-- Receipt Retrieval      ====================================== -->
 			<hr>
-				<h3>Receipt Created:</h3>
+				<h3>Created / Updated Receipt :</h3>
 				<div class="table-responsive">
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
+							<td></td>
 							<td>	Bill Number	</td>
 							<td>	Bill Date	</td>
 							<td>	Description	</td>
@@ -97,6 +98,9 @@
 					</thead>
 					<tbody>
 					<tr>
+					<td>
+						<button type="button" class="btn btn-default" ng-click="vm.prepareForEdit(vm.retrieved.receipt)">Edit</button>
+					</td>
 					<td>	{{ vm.retrieved.receipt.bill_number }}	</td>
 					<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
 					<td>	{{  vm.retrieved.receipt.description }}	</td>
@@ -149,7 +153,13 @@
 			
 				<tbody>
 				<tr ng-repeat="row in vm.searchByDateResults">
-					<td><button type="button" class="btn btn-default" ng-click="vm.getAuditTrail(row.bill_number)">Audit</button></td>
+					<td>
+					
+					<div class="btn-group" role="group" aria-label="Actions">
+						<button type="button" class="btn btn-default" ng-click="vm.prepareForEdit(row)">Edit</button>
+						<button type="button" class="btn btn-default" ng-click="vm.getAuditTrail(row.bill_number)">Audit</button>
+					</div>
+					</td>
 					<td>{{ row.bill_number }} </td>
 					<td>{{ row.bill_date }} </td>
 					<td>{{ row.description }} </td>

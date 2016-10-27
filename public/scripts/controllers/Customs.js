@@ -19,8 +19,6 @@
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
-				
-				
 				vm.receipt_to_search = {};
 				var default_date = new Date();
 				vm.receipt_to_search.bill_date =  new Date(default_date.getFullYear() -1 , default_date.getMonth() , 1);
@@ -29,6 +27,7 @@
 				
 				vm.retrieved = {};
 				vm.retrieved.receipt = {};	
+				vm.addUpdateAction = 'Add';
 
 				vm.searchByDateResults = {};
 				vm.searchByDateResultsHeaders = {
@@ -49,7 +48,6 @@
 					transport_registration: "Transport Registration",
 					receipt_timestamp: "Receipt Timestamp"
 				};
-				
 				
 				vm.auditTrail = {};
 				vm.auditTrailHeaders = {
@@ -98,11 +96,12 @@
 			
 			// ++ Create Receipt
             vm.update = function(receipt) {
-				vm.retrieved.receipt = receipt;
-				customs.addreceipt(receipt , vm.token).then(function(results) {
-                	if ( results.data  && results.data.message === "Receipt Recorded") {
-						bootbox.alert("Recipt Created" , function() {});
-						vm.receipt_to_add = {};
+				
+				customs.addOrUpdateReceipt(receipt , vm.token, vm.addUpdateAction ).then(function(results) {
+                	if ( results.data ) {
+						bootbox.alert(results.data.message , function() {});
+						vm.retrieved.receipt = vm.receipt_to_add;
+						vm.resetAddEditWindow();
 					} else {
 						bootbox.alert("Recipt Creation Failed" , function() {});
 						vm.retrieved.receipt = {};
@@ -113,13 +112,28 @@
                 });
 				
 				console.log("OK");
-            }
+            };
 			// -- Sign In Function Ended
-						
+
+			vm.resetAddEditWindow = function() {
+				vm.addUpdateAction = 'Add';
+				vm.receipt_to_add = {};
+			};
+
+			// ++ Prepare For Edit
+            vm.prepareForEdit = function(receipt_data) {
+				// Get the receipt
+				// Set the add/edit form data model to the retrieved receipt
+				// Set the button text to Update
+				// Set the flag to execute update instead of Add
+				vm.addUpdateAction = 'Update';
+				vm.receipt_to_add = receipt_data;
+            }
+			// -- Prepare For Edit
+
+			
 			// ++ Get Receipts By Date Starts
             vm.getReceiptsByDate = function(bill_date) {
-				
-					
 				var mm = bill_date.getMonth() + 1;
 				var dd = bill_date.getDate();
 				var yyyy = bill_date.getFullYear();

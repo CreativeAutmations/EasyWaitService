@@ -18,11 +18,16 @@ angular.module('customsregister')
 		});
 	};
 
-  var addreceipt = function(formdata, token) {
+  var addOrUpdateReceipt = function(formdata, token, action) {
 	    var url = 'http://54.190.12.210:8000/api/receipts' ;
+		var method = "POST";
+		if ( action === 'Update') {
+			method = "PUT";
+			var url = 'http://54.190.12.210:8000/api/receipts/' +  formdata.bill_number;
+		}
 		return $http({
 			url: url,
-			method: "POST",
+			method: method,
 			data: formdata,
 			headers: {
 				'Authorization': "Bearer ".concat(token)
@@ -81,7 +86,7 @@ angular.module('customsregister')
 	
 	return {
     signin: signin,
-	addreceipt: addreceipt,
+	addOrUpdateReceipt: addOrUpdateReceipt,
 	getReceiptsByDate: getReceiptsByDate,
 	getAuditTrail: getAuditTrail
   };

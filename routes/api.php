@@ -55,7 +55,7 @@ Route::post('/receipts', [
 			$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
 
 			if( $receipt -> first()){
-				return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
+				return Response::json(false,['message' => 'Operation Failed: Duplicate Receipt']);
 			}else{
 				try {
 					$receipt = Receipts::create($bill_details);
@@ -76,11 +76,11 @@ Route::post('/receipts', [
 					
 					return Response::json(['message' => 'Receipt Recorded']);
 				} catch (\Illuminate\Database\QueryException $e) {
-					return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
+					return Response::json( false,['message' => 'System Error', 'exception' => $e->getMessage()] );
 				} 
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Unauthorized Access']);
+			return Response::json(false,['message' => 'Unauthorized Access']);
 		}	
 	}
 ]);
@@ -93,7 +93,7 @@ Route::put('/receipts/{bill_number}', [
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Unauthorized Access']);
+			return Response::json(false,['message' => 'Unauthorized Access']);
 		}	
 
 		try { 
@@ -121,10 +121,10 @@ Route::put('/receipts/{bill_number}', [
 					
 				return Response::json(['message' => 'Receipt Updated']);
 			}else{
-				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
+				return Response::json(false,['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Updating Receipt Details for bill_number: ' . $bill_number ]);
+			return Response::json(false,['message' => 'Failure Updating Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
@@ -136,7 +136,7 @@ Route::get('/receipts/{bill_number}', [
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Unauthorized Access']);
+			return Response::json(false,['message' => 'Unauthorized Access']);
 		}	
 
 		try { 
@@ -145,10 +145,10 @@ Route::get('/receipts/{bill_number}', [
 			if( $receipts -> first()){
 				return Response::json($receipts -> first());
 			}else{
-				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
+				return Response::json(false,['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' . $bill_number ]);
+			return Response::json(false,['message' => 'Failure Getting Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
