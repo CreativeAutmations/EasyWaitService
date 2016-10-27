@@ -55,7 +55,7 @@ Route::post('/receipts', [
 			$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
 
 			if( $receipt -> first()){
-				return Response::json(false,['message' => 'Operation Failed: Duplicate Receipt']);
+				return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
 			}else{
 				try {
 					$receipt = Receipts::create($bill_details);
@@ -80,7 +80,7 @@ Route::post('/receipts', [
 				} 
 			}
 		} catch (Exception $e) {
-			return Response::json(false,['message' => 'Unauthorized Access']);
+		       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 	}
 ]);
@@ -93,7 +93,7 @@ Route::put('/receipts/{bill_number}', [
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
-			return Response::json(false,['message' => 'Unauthorized Access']);
+			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 
 		try { 
@@ -121,10 +121,10 @@ Route::put('/receipts/{bill_number}', [
 					
 				return Response::json(['message' => 'Receipt Updated']);
 			}else{
-				return Response::json(false,['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(false,['message' => 'Failure Updating Receipt Details for bill_number: ' . $bill_number ]);
+			return Response::json(['message' => 'Failure Updating Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
@@ -136,7 +136,7 @@ Route::get('/receipts/{bill_number}', [
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
-			return Response::json(false,['message' => 'Unauthorized Access']);
+			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 
 		try { 
@@ -145,10 +145,10 @@ Route::get('/receipts/{bill_number}', [
 			if( $receipts -> first()){
 				return Response::json($receipts -> first());
 			}else{
-				return Response::json(false,['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
+				return Response::json(['message' => 'Operation Failed: Receipt with Bill Number: ' . $bill_number . ' Not Found']);
 			}
 		} catch (Exception $e) {
-			return Response::json(false,['message' => 'Failure Getting Receipt Details for bill_number: ' . $bill_number ]);
+			return Response::json(['message' => 'Failure Getting Receipt Details for bill_number: ' . $bill_number ]);
 		}	
 	}
 ]);
@@ -192,7 +192,7 @@ Route::get('/audit/{bill_number}', [
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
-			return Response::json(['message' => 'Unauthorized Access']);
+			return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 
 		try { 
@@ -225,7 +225,7 @@ Route::get('/restricted', [
 				]
 			]);
 		} catch (Exception $e) {
-			return Response::json(['error' => 'Unauthorized Access']);
+			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 	}
 ]);
@@ -237,7 +237,7 @@ Route::get('/signout', [
 	JWTAuth::invalidate(JWTAuth::getToken());	  
 	return Response::json(['status' => 'User Logged Out']);
      } catch (Exception $e) {
-	return Response::json(['error' => 'Unauthorized Access']);
+	       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
      }
    }
 ]);
