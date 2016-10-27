@@ -76,22 +76,22 @@
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
-						<td>	BILL NUMBER	</td>
-						<td>	BILL DATE	</td>
-						<td>	B17 DEBIT	</td>
-						<td>	DESCRIPTION	</td>
-						<td>	INVOICE NO	</td>
-						<td>	INVOICE DATE	</td>
-						<td>	PROCUREMENT CERTIFICATE	</td>
-						<td>	PROCUREMENT DATE	</td>
-						<td>	UNIT WEIGHT	</td>
-						<td>	UNIT QUANTITY	</td>
-						<td>	VALUE	</td>
-						<td>	DUTY	</td>
-						<td>	TRANSPORT REGISTRATION	</td>
-						<td>	RECEIPT TIMESTAMP	</td>
-						<td>	BALANCE QUANTITY	</td>
-						<td>	BALANCE VALUE	</td>
+							<td>	Bill Number	</td>
+							<td>	Bill Date	</td>
+							<td>	Description	</td>
+							<td>	Unit Quantity	</td>
+							<td>	Unit Weight	</td>
+							<td>	Value	</td>
+							<td>	Duty	</td>
+							<td>	Balance Quantity	</td>
+							<td>	Balance Value	</td>
+							<td>	B17 Debit	</td>
+							<td>	Invoice Date	</td>
+							<td>	Invoice No	</td>
+							<td>	Procurement Certificate	</td>
+							<td>	Procurement Date	</td>
+							<td>	Transport Registration	</td>
+							<td>	Receipt Timestamp	</td>
 						</tr>
 					
 					</thead>
@@ -99,20 +99,20 @@
 					<tr>
 					<td>	{{ vm.retrieved.receipt.bill_number }}	</td>
 					<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
-					<td>	{{  vm.retrieved.receipt.b17_debit }}	</td>
 					<td>	{{  vm.retrieved.receipt.description }}	</td>
-					<td>	{{  vm.retrieved.receipt.invoice_no }}	</td>
-					<td>	{{  vm.retrieved.receipt.invoice_date }}	</td>
-					<td>	{{  vm.retrieved.receipt.procurement_certificate }}	</td>
-					<td>	{{  vm.retrieved.receipt.procurement_date }}	</td>
-					<td>	{{  vm.retrieved.receipt.unit_weight }}	</td>
 					<td>	{{  vm.retrieved.receipt.unit_quantity }}	</td>
+					<td>	{{  vm.retrieved.receipt.unit_weight }}	</td>
 					<td>	{{  vm.retrieved.receipt.value }}	</td>
 					<td>	{{  vm.retrieved.receipt.duty }}	</td>
-					<td>	{{  vm.retrieved.receipt.transport_registration }}	</td>
-					<td>	{{  vm.retrieved.receipt.receipt_timestamp }}	</td>
 					<td>	{{  vm.retrieved.receipt.balance_quantity }}	</td>
 					<td>	{{  vm.retrieved.receipt.balance_value }}	</td>
+					<td>	{{  vm.retrieved.receipt.b17_debit }}	</td>
+					<td>	{{  vm.retrieved.receipt.invoice_date }}	</td>
+					<td>	{{  vm.retrieved.receipt.invoice_no }}	</td>
+					<td>	{{  vm.retrieved.receipt.procurement_certificate }}	</td>
+					<td>	{{  vm.retrieved.receipt.procurement_date }}	</td>
+					<td>	{{  vm.retrieved.receipt.transport_registration }}	</td>
+					<td>	{{  vm.retrieved.receipt.receipt_timestamp }}	</td>
 					</tr>
 					</tbody>
 				</table>
@@ -127,7 +127,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<form novalidate class="simple-form">
-						*Bill Date: <input type="date" id="receipt_to_search_bill_date" name="input" ng-model="vm.receipt_to_search.bill_date"
+						*Bill Date: <input type="date" ng-model="vm.receipt_to_search.bill_date"
        placeholder="yyyy-MM-dd" required /> 
 						<input type="submit" ng-click="vm.getReceiptsByDate(vm.receipt_to_search.bill_date)" value="Search" />
 						   
