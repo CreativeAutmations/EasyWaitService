@@ -1,20 +1,4 @@
-	      		<div ng-if="vm.flag_viewing_queue" >
-<hr>
-					<h3>Appointments:
-					<span ng-if="! vm.isAcceptingBookings" class="label label-danger">Off</i></span> 
-					<span ng-if="vm.isAcceptingBookings" class="label label-success">On</span>
-					</h3>			    
-
-		      		<div ng-if="vm.isAcceptingBookings">
-						Next Available Slot: {{vm.qsize}}
-						<br>
-						<div class="input-group">
-						     <div class="col-xs-6"><input type="text" class="form-control" ng-model="vm.booking_reference" placeholder="Reference" ng-minlength=2 ng-maxlength=32> </div>
-						     <div class="col-xs-6"><input type="number" class="form-control" ng-model="vm.preferred_position" placeholder="Position" ng-minlength=1 ng-maxlength=3></div>
-						     <span class="input-group-btn">
-						            <button class="btn"  ng-click="vm.addBooking(vm.mobile,vm.booking_reference,vm.preferred_position)">+</button>
-						     </span>
-						</div><!-- /input-group -->			<div class="table-responsive">
+						<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
 						<tr><td colspan="15">Receipts</td>
