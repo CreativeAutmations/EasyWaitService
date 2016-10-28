@@ -99,6 +99,9 @@
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
+				vm.reportDate = new Date();
+				
+				
 				vm.receipt_to_search = {};
 				var default_date = new Date();
 				vm.receipt_to_search.bill_date =  new Date(default_date.getFullYear() -1 , default_date.getMonth() , 1);
