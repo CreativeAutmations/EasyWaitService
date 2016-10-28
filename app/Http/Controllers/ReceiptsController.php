@@ -48,7 +48,7 @@ class ReceiptsController extends Controller
 					
 					return Response::json(['message' => 'Receipt Recorded']);
 				} catch (\Illuminate\Database\QueryException $e) {
-					return Response::json( false,['message' => 'System Error', 'exception' => $e->getMessage()] );
+					return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
 				} 
 			}
 		} catch (Exception $e) {

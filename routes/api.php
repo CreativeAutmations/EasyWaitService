@@ -43,7 +43,7 @@ Route::post('/signin', function () {
 });
 
 
-Route::post('/receipts', ['before' => 'jwt-auth', 'ReceiptsController@CreateReceipt']);
+Route::post('/receipts', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@CreateReceipt']);
 
 Route::post('/old_receipts', [
    'before' => 'jwt-auth',
@@ -78,7 +78,7 @@ Route::post('/old_receipts', [
 					
 					return Response::json(['message' => 'Receipt Recorded']);
 				} catch (\Illuminate\Database\QueryException $e) {
-					return Response::json( false,['message' => 'System Error', 'exception' => $e->getMessage()] );
+					return Response::json( ['message' => 'System Error', 'exception' => $e->getMessage()] );
 				} 
 			}
 		} catch (Exception $e) {
