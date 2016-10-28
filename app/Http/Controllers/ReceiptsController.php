@@ -11,16 +11,13 @@ use App\Audit as Audit;
 
 class ReceiptsController extends Controller
 {
-Route::post('/receipts', [
-   'before' => 'jwt-auth',
-
-
 	/**
 	 * Cancel & Existing Booking
 	 *
 	 * @return Response
 	 */
-   public function CreateReceipt() {
+   public function CreateReceipt() 
+   {
 		$token = JWTAuth::getToken();
 
 		try { 
@@ -58,5 +55,4 @@ Route::post('/receipts', [
 		       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
 	}
-]);
 }
