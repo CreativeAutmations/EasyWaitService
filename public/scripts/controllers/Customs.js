@@ -3,6 +3,22 @@
 (function() {
     
     'use strict';
+	
+    angular
+    .module('customsregister').directive('authentication', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "/html-templates/customs-authentication.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
+	
     angular
         .module('customsregister')
         .controller('CustomsRecordManager',  CustomsRecordManager);

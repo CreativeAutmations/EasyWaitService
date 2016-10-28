@@ -44,6 +44,7 @@
 					<!-- /input-group -->
 				</div>
 			</div>
+			<authentication></authentication>
 			<!-- Receipt Creation      ====================================== -->
 			<hr>
 			<div class="row">
