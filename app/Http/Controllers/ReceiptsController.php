@@ -8,7 +8,9 @@ use App\Http\Requests;
 use Illuminate\Http\Response as HttpResponse;
 use App\Receipts as Receipts;
 use App\Audit as Audit;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Input;
+use Response;
 class ReceiptsController extends Controller
 {
 	/**
