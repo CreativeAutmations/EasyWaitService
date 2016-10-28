@@ -43,7 +43,9 @@ Route::post('/signin', function () {
 });
 
 
-Route::post('/receipts', [
+Route::post('/receipts', ['before' => 'jwt-auth', 'ReceiptsController@CreateReceipt']);
+
+Route::post('/old_receipts', [
    'before' => 'jwt-auth',
    function () {
 		$token = JWTAuth::getToken();
