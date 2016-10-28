@@ -18,6 +18,70 @@
 
         return directive;
     });    
+
+
+    angular
+    .module('customsregister').directive('receiptupdate', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "/html-templates/customs-recipts-update.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
+
+    angular
+    .module('customsregister').directive('receiptsearch', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "/html-templates/customs-search.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
+	
+	
+    angular
+    .module('customsregister').directive('reportforcustoms', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "/html-templates/customs-report.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
+	
+    angular
+    .module('customsregister').directive('audittrail', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "/html-templates/customs-audit-trail.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
+	
+	
 	
     angular
         .module('customsregister')

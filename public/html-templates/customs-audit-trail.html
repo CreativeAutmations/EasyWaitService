@@ -1,0 +1,34 @@
+			<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+				<tr>
+					<td ng-repeat="column in vm.auditTrailHeaders">{{column}}</td>
+				</tr>
+				</thead>
+			
+				<tbody>
+				<tr ng-repeat="row in vm.auditTrail">
+					<td>{{ row.email }} </td>
+					<td>{{ row.action }} </td>
+					<td>{{ row.category }} </td>
+					<td>{{ row.updated_at }} </td>
+					<td>{{ row.bill_number }} </td>
+					<td>{{ row.change_log.bill_date }} </td>
+					<td>{{ row.change_log.description }} </td>
+					<td>{{ row.change_log.unit_quantity }} </td>
+					<td>{{ row.change_log.unit_weight }} </td>
+					<td>{{ row.change_log.value }} </td>
+					<td>{{ row.change_log.duty }} </td>
+					<td>{{ row.change_log.balance_quantity }} </td>
+					<td>{{ row.change_log.balance_value }} </td>
+					<td>{{ row.change_log.b17_debit }} </td>
+					<td>{{ row.change_log.invoice_date }} </td>
+					<td>{{ row.change_log.invoice_no }} </td>
+					<td>{{ row.change_log.procurement_certificate }} </td>
+					<td>{{ row.change_log.procurement_date }} </td>
+					<td>{{ row.change_log.transport_registration }} </td>
+					<td>{{ row.change_log.receipt_timestamp }} </td>
+				</tr>
+				</tbody>
+			</table>
+			</div>
