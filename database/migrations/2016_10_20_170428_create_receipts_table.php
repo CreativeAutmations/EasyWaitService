@@ -23,6 +23,14 @@ class CreateReceiptsTable extends Migration
 		$table->date('invoice_date')->nullable();
 		$table->string('procurement_certificate')->nullable();
 		$table->date('procurement_date')->nullable();
+
+		$table->string('unit')->nullable();
+		$table->string('customs_station')->nullable();
+		$table->string('warehouse_details')->nullable();
+		$table->string('eou_details')->nullable();
+		$table->string('other_procurement_source')->nullable();
+
+
 		$table->string('unit_weight')->nullable();
 		$table->string('unit_quantity')->nullable();
 		$table->string('value');
