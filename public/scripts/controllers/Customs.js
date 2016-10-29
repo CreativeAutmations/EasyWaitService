@@ -247,10 +247,12 @@
 
 			// ++ Prepare For Edit
             vm.prepareForEdit = function(receipt_data) {
-				vm.addUpdateAction = 'Update';
-				vm.receipt_to_add = angular.copy(receipt_data);
-				vm.readonlyBillNumber = true;
-				vm.setCurrentView('AddEdit');
+				if ( receipt_data.bill_number ) {
+					vm.addUpdateAction = 'Update';
+					vm.receipt_to_add = angular.copy(receipt_data);
+					vm.readonlyBillNumber = true;
+				}
+					vm.setCurrentView('AddEdit');
             }
 			// -- Prepare For Edit
 
