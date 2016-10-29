@@ -147,7 +147,12 @@
 					update_date: "Updated At",
 					bill_number: "Bill of Entry Number",
 					bill_date: "Bill Date",
+					customs_station: "Customs Station of import, if applicable",
+					warehouse_details: "Code and address of Warehouse",
+					eou_details: "Name & Address of EoU",
+					other_procurement_source: "Others (in case of any other source of procurement)",
 					description: "Description",
+					unit: "Unit",
 					unit_quantity: "Unit Quantity",
 					unit_weight: "Unit Weight",
 					value: "Value",
@@ -160,7 +165,7 @@
 					procurement_certificate: "Procurement Certificate",
 					procurement_date: "Procurement Date",
 					transport_registration: "Transport Registration",
-					receipt_timestamp: "Receipt Timestamp"
+					receipt_timestamp: "Receipt Timestamp",
 				};
 			};
 			
@@ -173,7 +178,12 @@
 					vm.searchByDateResultsHeaders = {
 						bill_number: "Bill of Entry Number",
 						bill_date: "Bill Date",
+						customs_station: "Customs Station of import, if applicable",
+						warehouse_details: "Code and address of Warehouse",
+						eou_details: "Name & Address of EoU",
+						other_procurement_source: "Others (in case of any other source of procurement)",
 						description: "Description",
+						unit: "Unit",
 						unit_quantity: "Unit Quantity",
 						unit_weight: "Unit Weight",
 						value: "Value",
@@ -186,13 +196,11 @@
 						procurement_certificate: "Procurement Certificate",
 						procurement_date: "Procurement Date",
 						transport_registration: "Transport Registration",
-						receipt_timestamp: "Receipt Timestamp"
+						receipt_timestamp: "Receipt Timestamp",
 					};
 				};
 			
 			// -- Initialization Routines
-
-
             
 			// ++ Sign In Function Started
             vm.signin = function(email,pwd) {

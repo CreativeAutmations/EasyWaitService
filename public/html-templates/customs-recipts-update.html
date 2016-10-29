@@ -12,6 +12,27 @@
         <input type="text" id="bill_date" ng-model="vm.receipt_to_add.bill_date" />
       </div>
 
+	  
+      <label class="control-label col-sm-2" for="customs_station">Customs Station of import, if applicable:</label>
+      <div class="col-sm-10">
+        <input type="text" id="customs_station" ng-model="vm.receipt_to_add.customs_station" />
+      </div>
+ 
+		<label class="control-label col-sm-2" for="warehouse_details">Code and address of Warehouse:</label>
+      <div class="col-sm-10">
+        <input type="text" id="warehouse_details" ng-model="vm.receipt_to_add.warehouse_details" />
+      </div>
+
+      <label class="control-label col-sm-2" for="eou_details">Name & Address of EoU:</label>
+      <div class="col-sm-10">
+        <input type="text" id="eou_details" ng-model="vm.receipt_to_add.eou_details" />
+      </div>
+
+      <label class="control-label col-sm-2" for="other_procurement_source">Others (in case of any other source of procurement):</label>
+      <div class="col-sm-10">
+        <input type="text" id="other_procurement_source" ng-model="vm.receipt_to_add.other_procurement_source" />
+      </div>
+	  
       <label class="control-label col-sm-2" for="b17_debit">Details of B-17 Bond/ Amount debited:</label>
       <div class="col-sm-10">
         <input type="text" id="b17_debit" ng-model="vm.receipt_to_add.b17_debit" />
@@ -68,8 +89,6 @@
 		<input type="text" id="duty" ng-model="vm.receipt_to_add.duty" />
       </div>
 
-
-	  
       <label class="control-label col-sm-2" for="transport_registration">Transport Registration:</label>
       <div class="col-sm-10">
 		<input type="text" id="transport_registration" ng-model="vm.receipt_to_add.transport_registration" />

@@ -23,7 +23,7 @@ class ReceiptsController extends Controller
 
 		try { 
 			$user = JWTAuth::toUser($token);
-			$bill_details = Input::only('bill_number','bill_date','b17_debit','description','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
+			$bill_details = Input::only('bill_number','bill_date','b17_debit','description','unit','customs_station','warehouse_details','eou_details','other_procurement_source','invoice_no','invoice_date','procurement_certificate','procurement_date','unit_weight','unit_quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 
 			$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
 
