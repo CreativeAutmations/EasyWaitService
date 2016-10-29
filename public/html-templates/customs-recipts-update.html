@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-md-12">
 <form novalidate class="simple-form">
-	*Bill Number: <input type="text" ng-readonly="vm.readonlyBillNumber" ng-model="vm.receipt_to_add.bill_number" />
+	*Bill of Entry Number: <input type="text" ng-readonly="vm.readonlyBillNumber" ng-model="vm.receipt_to_add.bill_number" />
 	*Bill Date: <input type="text" ng-model="vm.receipt_to_add.bill_date" />
-	*B17 Debit: <input type="text" ng-model="vm.receipt_to_add.b17_debit" />
+	*Details of B-17 Bond/ Amount debited: <input type="text" ng-model="vm.receipt_to_add.b17_debit" />
 	*Description: <input type="text" ng-model="vm.receipt_to_add.description" /><br/><p></p>
 	Invoice No: <input type="text" ng-model="vm.receipt_to_add.invoice_no" />
 	Invoice Date: <input type="text" ng-model="vm.receipt_to_add.invoice_date" /><br /><p></p>
@@ -28,8 +28,7 @@
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr style="font-weight:bold" align="center">
-				<td></td>
-				<td>	Bill Number	</td>
+				<td>Bill of Entry Number</td>
 				<td>	Bill Date	</td>
 				<td>	Description	</td>
 				<td>	Unit Quantity	</td>
@@ -38,7 +37,7 @@
 				<td>	Duty	</td>
 				<td>	Balance Quantity	</td>
 				<td>	Balance Value	</td>
-				<td>	B17 Debit	</td>
+				<td>	Details of B-17 Bond/ Amount debited	</td>
 				<td>	Invoice Date	</td>
 				<td>	Invoice No	</td>
 				<td>	Procurement Certificate	</td>
@@ -50,10 +49,7 @@
 		</thead>
 		<tbody>
 		<tr>
-		<td>
-			<button type="button" class="btn btn-default" ng-click="vm.prepareForEdit(vm.retrieved.receipt)">Edit</button>
-		</td>
-		<td>	{{ vm.retrieved.receipt.bill_number }}	</td>
+		<td><i ng-click="vm.prepareForEdit(vm.retrieved.receipt)" class="fa fa-pencil-square" aria-hidden="true"></i>	{{ vm.retrieved.receipt.bill_number }}	</td>
 		<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
 		<td>	{{  vm.retrieved.receipt.description }}	</td>
 		<td>	{{  vm.retrieved.receipt.unit_quantity }}	</td>

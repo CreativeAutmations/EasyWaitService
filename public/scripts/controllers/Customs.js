@@ -98,20 +98,28 @@
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
-				vm.reportDate = new Date();
-				
-				
-				
 				vm.initAuthentication();
 				vm.initAuditTrail();
 				vm.initSearch();
 				vm.retrieved = {};
 				vm.retrieved.receipt = {};	
 				vm.resetAddEditWindow();
-
+				
+				vm.showSearch = true;
+				vm.showAddEdit = false;
 				vm.showReport = false;
          	}
 
+			vm.setCurrentView = function(action){
+				if ( action === 'AddEdit') {
+					vm.showSearch = false;
+					vm.showAddEdit = true;
+				} else if ( action === 'Search') {
+					vm.showSearch = true;
+					vm.showAddEdit = false;
+				}
+			}
+			
 			// ++ Initialization Routines
 			vm.initAuthentication = function(){
 				vm.token = $cookies.get('auth_token');
@@ -137,7 +145,7 @@
 					action: "Action",
 					category: "Section",
 					update_date: "Updated At",
-					bill_number: "Bill Number",
+					bill_number: "Bill of Entry Number",
 					bill_date: "Bill Date",
 					description: "Description",
 					unit_quantity: "Unit Quantity",
@@ -163,7 +171,7 @@
 
 					vm.searchByDateResults = {};
 					vm.searchByDateResultsHeaders = {
-						bill_number: "Bill Number",
+						bill_number: "Bill of Entry Number",
 						bill_date: "Bill Date",
 						description: "Description",
 						unit_quantity: "Unit Quantity",
@@ -239,13 +247,10 @@
 
 			// ++ Prepare For Edit
             vm.prepareForEdit = function(receipt_data) {
-				// Get the receipt
-				// Set the add/edit form data model to the retrieved receipt
-				// Set the button text to Update
-				// Set the flag to execute update instead of Add
 				vm.addUpdateAction = 'Update';
 				vm.receipt_to_add = angular.copy(receipt_data);
 				vm.readonlyBillNumber = true;
+				vm.setCurrentView('AddEdit');
             }
 			// -- Prepare For Edit
 
@@ -260,6 +265,8 @@
 				
 				var date = yyyy + '-' + mm + '-' + dd ;
 
+				vm.reportDate = new Date();
+				
 				customs.getReceiptsByDate(date , vm.token).then(function(results) {
                 	if ( results.data ) {
 						vm.searchByDateResults = results.data;

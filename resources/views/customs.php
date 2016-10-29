@@ -5,6 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<!-- Bootstrap -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -36,7 +38,7 @@
 
 			<div ng-if="!vm.showReport">
 				<h1>Import Record Keeper</h1>
-				<br/><br/><br/>
+				<p></p>
 			
 				<!-- Authentication      ====================================== -->
 				<div ng-if="!vm.isAuthenticated">
@@ -45,31 +47,41 @@
 				<hr>
 				</div>
 				<div ng-if="vm.isAuthenticated">
-					<receiptupdate vm="vm"></receiptupdate>
-
+					<div class="btn-group btn-group-justified">
+						<a href="#" ng-click="vm.setCurrentView('AddEdit')" class="btn btn-primary">Add</a>
+						<a href="#" ng-click="vm.setCurrentView('Search')" class="btn btn-primary">Search</a>
+						<a ng-click="vm.togggleReportView()" class="btn btn-primary">Report</a>
+						<a ng-click="vm.signOut()" class="btn btn-danger">Sign Out</a>
+					</div>
+					<p></p>
+					
+					<div ng-if="vm.showAddEdit">
+						<h3>Add/Edit Receipt</h3>
+						<receiptupdate vm="vm"></receiptupdate>
+						<hr>
+					</div>
+					
 					<!-- Receipt List      ====================================== -->
-					<hr>
-					<h3>Receipt Search</h3>
-					<receiptsearch vm="vm"></receiptsearch>
-					<br/>
-					<button type="button" class="btn btn-default" ng-click="vm.togggleReportView()">Show Report</button>
-
-					<!-- Audit Trail      ====================================== -->
-					<hr>
-					<h3>Audit Trail</h3>
-					<br/><br/>
-					<audittrail vm="vm"></audittrail>
+					<div ng-if="vm.showSearch">
+						<h3>Receipt Search</h3>
+						<receiptsearch vm="vm"></receiptsearch>
+						<!-- Audit Trail      ====================================== -->
+						<hr>
+						<h3>Audit Trail</h3>
+						<br/><br/>
+						<audittrail vm="vm"></audittrail>
+						<hr>
+					</div>
 
 					<!-- Export For Report      ====================================== -->
-					<hr>
-					<button type="button" class="btn btn-default" ng-click="vm.signOut()">Sign Out</button>
 				</div>
 			</div>
 
 			<div ng-if="vm.showReport">
 				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
-				<table><tr ng-click="vm.togggleReportView()"><td>Report generated on -- {{ vm.reportDate }}</td></tr></table>
+				<hr>
+				<table><tr ng-click="vm.togggleReportView()"><td><h4>Report generated on -- {{ vm.reportDate }}</h4></td></tr></table>
 			</div>
 			
 	</body>
