@@ -10,7 +10,7 @@
 
         directive.restrict = 'E';
 
-        directive.templateUrl = "/html-templates/customs-authentication.html";
+        directive.templateUrl = "./html-templates/customs-authentication.html";
 
         directive.scope = {
             vm : "=vm"
@@ -26,7 +26,7 @@
 
         directive.restrict = 'E';
 
-        directive.templateUrl = "/html-templates/customs-recipts-update.html";
+        directive.templateUrl = "./html-templates/customs-recipts-update.html";
 
         directive.scope = {
             vm : "=vm"
@@ -41,7 +41,7 @@
 
         directive.restrict = 'E';
 
-        directive.templateUrl = "/html-templates/customs-search.html";
+        directive.templateUrl = "./html-templates/customs-search.html";
 
         directive.scope = {
             vm : "=vm"
@@ -57,7 +57,7 @@
 
         directive.restrict = 'E';
 
-        directive.templateUrl = "/html-templates/customs-report.html";
+        directive.templateUrl = "./html-templates/customs-report.html";
 
         directive.scope = {
             vm : "=vm"
@@ -72,7 +72,7 @@
 
         directive.restrict = 'E';
 
-        directive.templateUrl = "/html-templates/customs-audit-trail.html";
+        directive.templateUrl = "./html-templates/customs-audit-trail.html";
 
         directive.scope = {
             vm : "=vm"
@@ -92,9 +92,8 @@
             // vm is our capture variable
             var vm = this;
             vm.init = function () {
-                vm.email = 'accountant@mydomain.com';
+				vm.email = 'accountant@mydomain.com';
                 vm.password = 'Test@123';
-                vm.token = '';
 				
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
@@ -102,36 +101,37 @@
 				vm.reportDate = new Date();
 				
 				
-				vm.receipt_to_search = {};
-				var default_date = new Date();
-				vm.receipt_to_search.bill_date =  new Date(default_date.getFullYear() -1 , default_date.getMonth() , 1);
 				
-				vm.token = $cookies.get('auth_token');
-				
+				vm.initAuthentication();
+				vm.initAuditTrail();
+				vm.initSearch();
 				vm.retrieved = {};
 				vm.retrieved.receipt = {};	
 				vm.resetAddEditWindow();
 
-				vm.searchByDateResults = {};
-				vm.searchByDateResultsHeaders = {
-					bill_number: "Bill Number",
-					bill_date: "Bill Date",
-					description: "Description",
-					unit_quantity: "Unit Quantity",
-					unit_weight: "Unit Weight",
-					value: "Value",
-					duty: "Duty",
-					balance_quantity: "Balance Quantity",
-					balance_value: "Balance Value",
-					b17_debit: "B17 Debit",
-					invoice_date: "Invoice Date",
-					invoice_no: "Invoice No",
-					procurement_certificate: "Procurement Certificate",
-					procurement_date: "Procurement Date",
-					transport_registration: "Transport Registration",
-					receipt_timestamp: "Receipt Timestamp"
-				};
-				
+				vm.showReport = false;
+         	}
+
+			// ++ Initialization Routines
+			vm.initAuthentication = function(){
+                vm.token = '';
+				vm.token = $cookies.get('auth_token');
+				if ( vm.token === '' ) {
+					vm.isAuthenticated = false;
+				} else {
+					vm.isAuthenticated = true;
+				}
+			}
+
+			vm.togggleReportView = function(){
+				if ( vm.showReport ) {
+					vm.showReport = false;
+				} else {
+					vm.showReport = true;	
+				}
+			}
+			
+			vm.initAuditTrail = function(){
 				vm.auditTrail = {};
 				vm.auditTrailHeaders = {
 					user_id: "User Id",
@@ -155,7 +155,37 @@
 					transport_registration: "Transport Registration",
 					receipt_timestamp: "Receipt Timestamp"
 				};
-         	}
+			};
+			
+			vm.initSearch = function(){
+					var default_date = new Date();
+					vm.receipt_to_search = {};
+					vm.receipt_to_search.bill_date =  new Date(default_date.getFullYear() -1 , default_date.getMonth() , 1);
+
+					vm.searchByDateResults = {};
+					vm.searchByDateResultsHeaders = {
+						bill_number: "Bill Number",
+						bill_date: "Bill Date",
+						description: "Description",
+						unit_quantity: "Unit Quantity",
+						unit_weight: "Unit Weight",
+						value: "Value",
+						duty: "Duty",
+						balance_quantity: "Balance Quantity",
+						balance_value: "Balance Value",
+						b17_debit: "B17 Debit",
+						invoice_date: "Invoice Date",
+						invoice_no: "Invoice No",
+						procurement_certificate: "Procurement Certificate",
+						procurement_date: "Procurement Date",
+						transport_registration: "Transport Registration",
+						receipt_timestamp: "Receipt Timestamp"
+					};
+				};
+			
+			// -- Initialization Routines
+
+
             
 			// ++ Sign In Function Started
             vm.signin = function(email,pwd) {

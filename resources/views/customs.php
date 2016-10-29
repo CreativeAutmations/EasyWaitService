@@ -33,37 +33,44 @@
 				<h3></h3>
 				<h3></h3>
 			</div>
-			<!-- Authentication      ====================================== -->
-			<authentication vm="vm"></authentication>
-			<!-- Receipt Creation      ====================================== -->
-			<hr>
-			<receiptupdate vm="vm"></receiptupdate>
+
+			<div ng-if="!vm.showReport">
+				<!-- Authentication      ====================================== -->
+				<div ng-if="!vm.isAuthenticated">
+				<authentication vm="vm"></authentication>
+				<!-- Receipt Creation      ====================================== -->
+				<hr>
+				</div>
+				<receiptupdate vm="vm"></receiptupdate>
 
 
-			<!-- Receipt List      ====================================== -->
-			<hr>
-			<h3>Receipt Search</h3>
-			<receiptsearch vm="vm"></receiptsearch>
+				<!-- Receipt List      ====================================== -->
+				<hr>
+				<h3>Receipt Search</h3>
+				<button type="button" class="btn btn-default" ng-click="vm.togggleReportView()">Show Report</button>
+				<receiptsearch vm="vm"></receiptsearch>
 
-			<!-- Export For Report      ====================================== -->
+				<!-- Audit Trail      ====================================== -->
+				<hr>
+				<h3>Audit Trail</h3>
+				<br/><br/>
+				<audittrail vm="vm"></audittrail>
 
-			<reportforcustoms vm="vm"></reportforcustoms>
+				<!-- Export For Report      ====================================== -->
+				<hr>
+			</div>
 
-			
-			<!-- Audit Trail      ====================================== -->
-			<hr>
-			<h3>Audit Trail</h3>
-			<br/><br/>
-			<audittrail vm="vm"></audittrail>
-			
+			<div ng-if="vm.showReport">
+				<reportforcustoms vm="vm"></reportforcustoms>
+			</div>
 			
 			<!-- Include all compiled plugins (below), or include individual files            as needed -->
 			<br/><br/><br/><br/><br/>
 			<p></p>
 			<div class="footer">
 				<div class="container">
-					<p class="text-muted">
-						Report generated on {{ vm.reportDate }}
+					<p class="text-muted" >
+						<table><tr ng-click="vm.togggleReportView()"><td>Report generated on -- {{ vm.reportDate }}</td></tr></table>
 					</p>
 				</div>
 			</div>
