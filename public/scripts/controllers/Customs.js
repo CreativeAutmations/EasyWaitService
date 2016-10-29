@@ -114,12 +114,11 @@
 
 			// ++ Initialization Routines
 			vm.initAuthentication = function(){
-                vm.token = '';
 				vm.token = $cookies.get('auth_token');
-				if ( vm.token === '' ) {
-					vm.isAuthenticated = false;
-				} else {
+				if ( vm.token ) {
 					vm.isAuthenticated = true;
+				} else {
+					vm.isAuthenticated = false;
 				}
 			}
 
@@ -191,12 +190,9 @@
             vm.signin = function(email,pwd) {
 				customs.signin(email,pwd).then(function(results) {
                 	if ( results.data ) {
-						vm.token = results.data.token ;
-						
 						// Setting a cookie
-						$cookies.put('auth_token',vm.token, {'expires': vm.expireDate});
-						vm.email = '';
-						vm.password = '';
+						$cookies.put('auth_token',results.data.token, {'expires': vm.expireDate});
+						vm.initAuthentication();
 					} else {
 						bootbox.alert("Sign In Failed" , function() {});
 					}
@@ -206,6 +202,13 @@
                 });
             }
 			// -- Sign In Function Ended
+			
+			// ++ Sign Out Function Started
+            vm.signOut = function(email,pwd) {
+				$cookies.remove('auth_token');
+				vm.initAuthentication();
+            }
+			// -- Sign Out Function Ended
 			
 			// ++ Create Receipt
             vm.update = function(receipt) {
