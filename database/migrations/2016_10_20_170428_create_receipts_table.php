@@ -31,8 +31,8 @@ class CreateReceiptsTable extends Migration
 		$table->string('other_procurement_source')->nullable();
 
 
-		$table->string('unit_weight')->nullable();
-		$table->string('unit_quantity')->nullable();
+		$table->string('weight')->nullable();
+		$table->string('quantity')->nullable();
 		$table->string('value');
 		$table->string('duty');
 		$table->string('transport_registration')->nullable();
