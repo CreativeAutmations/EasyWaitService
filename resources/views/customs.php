@@ -50,23 +50,27 @@
 					<div class="btn-group btn-group-justified">
 						<a href="#" ng-click="vm.setCurrentView('AddEdit')" class="btn btn-primary">Add</a>
 						<a href="#" ng-click="vm.setCurrentView('Search')" class="btn btn-primary">Search</a>
+						<a href="#" ng-click="vm.setCurrentView('Audit')" class="btn btn-primary">Audit</a>
 						<a ng-click="vm.togggleReportView()" class="btn btn-primary">Report</a>
 						<a ng-click="vm.signOut()" class="btn btn-danger">Sign Out</a>
 					</div>
 					<p></p>
 					
-					<div ng-if="vm.showAddEdit">
+					<div ng-if="vm.isActiveView('AddEdit')">
 						<h3>Add/Edit Receipt</h3>
 						<receiptupdate vm="vm"></receiptupdate>
 						<hr>
 					</div>
 					
 					<!-- Receipt List      ====================================== -->
-					<div ng-if="vm.showSearch">
+					<div ng-if="vm.isActiveView('Search')">
 						<h3>Receipt Search</h3>
 						<receiptsearch vm="vm"></receiptsearch>
 						<!-- Audit Trail      ====================================== -->
 						<hr>
+					</div>
+
+					<div ng-if="vm.isActiveView('Audit')">
 						<h3>Audit Trail</h3>
 						<br/><br/>
 						<audittrail vm="vm"></audittrail>

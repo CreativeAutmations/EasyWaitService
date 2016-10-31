@@ -104,20 +104,11 @@
 				vm.retrieved = {};
 				vm.retrieved.receipt = {};	
 				vm.resetAddEditWindow();
-				
-				vm.showSearch = true;
-				vm.showAddEdit = false;
-				vm.showReport = false;
+				vm.setCurrentView('Search');
          	}
 
-			vm.setCurrentView = function(action){
-				if ( action === 'AddEdit') {
-					vm.showSearch = false;
-					vm.showAddEdit = true;
-				} else if ( action === 'Search') {
-					vm.showSearch = true;
-					vm.showAddEdit = false;
-				}
+			vm.setCurrentView = function(view_name){
+				vm.activeView = view_name;
 			}
 			
 			// ++ Initialization Routines
@@ -200,6 +191,10 @@
 					};
 				};
 			
+			vm.isActiveView = function (view_name) {
+				return vm.activeView === view_name;
+				
+			}
 			// -- Initialization Routines
             
 			// ++ Sign In Function Started
@@ -298,9 +293,10 @@
 				customs.getAuditTrail(bill_number , vm.token).then(function(results) {
                 	if ( results.data ) {
 						vm.auditTrail = results.data;
+						vm.setCurrentView('Audit');
 						console.log(results.data);
 					} else {
-						bootbox.alert("Recipt Search Failed" , function() {});
+						bootbox.alert("Audit Trail Could Not Be Fetched" , function() {});
 					}
                     console.log(results);
                 }, function(error) {

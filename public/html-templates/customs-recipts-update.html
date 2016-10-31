@@ -124,6 +124,10 @@
 			<tr style="font-weight:bold" align="center">
 				<td>Bill of Entry Number</td>
 				<td>	Bill Date	</td>
+				<td>	Customs Station of import, if applicable	</td>
+				<td>	Code and address of Warehouse	</td>
+				<td>	Name & Address of EoU	</td>
+				<td>	Others (in case of any other source of procurement)	</td>
 				<td>	Description	</td>
 				<td>	Unit	</td>
 				<td>	Quantity	</td>
@@ -140,12 +144,15 @@
 				<td>	Transport Registration	</td>
 				<td>	Receipt Timestamp	</td>
 			</tr>
-		
 		</thead>
 		<tbody>
 		<tr>
 		<td><i ng-click="vm.prepareForEdit(vm.retrieved.receipt)" class="fa fa-pencil-square" aria-hidden="true"></i>	{{ vm.retrieved.receipt.bill_number }}	</td>
 		<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
+		<td>	{{  vm.retrieved.receipt.customs_station }}	</td>
+		<td>	{{  vm.retrieved.receipt.warehouse_details }}	</td>
+		<td>	{{  vm.retrieved.receipt.eou_details }}	</td>
+		<td>	{{  vm.retrieved.receipt.other_procurement_source }}	</td>
 		<td>	{{  vm.retrieved.receipt.description }}	</td>
 		<td>	{{  vm.retrieved.receipt.unit }}	</td>
 		<td>	{{  vm.retrieved.receipt.unit_quantity }}	</td>
