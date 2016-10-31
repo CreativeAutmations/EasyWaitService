@@ -119,7 +119,10 @@
 <hr>
 	<h3>Created & Updated Receipt :</h3>
 	<div class="table-responsive">
+	
+	<div ng-if=" ! jQuery.isEmptyObject(vm.retrieved.receipt)">
 	<table class="table table-striped table-bordered table-hover">
+
 		<thead>
 			<tr style="font-weight:bold" align="center">
 				<td>Bill of Entry Number</td>
@@ -176,6 +179,7 @@
 		</tr>
 		</tbody>
 	</table>
+	</div>
 	</div>
 
 </div>
