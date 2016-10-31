@@ -21,8 +21,8 @@
 			
 				<tbody>
 				<tr ng-repeat="row in vm.searchByDateResults">
-					<td><i ng-click="vm.prepareForEdit(row)" class="fa icon-large fa-pencil-square" aria-hidden="true" data-toggle="tooltip" title="Edit Receipt"></i> 
-						<i ng-click="vm.getAuditTrail(row.bill_number)" class="fa icon-large fa-list" aria-hidden="true"  data-toggle="tooltip" title="Audit Trail"></i>
+					<td><i ng-click="vm.prepareForEdit(row)" class="fa fa-lg fa-pencil-square" aria-hidden="true" data-toggle="tooltip" title="Edit Receipt"></i> 
+						<i ng-click="vm.getAuditTrail(row.bill_number)" class="fa fa-large fa-list" aria-hidden="true"  data-toggle="tooltip" title="Audit Trail"></i>
 							{{ row.bill_number }} 
 					</td>
 					<td>{{ row.bill_date }} </td>
