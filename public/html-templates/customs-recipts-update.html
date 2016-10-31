@@ -147,7 +147,9 @@
 		</thead>
 		<tbody>
 		<tr>
-		<td><i ng-click="vm.prepareForEdit(vm.retrieved.receipt)" class="fa fa-pencil-square" aria-hidden="true"></i>	{{ vm.retrieved.receipt.bill_number }}	</td>
+		<td><i ng-click="vm.prepareForEdit(vm.retrieved.receipt)" class="fa-3x fa-pencil-square" aria-hidden="true"></i>	{{ vm.retrieved.receipt.bill_number }}	
+			<i ng-click="vm.getAuditTrail(vm.retrieved.receipt.bill_number)" class="fa-3x fa-list" aria-hidden="true"  data-toggle="tooltip" title="Audit Trail"></i>
+		</td>
 		<td>	{{  vm.retrieved.receipt.bill_date }}	</td>
 		<td>	{{  vm.retrieved.receipt.customs_station }}	</td>
 		<td>	{{  vm.retrieved.receipt.warehouse_details }}	</td>
