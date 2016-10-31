@@ -21,11 +21,11 @@
 			
 				<tbody>
 				<tr ng-repeat="row in vm.searchByDateResults">
-					<td><i ng-click="vm.prepareForEdit(row)" class="fa fa-lg fa-pencil-square" aria-hidden="true" data-toggle="tooltip" title="Edit Receipt"></i> 
+					<td nowrap><i ng-click="vm.prepareForEdit(row)" class="fa fa-lg fa-pencil-square" aria-hidden="true" data-toggle="tooltip" title="Edit Receipt"></i> 
 						<i ng-click="vm.getAuditTrail(row.bill_number)" class="fa fa-lg fa-list" aria-hidden="true"  data-toggle="tooltip" title="Audit Trail"></i>
 							{{ row.bill_number }} 
 					</td>
-					<td>{{ row.bill_date }} </td>
+					<td nowrap>{{ row.bill_date }} </td>
 
 					<td>{{ row.customs_station }} </td>
 					<td>{{ row.warehouse_details }} </td>
@@ -33,20 +33,20 @@
 					<td>{{ row.other_procurement_source }} </td>
 					
 					<td>{{ row.description }} </td>
-					<td>{{ row.unit }} </td>
-					<td>{{ row.quantity }} </td>
-					<td>{{ row.weight }} </td>
-					<td>{{ row.value }} </td>
-					<td>{{ row.duty }} </td>
-					<td>{{ row.balance_quantity }} </td>
-					<td>{{ row.balance_value }} </td>
-					<td>{{ row.b17_debit }} </td>
-					<td>{{ row.invoice_date }} </td>
-					<td>{{ row.invoice_no }} </td>
-					<td>{{ row.procurement_certificate }} </td>
-					<td>{{ row.procurement_date }} </td>
-					<td>{{ row.transport_registration }} </td>
-					<td>{{ row.receipt_timestamp }} </td>
+					<td nowrap>{{ row.unit }} </td>
+					<td nowrap>{{ row.quantity }} </td>
+					<td nowrap>{{ row.weight }} </td>
+					<td nowrap>{{ row.value }} </td>
+					<td nowrap>{{ row.duty }} </td>
+					<td nowrap>{{ row.balance_quantity }} </td>
+					<td nowrap>{{ row.balance_value }} </td>
+					<td nowrap>{{ row.b17_debit }} </td>
+					<td nowrap>{{ row.invoice_date }} </td>
+					<td nowrap>{{ row.invoice_no }} </td>
+					<td nowrap>{{ row.procurement_certificate }} </td>
+					<td nowrap>{{ row.procurement_date }} </td>
+					<td nowrap>{{ row.transport_registration }} </td>
+					<td nowrap>{{ row.receipt_timestamp }} </td>
 				</tr>
 				</tbody>
 			</table>
