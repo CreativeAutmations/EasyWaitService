@@ -28,7 +28,7 @@ class ReceiptsController extends Controller
                 return [
                     'error' => true,
                     'code'  => 10,
-                    'data'  => [
+                    'details'  => [
                         'message'   => 'User not found by given token'
                     ]
                 ];
@@ -39,7 +39,7 @@ class ReceiptsController extends Controller
             return [
                 'error' => true,
                 'code'  => 11,
-                'data'  => [
+                'details'  => [
                     'message'   => 'Token Expired'
                 ]
             ];
@@ -49,7 +49,7 @@ class ReceiptsController extends Controller
             return [
                 'error' => true,
                 'code'  => 12,
-                'data'  => [
+                'details'  => [
                     'message'   => 'Invalid Token'
                 ]
             ];
@@ -59,7 +59,7 @@ class ReceiptsController extends Controller
             return [
                 'error' => true,
                 'code'  => 13,
-                'data'  => [
+                'details'  => [
                     'message'   => 'Token absent'
                 ]
             ];
@@ -180,14 +180,6 @@ class ReceiptsController extends Controller
 	}
 
    public function SearchReceipts ( ) {
-/*
-		$token = JWTAuth::getToken();
-		try { 
-			$user = JWTAuth::toUser($token);
-		} catch (Exception $e) {
-			return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
-		}	
-*/
 		$JWTValidationResult = $this->checkToken();
 		if ( $JWTValidationResult['error'] ) {
 				return response('Unauthorized', 401)
@@ -195,8 +187,6 @@ class ReceiptsController extends Controller
 				  ->setContent($JWTValidationResult);
 		}
 
-
-		
 		$filter_conditions = Input::all();
 		$field = array_keys($filter_conditions)[0];
 		$field_value = $filter_conditions[$field]["value"];
@@ -211,7 +201,7 @@ class ReceiptsController extends Controller
 				  ->setContent([
                 'error' => true,
                 'code'  => 20,
-                'data'  => [
+                'details'  => [
                     'message'   => 'No Matching Records Found'
                 ]]);
 				
@@ -226,7 +216,7 @@ class ReceiptsController extends Controller
 				  ->setContent(	[
                 'error' => true,
                 'code'  => 21,
-                'data'  => [
+                'details'  => [
                     'message'   => 'System Error',
 					'exception' => $e->getMessage()
                 ]]);
