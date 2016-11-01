@@ -68,6 +68,7 @@ Route::get('/restricted', [
 	}
 ]);
 
+## Logging out of the server
 Route::get('/signout', [
    'before' => 'jwt-auth',
    function () {
