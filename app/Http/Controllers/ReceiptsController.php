@@ -137,12 +137,21 @@ class ReceiptsController extends Controller
 			$receipts = Receipts::where($field, $operator , $field_value )->get();
 
 			if( $receipts->isEmpty()){
-				return Response::json( false, ['message' => 'No Matching Records Found'] );
+				return response('Not Found', 404)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent(array('message' => 'No Matching Records Found'));
+				#return Response::json( false, ['message' => 'No Matching Records Found'] );
 			} else {
-				return Response::json($receipts);
+				return response('OK', 200)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($receipts);
+				#return Response::json($receipts);
 			}
 		} catch (Exception $e) {
-			return Response::json( false, ['message' => 'System Error', 'exception' => $e->getMessage()] );
+				return response('Internal Server Error', 500)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent(array('message' => 'System Error', 'exception' => $e->getMessage()));
+			#return Response::json( false, ['message' => 'System Error', 'exception' => $e->getMessage()] );
 		}	
 	}
 
