@@ -78,10 +78,17 @@ class ReceiptsController extends Controller
 	 * @return Response
 	 */
    public function CreateReceipt()    {
-		$token = JWTAuth::getToken();
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
 
 		try { 
-			$user = JWTAuth::toUser($token);
 			$bill_details = Input::only('bill_number','bill_date','b17_debit','description','unit','customs_station','warehouse_details','eou_details','other_procurement_source','invoice_no','invoice_date','procurement_certificate','procurement_date','weight','quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 
 			$receipt = Receipts::where('bill_number', '=', $bill_details['bill_number'] )->get();
@@ -118,16 +125,17 @@ class ReceiptsController extends Controller
 
 
    public function UpdateReceipt( $bill_number) {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
 
-		$token = JWTAuth::getToken();
-		try { 
-			$user = JWTAuth::toUser($token);
-		} catch (Exception $e) {
-			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
-		}	
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
 
 		try { 
-			$user = JWTAuth::toUser($token);
 			$bill_details = Input::except('bill_number');
 
 			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
@@ -159,12 +167,12 @@ class ReceiptsController extends Controller
 	}
 	
    public function GetReceiptByBillNumber ( $bill_number ) {
-		$token = JWTAuth::getToken();
-		try { 
-			$user = JWTAuth::toUser($token);
-		} catch (Exception $e) {
-			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
-		}	
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
 
 		try { 
 			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
@@ -224,12 +232,12 @@ class ReceiptsController extends Controller
 	}
 
    public function GetAuditTrailForABill ( $bill_number ) {
-		$token = JWTAuth::getToken();
-		try { 
-			$user = JWTAuth::toUser($token);
-		} catch (Exception $e) {
-			return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
-		}	
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
 
 		try { 
 			$audit = Audit::where('bill_number', '=', $bill_number )->get();
