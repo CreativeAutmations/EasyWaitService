@@ -208,12 +208,12 @@ class ReceiptsController extends Controller
 			if( $receipts->isEmpty()){
 				return response('Not Found', 404)
                   ->header('Content-Type', 'application/json')
-				  ->setContent(				  [
+				  ->setContent([
                 'error' => true,
                 'code'  => 20,
                 'data'  => [
                     'message'   => 'No Matching Records Found'
-                ]);
+                ]]);
 				
 			} else {
 				return response('OK', 200)
@@ -223,13 +223,13 @@ class ReceiptsController extends Controller
 		} catch (Exception $e) {
 				return response('Internal Server Error', 500)
                   ->header('Content-Type', 'application/json')
-				  ->setContent(				  [
+				  ->setContent(	[
                 'error' => true,
                 'code'  => 21,
                 'data'  => [
                     'message'   => 'System Error',
 					'exception' => $e->getMessage()
-                ]);
+                ]]);
 		}	
 	}
 
