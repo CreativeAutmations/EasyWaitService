@@ -4,15 +4,74 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
 use App\Http\Requests;
 use Illuminate\Http\Response as HttpResponse;
 use App\Receipts as Receipts;
 use App\Audit as Audit;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Input;
 use Response;
+
 class ReceiptsController extends Controller
 {
+
+    public function checkToken()
+    {
+        try 
+        {
+            if (! $user = JWTAuth::parseToken()->authenticate())
+            {
+                return [
+                    'error' => true,
+                    'code'  => 10,
+                    'data'  => [
+                        'message'   => 'User not found by given token'
+                    ]
+                ];
+            }
+
+        } catch (TokenExpiredException $e) {
+
+            return [
+                'error' => true,
+                'code'  => 11,
+                'data'  => [
+                    'message'   => 'Token Expired'
+                ]
+            ];
+
+        } catch (TokenInvalidException $e) {
+
+            return [
+                'error' => true,
+                'code'  => 12,
+                'data'  => [
+                    'message'   => 'Invalid Token'
+                ]
+            ];
+
+        } catch (JWTException $e) {
+
+            return [
+                'error' => true,
+                'code'  => 13,
+                'data'  => [
+                    'message'   => 'Token absent'
+                ]
+            ];
+
+        }
+
+        return ['error' => false, 'token' => JWTAuth::getToken()];
+    }
+
+	
+
+
 	/**
 	 * Cancel & Existing Booking
 	 *
@@ -121,12 +180,22 @@ class ReceiptsController extends Controller
 	}
 
    public function SearchReceipts ( ) {
+/*
 		$token = JWTAuth::getToken();
 		try { 
 			$user = JWTAuth::toUser($token);
 		} catch (Exception $e) {
 			return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
 		}	
+*/
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+
 		
 		$filter_conditions = Input::all();
 		$field = array_keys($filter_conditions)[0];
@@ -139,19 +208,28 @@ class ReceiptsController extends Controller
 			if( $receipts->isEmpty()){
 				return response('Not Found', 404)
                   ->header('Content-Type', 'application/json')
-				  ->setContent(array('message' => 'No Matching Records Found'));
-				#return Response::json( false, ['message' => 'No Matching Records Found'] );
+				  ->setContent(				  [
+                'error' => true,
+                'code'  => 20,
+                'data'  => [
+                    'message'   => 'No Matching Records Found'
+                ]);
+				
 			} else {
 				return response('OK', 200)
                   ->header('Content-Type', 'application/json')
 				  ->setContent($receipts);
-				#return Response::json($receipts);
 			}
 		} catch (Exception $e) {
 				return response('Internal Server Error', 500)
                   ->header('Content-Type', 'application/json')
-				  ->setContent(array('message' => 'System Error', 'exception' => $e->getMessage()));
-			#return Response::json( false, ['message' => 'System Error', 'exception' => $e->getMessage()] );
+				  ->setContent(				  [
+                'error' => true,
+                'code'  => 21,
+                'data'  => [
+                    'message'   => 'System Error',
+					'exception' => $e->getMessage()
+                ]);
 		}	
 	}
 
