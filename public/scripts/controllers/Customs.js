@@ -92,8 +92,8 @@
             // vm is our capture variable
             var vm = this;
             vm.init = function () {
-				vm.email = 'accountant@mydomain.com';
-                vm.password = 'Test@123';
+				vm.email = '';
+                vm.password = '';
 				
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
@@ -273,18 +273,26 @@
 				vm.reportDate = new Date();
 				
 				customs.getReceiptsByDate(date , vm.token).then(function(results) {
-                	if ( results.data ) {
+					// If Status 200 then set this to data
+					if ( results.status === 200 ) {
+						// Got results
 						vm.searchByDateResults = results.data;
 						console.log(results.data);
-					} else {
-						bootbox.alert("Recipt Search Failed" , function() {});
+					} else if (  results.status === 401 ){
+						// Authorization Problem
+						bootbox.alert(results.data.details.message , function() {});
+						vm.setCurrentView('AddEdit');
+					} else if ( results.status === 404 ){
+						// Empty Result Set
+						bootbox.alert(results.data.details.message , function() {});
+						vm.searchByDateResults = {};
+						
+					} else if ( results.status === 500 ) {
+						bootbox.alert(results.data.details.message , function() {});
 					}
-                    console.log(results);
-                }, function(error) {
+	            }, function(error) {
                   console.log(error);
                 });
-				
-				console.log("OK");
             }
 			// -- Get Receipts By Date Ends
 			
