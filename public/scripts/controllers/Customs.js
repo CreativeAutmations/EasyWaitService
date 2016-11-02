@@ -281,7 +281,7 @@
 					} else if (  results.status === 401 ){
 						// Authorization Problem
 						bootbox.alert(results.data.details.message , function() {});
-						vm.setCurrentView('AddEdit');
+						vm.isAuthenticated = false;
 					} else if ( results.status === 404 ){
 						// Empty Result Set
 						bootbox.alert(results.data.details.message , function() {});
