@@ -13,8 +13,11 @@ class CreateUserOrganization extends Migration
      */
     public function up()
     {
-        Schema::create('userorganization', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('user_organization', function (Blueprint $table) {
+			$table->integer('user_id')->unique();
+			$table->integer('org_id');
+			$table->integer('status')->default(0);
+			$table->integer('isadmin')->default(0);
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateUserOrganization extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('userorganization');
+        Schema::dropIfExists('user_organization');
     }
 }

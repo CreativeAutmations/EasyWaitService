@@ -13,8 +13,12 @@ class CreateOrganization extends Migration
      */
     public function up()
     {
-        Schema::create('organization', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('organizations', function (Blueprint $table) {
+			$table->integer('user_id')->unique();
+			$table->string('org_name');
+			$table->string('address');
+			$table->string('tax_registration');
+			$table->string('tax_commissionar');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateOrganization extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization');
+        Schema::dropIfExists('organizations');
     }
 }

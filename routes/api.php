@@ -29,7 +29,9 @@ Route::post('/signup', function () {
 
    $token = JWTAuth::fromUser($user);
 
-   return Response::json(compact('token'));
+	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(compact('token'));
 });
 
 Route::post('/signin', function () {
@@ -39,34 +41,10 @@ Route::post('/signin', function () {
        return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
    }
 
-   return Response::json(compact('token'));
+	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(compact('token'));
 });
-
-
-Route::post('/receipts', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@CreateReceipt']);
-Route::put('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@UpdateReceipt']);
-Route::get('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetReceiptByBillNumber']);
-Route::post('/receipts/search', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@SearchReceipts']);
-Route::get('/audit/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetAuditTrailForABill']);
-
-
-Route::get('/restricted', [
-   'before' => 'jwt-auth',
-   function () {
-		$token = JWTAuth::getToken();
-		try { 
-			$user = JWTAuth::toUser($token);
-			return Response::json([
-				'data' => [
-				'email' => $user->email,
-				'registered_at' => $user->created_at->toDateTimeString()
-				]
-			]);
-		} catch (Exception $e) {
-			       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
-		}	
-	}
-]);
 
 ## Logging out of the server
 Route::get('/signout', [
@@ -81,4 +59,9 @@ Route::get('/signout', [
    }
 ]);
 
+Route::post('/receipts', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@CreateReceipt']);
+Route::put('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@UpdateReceipt']);
+Route::get('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetReceiptByBillNumber']);
+Route::post('/receipts/search', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@SearchReceipts']);
+Route::get('/audit/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetAuditTrailForABill']);
 

@@ -54,3 +54,6 @@ class UtilityKeywords(object):
         dictionary_recordset = json.loads(n)
         return len(dictionary_recordset)
 
+    def get_mail_from_name(self, name):
+        return name.replace(" ","." ).lower() + "@gmail.com"  
+

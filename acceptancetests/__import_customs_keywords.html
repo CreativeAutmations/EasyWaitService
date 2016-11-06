@@ -20,6 +20,12 @@
 			</tr>
 			<tr>
 				<td>Library</td>
+				<td>./keywords/import_record/OrganizationManager.py</td>
+				<td>${HOSTNAME}</td>
+				<td>${PORT}</td>
+			</tr>
+			<tr>
+				<td>Library</td>
 				<td>./authentication/libraries/AuthenticationManager.py</td>
 				<td>${HOSTNAME}</td>
 				<td>${PORT}</td>
@@ -212,6 +218,30 @@
 <tr>	<td></td>	<td>${retrieved_receipts}=</td>	<td>Get Receipts On Or After Bill Date</td>	<td>${query_date}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${record_count}=</td>	<td>Get Record Count From Dictionary</td>	<td>${retrieved_receipts}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Should Be True</td>	<td>${record_count} == 2</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+
+<tr>	<td>Register With System</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${email}</td>	<td>${password}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Organization After Sign In</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email}=</td>	<td>Get Mail From Name</td>	<td>${user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Organization</td>	<td>${auth_token}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Approve Membership To Organization</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${org_name}</td>	<td>${organization_created_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${admin_email}=</td>	<td>Get Mail From Name</td>	<td>${organization_created_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>${organization_created_by}</td>	<td>${admin_email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_admin}=</td>	<td>Sign In</td>	<td>${admin_email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email}=</td>	<td>Get Mail From Name</td>	<td>${user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${org_id}=</td>	<td>Create Organization</td>	<td>${auth_token_admin}</td>	<td>${org_name}</td>	<td>dummy address</td>	<td>dummy registration</td>	<td>dummy commissionar</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Organization Membership Request</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Approve Organization Membership</td>	<td>${auth_token_admin}</td>	<td>${email}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 			
 		</tbody>
 	</table>
