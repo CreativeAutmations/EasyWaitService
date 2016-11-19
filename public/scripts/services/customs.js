@@ -2,7 +2,7 @@ angular.module('customsregister')
 .factory('customs', ['$http', function($http) {
   
   var signin = function(email,pwd) {
-	    var url = 'http://54.190.12.210:8000//api/signin' ;
+	    var url = 'api/signin' ;
 		return $http({
 			url: url,
 			method: "POST",
@@ -19,11 +19,11 @@ angular.module('customsregister')
 	};
 
   var addOrUpdateReceipt = function(formdata, token, action) {
-	    var url = 'http://54.190.12.210:8000/api/receipts' ;
+	    var url = 'api/receipts' ;
 		var method = "POST";
 		if ( action === 'Update') {
 			method = "PUT";
-			var url = 'http://54.190.12.210:8000/api/receipts/' +  formdata.bill_number;
+			var url = 'api/receipts/' +  formdata.bill_number;
 		}
 		return $http({
 			url: url,
@@ -44,7 +44,7 @@ angular.module('customsregister')
 	};
 
   var getReceiptsByDate = function(bill_date , token) {
-	    var url = 'http://54.190.12.210:8000/api/receipts/search' ;
+	    var url = 'api/receipts/search' ;
 		return $http({
 			url: url,
 			method: "POST",
@@ -65,7 +65,7 @@ angular.module('customsregister')
 
 	
   var getAuditTrail = function(bill_number , token) {
-	    var url = 'http://54.190.12.210:8000/api/audit/' + bill_number ;
+	    var url = 'api/audit/' + bill_number ;
 		return $http({
 			url: url,
 			method: "GET",
