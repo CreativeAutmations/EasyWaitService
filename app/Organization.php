@@ -18,6 +18,6 @@ class Organization extends Model
      *
      * @var array
      */
-    protected $fillable = ['org_name','address','tax_registration','tax_commissionar'];
+    protected $fillable = [];
 }
 
