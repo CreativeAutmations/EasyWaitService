@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Organization as Organization;
-use App\Http\UserOrganization as UserOrganization;
+use App\Organization as Organization;
+use App\UserOrganization as UserOrganization;
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
