@@ -229,7 +229,7 @@
 <tr>	<td>Create Organization After Sign In</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${email}=</td>	<td>Get Mail From Name</td>	<td>${user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td> Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Create Organization</td>	<td>${auth_token}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
 
