@@ -73,7 +73,7 @@ class ReceiptsController extends Controller
 
 
 	/**
-	 * Cancel & Existing Booking
+	 * Create Receipt
 	 *
 	 * @return Response
 	 */
