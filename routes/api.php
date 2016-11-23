@@ -65,3 +65,5 @@ Route::get('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'Receip
 Route::post('/receipts/search', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@SearchReceipts']);
 Route::get('/audit/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetAuditTrailForABill']);
 
+Route::post('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@CreateOrganization']);
+
