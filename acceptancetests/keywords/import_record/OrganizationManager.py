@@ -32,7 +32,9 @@ class OrganizationManager(object):
 		call_headers = {'Authorization': 'Bearer '+ access_token}
 		r = requests.post(url, json=json_payload_list, headers=call_headers)
 		r.raise_for_status()
-	
+		server_response = r.json()
+		print server_response
+
 	def update_organization(self, access_token,org_name,address,tax_registration,tax_commissionar):
 		url = self._hostURL +'/api/organizations'
 		json_payload_list = {}

@@ -87,6 +87,9 @@ class OrganizationController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 		
+		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+		
+		# Create Organization
 		$organization_details = Input::only('name','address','tax_registration','tax_commissionar');
 		try {
 			$organization = new Organization();
@@ -95,6 +98,9 @@ class OrganizationController extends Controller
 			$organization['tax_registration'] = $organization_details['tax_registration'];
 			$organization['tax_commissionar'] = $organization_details['tax_commissionar'];
 			$organization->save();
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent($organization);
 			return Response::json(['message' => 'Organization Created']);
 		} catch (\Illuminate\Database\QueryException $e) {
 			return response('Unauthorized', 401)
