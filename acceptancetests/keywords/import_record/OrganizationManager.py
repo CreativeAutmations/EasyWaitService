@@ -21,10 +21,17 @@ class OrganizationManager(object):
 				json_payload_list[key] = value.strip()
 		return json_payload_list
 
-	def create_organization(self, access_token,organization_details):
+	def create_organization(self, access_token,name,address,tax_registration,tax_commissionar):
 		url = self._hostURL +'/api/organizations'
-		json_payload_list = self.create_dictionary_from_input_string(organization_details)
+		json_payload_list = {}
+		json_payload_list[name] = name
+		json_payload_list[address] = address
+		json_payload_list[tax_registration] = tax_registration
+		json_payload_list[tax_commissionar] = tax_commissionar
 		print(json_payload_list)
+		call_headers = {'Authorization': 'Bearer '+ access_token}
+		r = requests.post(url, json=json_payload_list, headers=call_headers)
+		r.raise_for_status()
 	
 	def update_organization(self, access_token,org_name,address,tax_registration,tax_commissionar):
 		url = self._hostURL +'/api/organizations'
