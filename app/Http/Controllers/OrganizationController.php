@@ -102,9 +102,7 @@ class OrganizationController extends Controller
 				->setContent([
 					'error' => true,
 					'code'  => 12,
-					'details'  => [
-					'message'   => 'Invalid Token'
-				]);
+					'details'  => ['message'   => 'Invalid Token']]);
 		} 
 	}
 }
