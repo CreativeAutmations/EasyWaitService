@@ -90,11 +90,11 @@ class OrganizationController extends Controller
 		$organization_details = Input::only('name','address','tax_registration','tax_commissionar');
 		try {
 			$organization = new Organization();
-			$organization['name'] = $organization_details['name']
-			$organization['address'] = $organization_details['address']
-			$organization['tax_registration'] = $organization_details['tax_registration']
-			$organization['tax_commissionar'] = $organization_details['tax_commissionar']
-			$organization->save()
+			$organization['name'] = $organization_details['name'];
+			$organization['address'] = $organization_details['address'];
+			$organization['tax_registration'] = $organization_details['tax_registration'];
+			$organization['tax_commissionar'] = $organization_details['tax_commissionar'];
+			$organization->save();
 			return Response::json(['message' => 'Organization Created']);
 		} catch (\Illuminate\Database\QueryException $e) {
 			return response('Unauthorized', 401)
