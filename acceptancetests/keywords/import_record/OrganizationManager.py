@@ -1,5 +1,5 @@
 __version__ = '0.1'
-#import requests
+import requests
 import json
 
 class OrganizationManager(object):
