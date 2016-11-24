@@ -121,7 +121,7 @@ class ReceiptsController extends Controller
 		
 		
 		# If the user does not have active organization - return with error
-		$getOrganizationResult = $this->getOrganization();
+		$getOrganizationResult = $this->getOrganization( $user);
 		if ( $getOrganizationResult['error'] ) {
 				return response('Organization Membership Required', 412)
                   ->header('Content-Type', 'application/json')
@@ -179,7 +179,7 @@ class ReceiptsController extends Controller
 		$user = JWTAuth::toUser($token);
 
 		# If the user does not have active organization - return with error
-		$getOrganizationResult = $this->getOrganization();
+		$getOrganizationResult = $this->getOrganization( $user);
 		if ( $getOrganizationResult['error'] ) {
 				return response('Organization Membership Required', 412)
                   ->header('Content-Type', 'application/json')
