@@ -114,7 +114,12 @@ class OrganizationController extends Controller
 			$organization->save();
 
 			# Associate user with the organization
-
+			$userorg = new UserOrganization();
+			$userorg->user_id = 1;
+			$userorg->org_id = 1;
+			$userorg->status = 1;
+			$userorg->isadmin = 1;
+			$userorg->save();
 
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
