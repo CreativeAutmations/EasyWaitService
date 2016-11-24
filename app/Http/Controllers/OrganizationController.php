@@ -88,6 +88,20 @@ class OrganizationController extends Controller
 		$user = JWTAuth::toUser($token);
 		
 		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			$userorganization = $userOrganizations->first();
+			$organizations = Organization::where('id', '=', $userorganization->org_id )->get();
+			$org = $organizations->first();
+			return response('Precondition Failed', 412)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'organization' => $org,
+					'details'  => ['message'   => 'Organization Already Created']]);
+		}
+		
 		
 		# Create Organization
 		$organization_details = Input::only('name','address','tax_registration','tax_commissionar');
@@ -98,10 +112,13 @@ class OrganizationController extends Controller
 			$organization['tax_registration'] = $organization_details['tax_registration'];
 			$organization['tax_commissionar'] = $organization_details['tax_commissionar'];
 			$organization->save();
+
+			# Associate user with the organization
+
+
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
-				->setContent($organization);
-			return Response::json(['message' => 'Organization Created']);
+				->setContent(['organization' => $organization]);
 		} catch (\Illuminate\Database\QueryException $e) {
 			return response('Unauthorized', 401)
 				->header('Content-Type', 'application/json')
