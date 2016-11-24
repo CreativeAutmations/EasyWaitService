@@ -115,8 +115,8 @@ class OrganizationController extends Controller
 
 			# Associate user with the organization
 			$userorg = new UserOrganization();
-			$userorg->user_id = 1;
-			$userorg->org_id = 1;
+			$userorg->user_id = $user->id;
+			$userorg->org_id = $organization->id;
 			$userorg->status = 1;
 			$userorg->isadmin = 1;
 			$userorg->save();
