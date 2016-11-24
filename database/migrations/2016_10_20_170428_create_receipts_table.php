@@ -15,6 +15,7 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
 		$table->increments('id');
+		$table->bigInteger('org_id');
 		$table->string('bill_number')->unique();
 		$table->date('bill_date');
 		$table->string('b17_debit');

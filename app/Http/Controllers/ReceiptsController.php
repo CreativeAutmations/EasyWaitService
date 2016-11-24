@@ -13,6 +13,8 @@ use App\Http\Requests;
 use Illuminate\Http\Response as HttpResponse;
 use App\Receipts as Receipts;
 use App\Audit as Audit;
+use App\UserOrganization as UserOrganization;
+
 use Illuminate\Support\Facades\Input;
 use Response;
 
@@ -69,7 +71,36 @@ class ReceiptsController extends Controller
         return ['error' => false, 'token' => JWTAuth::getToken()];
     }
 
-	
+    private function getOrganization( $user )
+    {
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			$userorganization = $userOrganizations->first();
+			
+			if ( $userorganization->status > 0 ) {
+				return [
+					'error' => false,
+					'org_id'  => $userorganization->org_id
+				];
+			} else {
+				return [
+					'error' => true,
+					'code'  => 13,
+					'details'  => [
+						'message'   => 'Organization membership not yet approved'
+					]
+				];
+			}
+		} else {
+            return [
+                'error' => true,
+                'code'  => 13,
+                'details'  => [
+                    'message'   => 'User not associated to any organization'
+                ]
+            ];
+		}
+    }
 
 
 	/**
@@ -87,7 +118,18 @@ class ReceiptsController extends Controller
 
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
-
+		
+		
+		# If the user does not have active organization - return with error
+		$getOrganizationResult = $this->getOrganization();
+		if ( $getOrganizationResult['error'] ) {
+				return response('Organization Membership Required', 412)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($getOrganizationResult);
+		}
+		
+		$org_id = $getOrganizationResult->org_id;
+		
 		try { 
 			$bill_details = Input::only('bill_number','bill_date','b17_debit','description','unit','customs_station','warehouse_details','eou_details','other_procurement_source','invoice_no','invoice_date','procurement_certificate','procurement_date','weight','quantity','value','duty','transport_registration','receipt_timestamp','balance_quantity','balance_value');
 
@@ -97,6 +139,7 @@ class ReceiptsController extends Controller
 				return Response::json(['message' => 'Operation Failed: Duplicate Receipt']);
 			}else{
 				try {
+					$bill_details['org_id'] = $org_id;
 					$receipt = Receipts::create($bill_details);
 					
 					# Create Audit Record
@@ -135,6 +178,16 @@ class ReceiptsController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 
+		# If the user does not have active organization - return with error
+		$getOrganizationResult = $this->getOrganization();
+		if ( $getOrganizationResult['error'] ) {
+				return response('Organization Membership Required', 412)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($getOrganizationResult);
+		}
+		
+		$org_id = $getOrganizationResult->org_id;
+		
 		try { 
 			$bill_details = Input::except('bill_number');
 

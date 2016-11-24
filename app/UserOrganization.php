@@ -19,4 +19,5 @@ class UserOrganization extends Model
      * @var array
      */
     protected $fillable = ['user_id','org_id'];
+	
 }
