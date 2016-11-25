@@ -89,7 +89,7 @@ class OrganizationManager(object):
 		return server_response["id"]
 
 	def get_organization_members(self, access_token):
-		url = self._hostURL +'/api/user/organization'
+		url = self._hostURL +'/api/organizations/membership'
 		json_payload_list = {}
 		json_payload_list['email'] = email;
 		json_payload_list['action'] = 'approve';
@@ -98,7 +98,7 @@ class OrganizationManager(object):
 		r.raise_for_status()
 
 	def request_organization_membership(self, access_token, org_id):
-		url = self._hostURL +'/api/user/organization'
+		url = self._hostURL +'/api/organizations/membership'
 		json_payload_list = {}
 		json_payload_list['id'] = org_id;
 		call_headers = {'Authorization': 'Bearer '+ access_token}
