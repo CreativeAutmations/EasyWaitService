@@ -97,14 +97,6 @@ class OrganizationManager(object):
 		r = requests.put(url, json=json_payload_list, headers=call_headers)
 		r.raise_for_status()
 
-	def request_organization_membership(self, access_token, org_id):
-		url = self._hostURL +'/api/organizations/membership'
-		json_payload_list = {}
-		json_payload_list['id'] = org_id;
-		call_headers = {'Authorization': 'Bearer '+ access_token}
-		r = requests.post(url, json=json_payload_list, headers=call_headers)
-		r.raise_for_status()
-
 	def approve_organization_membership(self, access_token,email):
 		url = self._hostURL +'/api/user/organization'
 		json_payload_list = {}
