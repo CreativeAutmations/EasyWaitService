@@ -162,12 +162,9 @@ class OrganizationController extends Controller
 					'code'  => 10,
 					'details'  => ['message'   => 'Membership Already Requested']]);
 		} else {
+				$organization_details = Input::only('org_id','action');
 				if ( $organization_details['action'] == 'addrequest') {
 					try {
-						$organization_details = Input::only('org_id','action');
-						
-						
-						
 						# Associate user with the organization
 						$userorg = new UserOrganization();
 						$userorg->user_id = $user->id;
