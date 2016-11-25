@@ -35,6 +35,15 @@ class OrganizationManager(object):
 		server_response = r.json()
 		print server_response
 
+	def get_organization_id(self, access_token):
+		url = self._hostURL +'/api/organizations'
+		call_headers = {'Authorization': 'Bearer '+ access_token}
+		r = requests.get(url, headers=call_headers)
+		r.raise_for_status()
+		server_response = r.json()
+		print server_response
+		return server_response['org_id']
+
 	def request_organization_membership(self, access_token,org_id):
 		url = self._hostURL +'/api/organizations/membership'
 		json_payload_list = {}

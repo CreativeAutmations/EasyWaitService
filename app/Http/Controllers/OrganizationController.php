@@ -69,6 +69,38 @@ class OrganizationController extends Controller
 
         return ['error' => false, 'token' => JWTAuth::getToken()];
     }
+	
+
+   public function GetOrganization()    {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+		#	$userorg->isadmin = 1;
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )
+												->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			$userorganization = $userOrganizations->first();
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent($userorganization);
+		} else {
+			return response('Not Found', 404)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'details'  => ['message'   => 'You are not a member of any organization']]);
+		}
+	}
+	
    public function GetMembershipStatus()    {
 		$JWTValidationResult = $this->checkToken();
 		if ( $JWTValidationResult['error'] ) {
@@ -108,6 +140,7 @@ class OrganizationController extends Controller
 		}
 	}
 
+	
    public function MembershipRequest()    {
 		$JWTValidationResult = $this->checkToken();
 		if ( $JWTValidationResult['error'] ) {
