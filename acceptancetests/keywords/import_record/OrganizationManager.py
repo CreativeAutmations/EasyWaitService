@@ -52,7 +52,7 @@ class OrganizationManager(object):
 		print(json_payload_list)
 		call_headers = {'Authorization': 'Bearer '+ access_token}
 		r = requests.post(url, json=json_payload_list, headers=call_headers)
-		r.raise_for_status()
+		#r.raise_for_status()
 		server_response = r.json()
 		print server_response
 
