@@ -193,7 +193,7 @@ class OrganizationController extends Controller
 		
 		$organization_details = Input::only('org_id','action');
 		if ( $organization_details['action'] == 'addrequest') {
-			return RecordMembershipRequest( $user, $organization_details['org_id']);
+			return $this->RecordMembershipRequest( $user, $organization_details['org_id']);
 		} else {
 			return response('Unsupported Action', 412)
 				->header('Content-Type', 'application/json')
