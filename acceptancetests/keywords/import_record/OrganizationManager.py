@@ -65,9 +65,11 @@ class OrganizationManager(object):
 		r = requests.get(url, json=json_payload_list, headers=call_headers)
 		r.raise_for_status()
 		server_response = r.json()
-		print server_response
+		return server_response
 
 	def approve_organization_membership_for_all(self, access_token):
 		pending_membership_state = self.get_pending_membership_state(access_token)
 		print pending_membership_state['pending']
+		for i in pending_membership_state['pending']:
+			print i['user_id']
 
