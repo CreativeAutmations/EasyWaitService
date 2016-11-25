@@ -155,7 +155,7 @@ class OrganizationController extends Controller
 		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
 		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
 		if ( ! $userOrganizations->isEmpty()) {
-			return response('Precondition Failed', 412)
+			return response('Membership Already Requested', 412)
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => true,
