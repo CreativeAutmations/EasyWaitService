@@ -140,6 +140,45 @@ class OrganizationController extends Controller
 		}
 	}
 
+   public function RecordMembershipRequest( $user, $org_id)    {
+		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			return response('Membership Already Requested', 412)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'details'  => ['message'   => 'Membership Already Requested']]);
+		}
+
+
+		try {
+			# Associate user with the organization
+			$userorg = new UserOrganization();
+			$userorg->user_id = $user->id;
+			$userorg->org_id = $org_id;
+			$userorg->status = 0;
+			$userorg->isadmin = 0;
+			$userorg->save();
+
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'code'  => 10,
+					'userorganization' => $userorg,
+					'details'  => ['message'   => 'Membership Requested']]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return response('Internal Server Error', 500)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Database Exception']]);
+		} 
+   }
+	
 	
    public function MembershipRequest()    {
 		$JWTValidationResult = $this->checkToken();
@@ -152,51 +191,16 @@ class OrganizationController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 		
-		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
-		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
-		if ( ! $userOrganizations->isEmpty()) {
-			return response('Membership Already Requested', 412)
+		$organization_details = Input::only('org_id','action');
+		if ( $organization_details['action'] == 'addrequest') {
+			return RecordMembershipRequest( $user, $organization_details['org_id']);
+		} else {
+			return response('Unsupported Action', 412)
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => true,
-					'code'  => 10,
-					'details'  => ['message'   => 'Membership Already Requested']]);
-		} else {
-				$organization_details = Input::only('org_id','action');
-				if ( $organization_details['action'] == 'addrequest') {
-					try {
-						# Associate user with the organization
-						$userorg = new UserOrganization();
-						$userorg->user_id = $user->id;
-						$userorg->org_id = $organization_details['org_id'];
-						$userorg->status = 0;
-						$userorg->isadmin = 0;
-						$userorg->save();
-
-						return response('OK', 200)
-							->header('Content-Type', 'application/json')
-							->setContent([
-								'error' => false,
-								'code'  => 10,
-								'userorganization' => $userorg,
-								'details'  => ['message'   => 'Membership Requested']]);
-					} catch (\Illuminate\Database\QueryException $e) {
-						return response('Internal Server Error', 500)
-							->header('Content-Type', 'application/json')
-							->setContent([
-								'error' => true,
-								'code'  => 12,
-								'details'  => ['message'   => 'Database Exception']]);
-					} 
-					
-				} else {
-					return response('Unsupported Action', 412)
-						->header('Content-Type', 'application/json')
-						->setContent([
-							'error' => true,
-							'code'  => 11,
-							'details'  => ['message'   => 'Unsupported Action']]);
-				}
+					'code'  => 11,
+					'details'  => ['message'   => 'Unsupported Action']]);
 		}
 	}
 

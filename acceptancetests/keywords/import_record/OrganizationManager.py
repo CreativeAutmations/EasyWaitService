@@ -52,7 +52,19 @@ class OrganizationManager(object):
 		print(json_payload_list)
 		call_headers = {'Authorization': 'Bearer '+ access_token}
 		r = requests.post(url, json=json_payload_list, headers=call_headers)
-		#r.raise_for_status()
+		r.raise_for_status()
+		server_response = r.json()
+		print server_response
+
+	def approve_organization_membership(self, access_token,user_id):
+		url = self._hostURL +'/api/organizations/membership'
+		json_payload_list = {}
+		json_payload_list['user_id'] = user_id
+		json_payload_list['action'] = 'approve'
+		print(json_payload_list)
+		call_headers = {'Authorization': 'Bearer '+ access_token}
+		r = requests.post(url, json=json_payload_list, headers=call_headers)
+		r.raise_for_status()
 		server_response = r.json()
 		print server_response
 
@@ -71,5 +83,6 @@ class OrganizationManager(object):
 		pending_membership_state = self.get_pending_membership_state(access_token)
 		print pending_membership_state['pending']
 		for i in pending_membership_state['pending']:
-			print i['user_id']
+			print 'Approving Membership For Id: ' + i['user_id']
+			self.approve_organization_membership(access_token, i['user_id'])
 
