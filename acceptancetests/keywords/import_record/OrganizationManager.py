@@ -69,7 +69,5 @@ class OrganizationManager(object):
 
 	def approve_organization_membership_for_all(self, access_token):
 		pending_membership_state = self.get_pending_membership_state(access_token)
-		print pending_membership_state
-		for i in pending_membership_state['pending']:
-			print i['user_id']
+		print pending_membership_state['pending']
 
