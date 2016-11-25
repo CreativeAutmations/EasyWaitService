@@ -190,7 +190,7 @@ class OrganizationController extends Controller
 					} 
 					
 				} else {
-					return response('Precondition Failed', 412)
+					return response('Unsupported Action', 412)
 						->header('Content-Type', 'application/json')
 						->setContent([
 							'error' => true,
