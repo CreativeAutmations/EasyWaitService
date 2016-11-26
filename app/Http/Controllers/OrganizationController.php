@@ -82,15 +82,22 @@ class OrganizationController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 		
-		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
-		#	$userorg->isadmin = 1;
 		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )
 												->get();
 		if ( ! $userOrganizations->isEmpty()) {
 			$userorganization = $userOrganizations->first();
+			
+			$organization = Organization::where('id', '=', $userorganization->org_id )
+				->get()
+				->first();
+
+			
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
-				->setContent($userorganization);
+				->setContent(['organization' => $organization,
+							  'error' => false,
+							  'status' => $userorganization->status,
+							  'isadmin' => $userorganization->isadmin]);
 		} else {
 			return response('Not Found', 404)
 				->header('Content-Type', 'application/json')

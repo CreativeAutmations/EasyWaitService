@@ -94,11 +94,13 @@
             vm.init = function () {
 				vm.email = '';
                 vm.password = '';
+				vm.viewProfile = true;
 				
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
 				vm.initAuthentication();
+				vm.initOrganization();
 				vm.initAuditTrail();
 				vm.initSearch();
 				vm.retrieved = {};
@@ -110,6 +112,14 @@
 			vm.setCurrentView = function(view_name){
 				vm.activeView = view_name;
 			}
+
+			vm.toggleProfileView = function(){
+				if ( vm.viewProfile ) {
+					vm.viewProfile = false ;
+				} else {
+					vm.viewProfile = true ;
+				}
+			}
 			
 			// ++ Initialization Routines
 			vm.initAuthentication = function(){
@@ -120,6 +130,18 @@
 				} else {
 					vm.isAuthenticated = false;
 				}
+			}
+
+			vm.initOrganization = function(){
+				vm.isMemberOfAnOrganization = false;
+				customs.getOrganization(vm.token).then(function(results) {
+                	if ( results.data ) {
+						console.log(results.data);
+					}
+                    console.log(results);
+                }, function(error) {
+                  console.log(error);
+                });
 			}
 
 			vm.togggleReportView = function(){

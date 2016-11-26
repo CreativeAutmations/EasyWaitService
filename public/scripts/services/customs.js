@@ -80,7 +80,27 @@ angular.module('customsregister')
 		});
 	};
 
+	  var getOrganization = function(token) {
+	    var url = 'api/organizations' ;
+		return $http({
+			url: url,
+			method: "GET",
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
 	
+
+
   var getAuditTrail = function(bill_number , token) {
 	    var url = 'api/audit/' + bill_number ;
 		return $http({
@@ -104,6 +124,7 @@ angular.module('customsregister')
 	return {
     signin: signin,
 	signup: signup,
+	getOrganization: getOrganization,
 	addOrUpdateReceipt: addOrUpdateReceipt,
 	getReceiptsByDate: getReceiptsByDate,
 	getAuditTrail: getAuditTrail
