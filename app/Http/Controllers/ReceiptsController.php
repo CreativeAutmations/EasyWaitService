@@ -73,24 +73,14 @@ class ReceiptsController extends Controller
 
     private function getOrganization( $user )
     {
-		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )
+													->where('status',1)
+													->get();
 		if ( ! $userOrganizations->isEmpty()) {
-			$userorganization = $userOrganizations->first();
-			
-			if ( $userorganization->status > 0 ) {
-				return [
-					'error' => false,
-					'org_id'  => $userorganization->org_id
-				];
-			} else {
-				return [
-					'error' => true,
-					'code'  => 13,
-					'details'  => [
-						'message'   => 'Organization membership not yet approved'
-					]
-				];
-			}
+			return [
+				'error' => false,
+				'org_id'  => $userOrganizations->first()->org_id
+			];
 		} else {
             return [
                 'error' => true,
@@ -127,7 +117,6 @@ class ReceiptsController extends Controller
                   ->header('Content-Type', 'application/json')
 				  ->setContent($getOrganizationResult);
 		}
-		
 		$org_id = $getOrganizationResult['org_id'];
 		
 		try { 
@@ -185,13 +174,14 @@ class ReceiptsController extends Controller
                   ->header('Content-Type', 'application/json')
 				  ->setContent($getOrganizationResult);
 		}
-		
 		$org_id = $getOrganizationResult['org_id'];
 		
 		try { 
 			$bill_details = Input::except('bill_number');
 
-			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+			$receipts = Receipts::where('bill_number', '=', $bill_number )
+										->where('org_id',$org_id )
+										->get();
 
 			if( $receipts -> first()){
 				$receipts -> first()->update($bill_details);
@@ -227,8 +217,19 @@ class ReceiptsController extends Controller
 				  ->setContent($JWTValidationResult);
 		}
 
+		# If the user does not have active organization - return with error
+		$getOrganizationResult = $this->getOrganization( $user);
+		if ( $getOrganizationResult['error'] ) {
+				return response('Organization Membership Required', 412)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($getOrganizationResult);
+		}
+		$org_id = $getOrganizationResult['org_id'];
+
 		try { 
-			$receipts = Receipts::where('bill_number', '=', $bill_number )->get();
+			$receipts = Receipts::where('bill_number', '=', $bill_number )
+										->where('org_id',$org_id )
+										->get();
 
 			if( $receipts -> first()){
 				return Response::json($receipts -> first());
@@ -248,13 +249,24 @@ class ReceiptsController extends Controller
 				  ->setContent($JWTValidationResult);
 		}
 
+		# If the user does not have active organization - return with error
+		$getOrganizationResult = $this->getOrganization( $user);
+		if ( $getOrganizationResult['error'] ) {
+				return response('Organization Membership Required', 412)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($getOrganizationResult);
+		}
+		$org_id = $getOrganizationResult['org_id'];
+
 		$filter_conditions = Input::all();
 		$field = array_keys($filter_conditions)[0];
 		$field_value = $filter_conditions[$field]["value"];
 		$operator = $filter_conditions[$field]["operation"];
 
 		try { 
-			$receipts = Receipts::where($field, $operator , $field_value )->get();
+			$receipts = Receipts::where($field, $operator , $field_value )
+									->where('org_id',$org_id )
+									->get();
 
 			if( $receipts->isEmpty()){
 				return response('Not Found', 404)
