@@ -178,6 +178,83 @@ class OrganizationController extends Controller
 					'details'  => ['message'   => 'Database Exception']]);
 		} 
    }
+   public function isAdministrator( $user)    {
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )
+												->('isadmin',1)
+												->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			return true;
+		}
+		return false;
+   }
+
+   public function getUserOrganization( $user_id )    {
+		$userOrganizations = UserOrganization::where('user_id', '=', $user_id )
+												->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			return $userOrganizations->first()->org_id;
+		}
+		return false;
+   }
+
+   public function isMembershipRequestForSameOrganization( $user1_id, $user2_id)    {
+		$user1_org = $this->getUserOrganization($user1_id);
+		$user2_org = $this->getUserOrganization($user2_id);
+		
+		if ( $user1_org  && 
+				$user2_org && 
+					( $user1_org == $user2_org)) {
+			return true;
+		}
+		return false;
+   }	
+
+   public function activateUser( $user_id )    {
+		
+		UserOrganization::where('user_id', $user_id )
+          ->update(['status' => 1]);
+   }	
+   
+   public function ApproveMembershipRequest( $user, $user_id)    {
+		# exit if the user is not an administrator
+		if  ( ! $this->isAdministrator( $user) ) {
+			return response('Operation allowed for administrators only', 412)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'details'  => ['message'   => 'Operation allowed for administrators only']]);
+		} 
+		
+		# Exit if the requesting user belong to some other organisation
+		if( ! $this->isMembershipRequestForSameOrganization( $user->id, $user_id)) {
+			return response('Membership Request Is For Different Organization', 412)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'details'  => ['message'   => 'Membership Request Is For Different Organization']]);
+		}
+		
+		# Activate the user
+		try {
+			$this->activateUser($user_id);
+
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'code'  => 10,
+					'details'  => ['message'   => 'Membership Approved']]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return response('Internal Server Error', 500)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Database Exception']]);
+		} 
+   }
 	
 	
    public function MembershipRequest()    {
@@ -191,9 +268,11 @@ class OrganizationController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 		
-		$organization_details = Input::only('org_id','action');
+		$organization_details = Input::only('org_id','action','user_id');
 		if ( $organization_details['action'] == 'addrequest') {
 			return $this->RecordMembershipRequest( $user, $organization_details['org_id']);
+		} elseif ( $organization_details['action'] == 'approve') {
+			return $this->ApproveMembershipRequest( $user, $organization_details['user_id']);
 		} else {
 			return response('Unsupported Action', 412)
 				->header('Content-Type', 'application/json')
