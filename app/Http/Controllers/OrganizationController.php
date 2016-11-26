@@ -283,6 +283,57 @@ class OrganizationController extends Controller
 		}
 	}
 
+	
+   public function UpdateOrganization()    {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
+		if ( ! $userOrganizations->isEmpty()) {
+			$userorganization = $userOrganizations->first();
+			$organization = Organization::where('id', '=', $userorganization->org_id )
+							->get()
+							->first();
+			$organization_details = Input::only('name','address','tax_registration','tax_commissionar');
+			try {
+				$organization['name'] = $organization_details['name'];
+				$organization['address'] = $organization_details['address'];
+				$organization['tax_registration'] = $organization_details['tax_registration'];
+				$organization['tax_commissionar'] = $organization_details['tax_commissionar'];
+				$organization->save();
+
+				return response('OK', 200)
+					->header('Content-Type', 'application/json')
+					->setContent(['organization' => $organization]);
+			} catch (\Illuminate\Database\QueryException $e) {
+				return response('Database Error', 401)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'code'  => 12,
+						'details'  => ['message'   => 'Database Error']]);
+			} 
+			
+			
+		} else {
+			return response('User is not a member of any organization', 412)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 10,
+					'details'  => ['message'   => 'User is not a member of any organization']]);
+		}
+		
+}
+	
    /**
 	 * Create Organization
 	 *

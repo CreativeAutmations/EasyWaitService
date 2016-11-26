@@ -66,6 +66,7 @@ Route::post('/receipts/search', ['before' => 'jwt-auth', 'uses' => 'ReceiptsCont
 Route::get('/audit/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetAuditTrailForABill']);
 
 Route::post('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@CreateOrganization']);
+Route::put('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@UpdateOrganization']);
 Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetOrganization']);
 Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);

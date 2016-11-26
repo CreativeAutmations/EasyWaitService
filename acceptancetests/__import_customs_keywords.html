@@ -258,6 +258,14 @@
 <tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>Approve Organization Membership For All</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 
+<tr>	<td>Create And Update Organization</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${orgadmin}</td>	<td>${expected_result}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email_orgadmin}=</td>	<td>Get Mail From Name</td>	<td>${orgadmin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${orgadmin}</td>	<td>${email_orgadmin}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_orgadmin}=</td>	<td>Sign In</td>	<td>${email_orgadmin}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_orgadmin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	<td>Dummy Tax Commissioner</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Organization</td>	<td>${auth_token_orgadmin}</td>	<td>Dummy Org Name Updated</td>	<td>Dummy Org Address Updated</td>	<td>Dummy Tax Registration Updated</td>	<td>Dummy Tax Commissioner Updated</td>	<td></td>	<td></td>	</tr>
+
 			
 		</tbody>
 	</table>

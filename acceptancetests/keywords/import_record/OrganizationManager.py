@@ -86,3 +86,16 @@ class OrganizationManager(object):
 			print 'Approving Membership For Id: ' + str(i['user_id'])
 			self.approve_organization_membership(access_token, i['user_id'])
 
+	def update_organization(self, access_token,name,address,tax_registration,tax_commissionar):
+		url = self._hostURL +'/api/organizations'
+		json_payload_list = {}
+		json_payload_list['name'] = name
+		json_payload_list['address'] = address
+		json_payload_list['tax_registration'] = tax_registration
+		json_payload_list['tax_commissionar'] = tax_commissionar
+		print(json_payload_list)
+		call_headers = {'Authorization': 'Bearer '+ access_token}
+		r = requests.put(url, json=json_payload_list, headers=call_headers)
+		r.raise_for_status()
+		server_response = r.json()
+		print server_response
