@@ -196,7 +196,7 @@
 
 <tr>	<td>Create Receipt Without Authentication</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Run Keyword And Expect Error</td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>NA</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Expect Error</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>NA</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 			
 <tr>	<td>Update Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${fields_to_update}</td>	<td>${updated_bill}</td>	<td></td>	<td></td>	</tr>
