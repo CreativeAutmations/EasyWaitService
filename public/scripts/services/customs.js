@@ -18,6 +18,23 @@ angular.module('customsregister')
 		});
 	};
 
+  var signup = function(name,email,pwd) {
+	    var url = 'api/signup' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'name': name, 'email' : email,  'password' : pwd}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
+
   var addOrUpdateReceipt = function(formdata, token, action) {
 	    var url = 'api/receipts' ;
 		var method = "POST";
@@ -86,6 +103,7 @@ angular.module('customsregister')
 	
 	return {
     signin: signin,
+	signup: signup,
 	addOrUpdateReceipt: addOrUpdateReceipt,
 	getReceiptsByDate: getReceiptsByDate,
 	getAuditTrail: getAuditTrail

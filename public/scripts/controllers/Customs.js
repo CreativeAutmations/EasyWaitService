@@ -213,6 +213,23 @@
                 });
             }
 			// -- Sign In Function Ended
+
+			// ++ Sign Up Function Started
+            vm.signup = function(name, email,pwd) {
+				customs.signup(name, email,pwd).then(function(results) {
+                	if ( results.data ) {
+						// Setting a cookie
+						$cookies.put('auth_token',results.data.token, {'expires': vm.expireDate});
+						vm.initAuthentication();
+					} else {
+						bootbox.alert("Sign Up Failed" , function() {});
+					}
+                    console.log(results);
+                }, function(error) {
+                  console.log(error);
+                });
+            }
+			// -- Sign Up Function Ended
 			
 			// ++ Sign Out Function Started
             vm.signOut = function(email,pwd) {

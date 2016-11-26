@@ -1,9 +1,21 @@
 <div class="row">
 	<div class="col-md-4">
+		<h2>Sign In</h2>
 		<div class="input-group">
 			<input type="email" title="email" class="form-control" ng-model="vm.email" placeholder="email" ng-minlength=6 ng-maxlength=255>
 			<input type="password" title="password" class="form-control" ng-model="vm.password" placeholder="password" ng-minlength=6 ng-maxlength=32>
 			<button class="btn btn-primary" ng-click="vm.signin(vm.email, vm.password)">Sign In</button>
+		</div>
+		<!-- /input-group -->
+	</div>
+
+	<div class="col-md-4">
+		<h2>Register</h2>
+		<div class="input-group">
+			<input type="text" title="name" class="form-control" ng-model="vm.name" placeholder="name" ng-minlength=6 ng-maxlength=255>
+			<input type="email" title="email" class="form-control" ng-model="vm.email" placeholder="email" ng-minlength=6 ng-maxlength=255>
+			<input type="password" title="password" class="form-control" ng-model="vm.password" placeholder="password" ng-minlength=6 ng-maxlength=32>
+			<button class="btn btn-primary" ng-click="vm.signup(vm.name, vm.email, vm.password)">Sign Up</button>
 		</div>
 		<!-- /input-group -->
 	</div>
