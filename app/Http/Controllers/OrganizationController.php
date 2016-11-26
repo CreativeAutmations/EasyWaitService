@@ -180,7 +180,7 @@ class OrganizationController extends Controller
    }
    public function isAdministrator( $user)    {
 		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )
-												->('isadmin',1)
+												->where('isadmin',1)
 												->get();
 		if ( ! $userOrganizations->isEmpty()) {
 			return true;
