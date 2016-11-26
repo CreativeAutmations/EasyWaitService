@@ -9,13 +9,13 @@
 		<!-- /input-group -->
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-4" ng-if="! vm.isAuthenticated">
 		<h2>Register</h2>
 		<div class="input-group">
-			<input type="text" title="name" class="form-control" ng-model="vm.name" placeholder="name" ng-minlength=6 ng-maxlength=255>
-			<input type="email" title="email" class="form-control" ng-model="vm.email" placeholder="email" ng-minlength=6 ng-maxlength=255>
-			<input type="password" title="password" class="form-control" ng-model="vm.password" placeholder="password" ng-minlength=6 ng-maxlength=32>
-			<button class="btn btn-primary" ng-click="vm.signup(vm.name, vm.email, vm.password)">Sign Up</button>
+			<input type="text" title="name" class="form-control" ng-model="vm.signup.name" placeholder="name" ng-minlength=6 ng-maxlength=255>
+			<input type="email" title="email" class="form-control" ng-model="vm.signup.email" placeholder="email" ng-minlength=6 ng-maxlength=255>
+			<input type="password" title="password" class="form-control" ng-model="vm.signup.password" placeholder="password" ng-minlength=6 ng-maxlength=32>
+			<button class="btn btn-primary" ng-click="vm.signup(vm.signup.name, vm.signup.email, vm.signup.password)">Sign Up</button>
 		</div>
 		<!-- /input-group -->
 	</div>
