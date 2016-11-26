@@ -29,6 +29,7 @@ class ReceiptManager(object):
         r = requests.post(url, json=json_payload_list, headers=call_headers)
         server_response = r.json()
         print server_response
+        r.raise_for_status()
         return server_response
 
     def update_receipt(self, bill_number, fields_to_update, access_token):
