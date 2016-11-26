@@ -216,6 +216,8 @@ class ReceiptsController extends Controller
                   ->header('Content-Type', 'application/json')
 				  ->setContent($JWTValidationResult);
 		}
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
 
 		# If the user does not have active organization - return with error
 		$getOrganizationResult = $this->getOrganization( $user);
@@ -248,6 +250,8 @@ class ReceiptsController extends Controller
                   ->header('Content-Type', 'application/json')
 				  ->setContent($JWTValidationResult);
 		}
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
 
 		# If the user does not have active organization - return with error
 		$getOrganizationResult = $this->getOrganization( $user);
