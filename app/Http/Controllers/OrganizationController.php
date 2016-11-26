@@ -294,10 +294,19 @@ class OrganizationController extends Controller
 
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
-		
-		# If user is already associated with any organization retrurn an error, with details about the organization user is associated with
+
 		$userOrganizations = UserOrganization::where('user_id', '=', $user->id )->get();
 		if ( ! $userOrganizations->isEmpty()) {
+			# exit if the user is not an administrator
+			if  ( ! $this->isAdministrator( $user) ) {
+				return response('Operation allowed for administrators only', 412)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'code'  => 10,
+						'details'  => ['message'   => 'Operation allowed for administrators only']]);
+			} 
+
 			$userorganization = $userOrganizations->first();
 			$organization = Organization::where('id', '=', $userorganization->org_id )
 							->get()
