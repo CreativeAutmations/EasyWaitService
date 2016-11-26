@@ -157,22 +157,22 @@
 				<td></td>
 			</tr>
 
-<tr>	<td>Create Users And Assign Roles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>admin</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>viewer</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>${auth_token_admin}=</td>	<td>Sign In</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_admin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	</tr>
-<tr>	<td></td>	<td>${org_id}=</td>	<td>Get Organization Id</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Approve Organization Membership For All</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Users And Assign Roles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>admin</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>viewer</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_admin}=</td>	<td>Sign In</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_admin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	<td>Dummy Tax Commissioner</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${org_id}=</td>	<td>Get Organization Id</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Approve Organization Membership For All</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 
 
 <tr>	<td>Create Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
