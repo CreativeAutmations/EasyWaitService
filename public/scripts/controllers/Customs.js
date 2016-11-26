@@ -113,7 +113,7 @@
 			
 			// ++ Initialization Routines
 			vm.initAuthentication = function(){
-				vm.signup = {};
+				vm.signupparam = {};
 				vm.token = $cookies.get('auth_token');
 				if ( vm.token ) {
 					vm.isAuthenticated = true;
