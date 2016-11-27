@@ -57,7 +57,7 @@
 				</div>
 
 
-				<div ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization">
+				<div ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization && !vm.viewProfile">
 
 					
 					<div class="btn-group btn-group-justified">
