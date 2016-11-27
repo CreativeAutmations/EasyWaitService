@@ -154,6 +154,9 @@
 				customs.getOrganization(vm.token).then(function(results) {
                 	if ( ! results.data.error ) {
 						vm.myorganization = results.data;
+						if ( vm.myorganization.status == 1){
+							vm.isMemberOfAnOrganization = true;
+						}
 					} else {
 						bootbox.alert(results.data.details.message , function() {});
 					}
