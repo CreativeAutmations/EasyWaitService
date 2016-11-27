@@ -65,7 +65,6 @@
 						<a href="#" ng-click="vm.setCurrentView('Search')" class="btn btn-primary">Search</a>
 						<a href="#" ng-click="vm.setCurrentView('Audit')" class="btn btn-primary">Audit</a>
 						<a ng-click="vm.togggleReportView()" class="btn btn-primary">Report</a>
-						<a ng-click="vm.signOut()" class="btn btn-danger">Sign Out</a>
 					</div>
 					<p></p>
 					

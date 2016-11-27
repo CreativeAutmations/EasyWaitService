@@ -122,6 +122,7 @@
 				vm.retrieved.receipt = {};	
 				vm.resetAddEditWindow();
 				vm.setCurrentView('Search');
+				vm.resetOrgAddEditWindow();
          	}
 
 			vm.setCurrentView = function(view_name){
@@ -302,11 +303,42 @@
 				console.log("OK");
             };
 			// -- Sign In Function Ended
+			
+			
+			// ++ Create Organization
+            vm.OrgUpdate = function(organization) {
+				
+				customs.addOrUpdateOrganization(organization , vm.token, vm.addUpdateOrgAction ).then(function(results) {
+                	if ( results.data.error ) {
+						bootbox.alert(results.data.details.message , function() {});
+					} else {
+						vm.initOrganization();
+						vm.resetOrgAddEditWindow();
+					}
+                    console.log(results);
+                }, function(error) {
+                  console.log(error);
+                });
+				
+				console.log("OK");
+            };
+			// -- Sign In Function Ended
+			
 
 			vm.resetAddEditWindow = function() {
 				vm.addUpdateAction = 'Add';
 				vm.receipt_to_add = {};
 				vm.readonlyBillNumber = false;
+			};
+
+			vm.resetOrgAddEditWindow = function() {
+				vm.addUpdateOrgAction = 'Add';
+				vm.organization_to_add = {};
+			};
+
+			vm.editOrganization  = function() {
+				vm.addUpdateOrgAction = 'Update';
+				vm.organization_to_add = angular.copy(vm.myorganization.organization);
 			};
 
 			// ++ Prepare For Edit

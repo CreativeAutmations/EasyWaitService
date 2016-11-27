@@ -35,6 +35,31 @@ angular.module('customsregister')
 		});
 	};
 
+	
+  var addOrUpdateOrganization = function(formdata, token, action) {
+	    var url = 'api/organizations' ;
+		var method = "POST";
+		if ( action === 'Update') {
+			method = "PUT";
+		}
+		return $http({
+			url: url,
+			method: method,
+			data: formdata,
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+	};
+	
   var addOrUpdateReceipt = function(formdata, token, action) {
 	    var url = 'api/receipts' ;
 		var method = "POST";

@@ -402,7 +402,9 @@ class OrganizationController extends Controller
 
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
-				->setContent(['organization' => $organization]);
+				->setContent([
+					'error' => false,
+					'organization' => $organization]);
 		} catch (\Illuminate\Database\QueryException $e) {
 			return response('Unauthorized', 401)
 				->header('Content-Type', 'application/json')
