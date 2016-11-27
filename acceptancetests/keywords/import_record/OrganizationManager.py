@@ -42,7 +42,7 @@ class OrganizationManager(object):
 		r.raise_for_status()
 		server_response = r.json()
 		print server_response
-		return server_response['org_id']
+		return server_response['organization']['org_id']
 
 	def request_organization_membership(self, access_token,org_id):
 		url = self._hostURL +'/api/organizations/membership'
