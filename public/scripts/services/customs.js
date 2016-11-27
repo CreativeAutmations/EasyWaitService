@@ -150,6 +150,7 @@ angular.module('customsregister')
     signin: signin,
 	signup: signup,
 	getOrganization: getOrganization,
+	addOrUpdateOrganization: addOrUpdateOrganization,
 	addOrUpdateReceipt: addOrUpdateReceipt,
 	getReceiptsByDate: getReceiptsByDate,
 	getAuditTrail: getAuditTrail
