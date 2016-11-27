@@ -30,10 +30,15 @@ Route::post('/signup', function () {
    }
 
    $token = JWTAuth::fromUser($user);
+   $user = JWTAuth::toUser($token);
 
 	return response('OK', 200)
 	  ->header('Content-Type', 'application/json')
-	  ->setContent(compact('token'));
+	  ->setContent(['token' => $token,
+					'id' => $user->id,
+					'name' => $user->name,
+					'email' => $user->email]);
+
 });
 
 Route::post('/signin', function () {
@@ -42,10 +47,14 @@ Route::post('/signin', function () {
    if ( ! $token = JWTAuth::attempt($credentials)) {
        return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
    }
+   $user = JWTAuth::toUser($token);
 
 	return response('OK', 200)
 	  ->header('Content-Type', 'application/json')
-	  ->setContent(compact('token'));
+	  ->setContent(['token' => $token,
+					'id' => $user->id,
+					'name' => $user->name,
+					'email' => $user->email]);
 });
 
 ## Logging out of the server
