@@ -38,15 +38,28 @@
 
 			<div ng-if="!vm.showReport">
 				<h1>Import Record Keeper</h1>
+				<!-- Show Profile Button  ====================================== -->
+				<div ng-if="vm.isAuthenticated">
+					<a ng-click="vm.toggleProfileView()" class="btn btn-primary">Profile</a>
+					<!-- Organization Management ====================================== -->
+					<div ng-if="vm.viewProfile">
+						<organization vm="vm"></organization>
+						<hr>
+					</div>
+				
+				</div>
 				<p></p>
 			
 				<!-- Authentication      ====================================== -->
 				<div ng-if="!vm.isAuthenticated">
-				<authentication vm="vm"></authentication>
-				<!-- Receipt Creation      ====================================== -->
-				<hr>
+					<authentication vm="vm"></authentication>
+					<hr>
 				</div>
-				<div ng-if="vm.isAuthenticated">
+
+
+				<div ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization">
+
+					
 					<div class="btn-group btn-group-justified">
 						<a href="#" ng-click="vm.setCurrentView('AddEdit')" class="btn btn-primary">Add</a>
 						<a href="#" ng-click="vm.setCurrentView('Search')" class="btn btn-primary">Search</a>
@@ -56,6 +69,7 @@
 					</div>
 					<p></p>
 					
+					<!-- Receipt Creation      ====================================== -->
 					<div ng-if="vm.isActiveView('AddEdit')">
 						<h3>Add/Edit Receipt</h3>
 						<receiptupdate vm="vm"></receiptupdate>
