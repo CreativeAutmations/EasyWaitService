@@ -81,6 +81,20 @@
         return directive;
     });    
 	
+    angular
+    .module('customsregister').directive('organization', function() {
+        var directive = {};
+
+        directive.restrict = 'E';
+
+        directive.templateUrl = "./html-templates/customs-profile.html";
+
+        directive.scope = {
+            vm : "=vm"
+        }
+
+        return directive;
+    });    
 	
 	
     angular
