@@ -41,6 +41,7 @@
 				<!-- Show Profile Button  ====================================== -->
 				<div ng-if="vm.isAuthenticated">
 					<a ng-click="vm.toggleProfileView()" class="btn btn-primary">Profile</a>
+					<a ng-click="vm.signOut()" class="btn btn-danger">Sign Out</a>
 					<!-- Organization Management ====================================== -->
 					<div ng-if="vm.viewProfile">
 						<organization vm="vm"></organization>
