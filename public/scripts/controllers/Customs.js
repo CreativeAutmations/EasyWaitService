@@ -128,6 +128,7 @@
 				vm.token = $cookies.get('auth_token');
 				if ( vm.token ) {
 					vm.isAuthenticated = true;
+					vm.initOrganization();
 				} else {
 					vm.isAuthenticated = false;
 				}
