@@ -95,7 +95,7 @@
 				vm.email = '';
                 vm.password = '';
 				vm.viewProfile = true;
-				
+				vm.signupparam = {};
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				

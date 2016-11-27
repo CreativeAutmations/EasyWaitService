@@ -24,7 +24,9 @@ Route::post('/signup', function () {
 	
        $user = User::create($credentials);
    } catch (Exception $e) {
-     return Response::json($e); 
+		return response('Sign Up Failed', 401)
+		  ->header('Content-Type', 'application/json')
+		  ->setContent($e);
    }
 
    $token = JWTAuth::fromUser($user);
