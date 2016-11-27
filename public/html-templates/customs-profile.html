@@ -32,25 +32,40 @@
 		</div>
 
 	</div>
-	<div ">
+	<div">
 		<div class="col-md-6" >
-			<h2>Create Organization</h2>
-			<div class="input-group">
-				<input type="number" title="Organization Id" class="form-control" ng-model="orgid" placeholder="Organization Id" ng-minlength=1 ng-maxlength=255>
-				<button class="btn btn-primary" ng-click="vm.RequestMembership(orgid)">Request Membership</button>
+			<h2>Create Or Update Organization</h2>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<form novalidate class="simple-form">
+
+						<label class="control-label col-sm-2" for="name">Name:</label>
+						<div class="col-sm-10">
+							<input type="text" id="name" ng-model="vm.organization_to_add.name" />
+						</div>
+						
+						<label class="control-label col-sm-2" for="address">Address:</label>
+						<div class="col-sm-10">
+							<input type="text" id="address" ng-model="vm.organization_to_add.address" />
+						</div>
+
+						<label class="control-label col-sm-2" for="tax_registration">Tax Registration:</label>
+						<div class="col-sm-10">
+							<input type="text" id="tax_registration" ng-model="vm.organization_to_add.tax_registration" />
+						</div>
+
+						<label class="control-label col-sm-2" for="tax_commissionar">Tax Commissionar:</label>
+						<div class="col-sm-10">
+							<input type="text" id="tax_commissionar" ng-model="vm.organization_to_add.tax_commissionar" />
+						</div>
+						
+						<input type="button" ng-click="vm.resetOrgAddEditWindow()" value="Reset" />
+						<input type="submit" ng-click="vm.OrgUpdate(vm.organization_to_add)" value="{{ vm.OrgAddUpdateAction }}" />
+
+					</form>
+				</div>
 			</div>
-			<!-- /input-group -->
-		</div>
-		<div class="col-md-2" >
-			<h1>OR</h1>
-		</div>
-		<div class="col-md-4" >
-			<h2>Request Organization Membership</h2>
-			<div class="input-group">
-				<input type="number" title="Organization Id" class="form-control" ng-model="orgid" placeholder="Organization Id" ng-minlength=1 ng-maxlength=255>
-				<button class="btn btn-primary" ng-click="vm.RequestMembership(orgid)">Request Membership</button>
-			</div>
-			<!-- /input-group -->
 		</div>
 	</div>
 </div>
