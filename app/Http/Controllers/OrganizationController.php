@@ -103,8 +103,8 @@ class OrganizationController extends Controller
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => true,
-					'code'  => 10,
-					'details'  => ['message'   => 'You are not a member of any organization']]);
+					'code'  => 21,
+					'details'  => ['message'   => 'Not a member of any organization']]);
 		}
 	}
 	

@@ -99,6 +99,7 @@
 				vm.expireDate = new Date();
                 vm.expireDate.setDate(vm.expireDate.getDate() + 365);
 				
+				vm.isMemberOfAnOrganization = false;
 				vm.initAuthentication();
 				vm.initOrganization();
 				vm.initAuditTrail();
