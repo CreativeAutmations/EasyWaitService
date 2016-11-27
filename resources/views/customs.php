@@ -46,7 +46,6 @@
 						<organization vm="vm"></organization>
 						<hr>
 					</div>
-				
 				</div>
 				<p></p>
 			

@@ -134,12 +134,14 @@
 			}
 
 			vm.initOrganization = function(){
+				vm.myorganization = {};
 				vm.isMemberOfAnOrganization = false;
 				customs.getOrganization(vm.token).then(function(results) {
-                	if ( results.data ) {
-						console.log(results.data);
+                	if ( ! results.data.error ) {
+						vm.myorganization = results.data;
+					} else {
+						bootbox.alert(results.data.details.message , function() {});
 					}
-                    console.log(results);
                 }, function(error) {
                   console.log(error);
                 });
