@@ -44,12 +44,10 @@
 		
 		</head>
 	<body ng-app="customsregister" ng-controller="CustomsRecordManager as vm" data-ng-init="vm.init()">
-				<button id="cmd">generate PDF</button>
 		<div id="navbar">
 		</div>
 		<!-- Grid System      ====================================== -->
 		<div id="crap" class="container-fluid">
-				<h1>TOBE REMOVED Import Record Keeper</h1>
 			<div class="row">
 				<h3></h3>
 				<h3></h3>
