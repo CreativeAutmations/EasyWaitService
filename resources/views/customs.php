@@ -61,7 +61,8 @@ $(function () {
 		</head>
 	<body ng-app="customsregister" ng-controller="CustomsRecordManager as vm" data-ng-init="vm.init()">
 				<button id="cmd">generate PDF</button>
-		<div id="navbar"></div>
+		<div id="navbar">
+		</div>
 		<!-- Grid System      ====================================== -->
 		<div id="crap" class="container-fluid">
 				<h1>TOBE REMOVED Import Record Keeper</h1>
@@ -128,8 +129,7 @@ $(function () {
 				</div>
 			</div>
 
-			<div ng-if="!vm.showReport">
-			
+			<div ng-if="vm.showReport">
 				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
 				<hr>
