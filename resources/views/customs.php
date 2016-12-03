@@ -60,6 +60,7 @@ $(function () {
 		
 		</head>
 	<body ng-app="customsregister" ng-controller="CustomsRecordManager as vm" data-ng-init="vm.init()">
+				<button id="cmd">generate PDF</button>
 		<div id="navbar"></div>
 		<!-- Grid System      ====================================== -->
 		<div class="container-fluid">
