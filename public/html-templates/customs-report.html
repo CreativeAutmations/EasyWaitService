@@ -1,145 +1,143 @@
 <div id="customsreport">
-			<table id="" class="table">
-						<tr><td style="font-weight:bold" align="center" colspan="15">Form to be maintained by EOU/STPI/EHTP for the receipt, storage, processing and removal of goods.</td>
-						</tr>
-						<tr><td align="center" colspan="15">(as per Circular 35 / 2016-Customs dated 29th July 2016)</td>
-						</tr>
-						<tr></tr>
-						<tr><td style="font-weight:bold" colspan="15">Name of EOU and address: {{  vm.myorganization.organization.name}} , {{  vm.myorganization.organization.address }}</td>
-						</tr>
-																	
-						<tr><td style="font-weight:bold" colspan="15">Central Excise/Service Tax Registration No: {{  vm.myorganization.organization.tax_registration }}</td>
-						</tr>
-						<tr></tr>								
-						<tr><td style="font-weight:bold" colspan="15">{{  vm.myorganization.organization.tax_commissionar }}</td>
-						</tr>
-			</table>
-						
-			<div >
-			<table class="table table-striped table-bordered table-hover">
-				<thead>
-						<tr style="font-weight:bold" align="center">
-							<td colspan="14">Receipts</td>
-							<td colspan="4">Removal for processing</td>
-							<td>Remarks</td>
-							<td colspan="6">Other removals</td>
-							<td colspan="6">Returns to unit</td>
-							<td colspan="2">Balance in stock</td>
-							<td rowspan="2">Remarks</td>
-						</tr>
+<table id="" class="table">
+<tr><td style="font-weight:bold" align="center" colspan="15">Form to be maintained by EOU/STPI/EHTP for the receipt, storage, processing and removal of goods.</td>
+</tr>
+<tr><td align="center" colspan="15">(as per Circular 35 / 2016-Customs dated 29th July 2016)</td>
+</tr>
+<tr></tr>
+<tr><td style="font-weight:bold" colspan="15">Name of EOU and address: {{  vm.myorganization.organization.name}} , {{  vm.myorganization.organization.address }}</td>
+</tr>
 
-						<tr style="font-weight:bold" align="center">
-							<td>Bill of Entry No. and date, if applicable</td>	
-							<td>Customs Station of import, if applicable</td>	
-							<td>Code and address of Warehouse from where received (only in cases goods are procured from public or private warehouse)</td>	
-							<td>Name & Address of EoU from where goods are received, if applicable</td>	
-							<td>Others (in case of any other source of procurement)</td>
-							<td>Details of B-17 Bond/ Amount debited</td>	
-							<td>Description of goods</td>	
-							<td>Invoice No. & Date</td>	
-							<td>Procurement Certificate No. and date</td>	
-							<td>Unit, Weight and quantity</td>	
-							<td>Value</td>	
-							<td>Duty assessed</td>	
-							<td>Registration No. of means of transport</td>	
-							<td>Date and time of receipt</td>	
-							<td>Date and time of removal</td>	
-							<td>Quantity cleared</td>	
-							<td>Value</td>	
-							<td>Duty involved</td>	
-							<td>(The goods removed for processing shall be accounted in a manner that enables the verification of input-output norms, extent of waste, scrap generated etc.)</td>	
-							<td>Purpose of removal</td>	
-							<td>Date and time</td>	
-							<td>Quantity</td>	
-							<td>Value</td>	
-							<td>Duty</td>	
-							<td>Details of document under which removed (No. and date)</td>	
-							<td>Purpose of return</td>	
-							<td>Date and time</td>	
-							<td>Quantity</td>	
-							<td>Value</td>	
-							<td>Duty involved</td>	
-							<td>Details of document under which returned (No. and date)</td>	
-							<td>Quantity</td>	
-							<td>Value</td>
-						</tr>	
-						<tr>
-							<td>1</td>	
-							<td>2</td>	
-							<td>3</td>	
-							<td>4</td>	
-							<td>5</td>	
-							<td>6</td>	
-							<td>7</td>	
-							<td>8</td>	
-							<td>9</td>	
-							<td>10</td>	
-							<td>11</td>	
-							<td>12</td>	
-							<td>13</td>	
-							<td>14</td>	
-							<td>15</td>	
-							<td>16</td>	
-							<td>17</td>	
-							<td>18</td>	
-							<td>19</td>	
-							<td>20</td>	
-							<td>21</td>	
-							<td>22</td>	
-							<td>23</td>	
-							<td>24</td>	
-							<td>25</td>	
-							<td>26</td>	
-							<td>27</td>	
-							<td>28</td>	
-							<td>29</td>	
-							<td>30</td>	
-							<td>31</td>	
-							<td>32</td>	
-							<td>33</td>	
-							<td>34</td>
-						</tr>
+<tr><td style="font-weight:bold" colspan="15">Central Excise/Service Tax Registration No: {{  vm.myorganization.organization.tax_registration }}</td>
+</tr>
+<tr></tr>								
+<tr><td style="font-weight:bold" colspan="15">{{  vm.myorganization.organization.tax_commissionar }}</td>
+</tr>
+</table>
+
+<table class="table table-striped table-bordered table-hover">
+<thead>
+<tr style="font-weight:bold" align="center">
+<td colspan="14">Receipts</td>
+<td colspan="4">Removal for processing</td>
+<td>Remarks</td>
+<td colspan="6">Other removals</td>
+<td colspan="6">Returns to unit</td>
+<td colspan="2">Balance in stock</td>
+<td rowspan="2">Remarks</td>
+</tr>
+
+<tr style="font-weight:bold" align="center">
+<td>Bill of Entry No. and date, if applicable</td>	
+<td>Customs Station of import, if applicable</td>	
+<td>Code and address of Warehouse from where received (only in cases goods are procured from public or private warehouse)</td>	
+<td>Name & Address of EoU from where goods are received, if applicable</td>	
+<td>Others (in case of any other source of procurement)</td>
+<td>Details of B-17 Bond/ Amount debited</td>	
+<td>Description of goods</td>	
+<td>Invoice No. & Date</td>	
+<td>Procurement Certificate No. and date</td>	
+<td>Unit, Weight and quantity</td>	
+<td>Value</td>	
+<td>Duty assessed</td>	
+<td>Registration No. of means of transport</td>	
+<td>Date and time of receipt</td>	
+<td>Date and time of removal</td>	
+<td>Quantity cleared</td>	
+<td>Value</td>	
+<td>Duty involved</td>	
+<td>(The goods removed for processing shall be accounted in a manner that enables the verification of input-output norms, extent of waste, scrap generated etc.)</td>	
+<td>Purpose of removal</td>	
+<td>Date and time</td>	
+<td>Quantity</td>	
+<td>Value</td>	
+<td>Duty</td>	
+<td>Details of document under which removed (No. and date)</td>	
+<td>Purpose of return</td>	
+<td>Date and time</td>	
+<td>Quantity</td>	
+<td>Value</td>	
+<td>Duty involved</td>	
+<td>Details of document under which returned (No. and date)</td>	
+<td>Quantity</td>	
+<td>Value</td>
+</tr>	
+<tr>
+<td>1</td>	
+<td>2</td>	
+<td>3</td>	
+<td>4</td>	
+<td>5</td>	
+<td>6</td>	
+<td>7</td>	
+<td>8</td>	
+<td>9</td>	
+<td>10</td>	
+<td>11</td>	
+<td>12</td>	
+<td>13</td>	
+<td>14</td>	
+<td>15</td>	
+<td>16</td>	
+<td>17</td>	
+<td>18</td>	
+<td>19</td>	
+<td>20</td>	
+<td>21</td>	
+<td>22</td>	
+<td>23</td>	
+<td>24</td>	
+<td>25</td>	
+<td>26</td>	
+<td>27</td>	
+<td>28</td>	
+<td>29</td>	
+<td>30</td>	
+<td>31</td>	
+<td>32</td>	
+<td>33</td>	
+<td>34</td>
+</tr>
 
 
-				</thead>
-				<tbody>
-				<tr ng-repeat="row in vm.searchByDateResults">
-						<td nowrap>{{ row.bill_number }}<br/>Dt.{{ row.bill_date }} </td>	
-						<td>{{ row.customs_station }}</td>	
-						<td>{{ row.warehouse_details }}</td>	
-						<td>{{ row.eou_details }}</td>	
-						<td>{{ row.other_procurement_source }}</td>	
-						<td nowrap>{{ row.b17_debit }}</td>	
-						<td nowrap>{{ row.description }}</td>	
-						<td nowrap>{{ row.invoice_no }}  Dt. {{ row.invoice_date }} </td>	
-						<td nowrap>{{ row.procurement_certificate }}  Dt. {{ row.procurement_date }} </td>	
-						<td nowrap>{{ row.unit }}, {{ row.weight }} <br/>{{ row.quantity }} </td>
-						<td nowrap>{{ row.value }} </td>	
-						<td nowrap>{{ row.duty }}</td>	
-						<td nowrap>{{ row.transport_registration }} </td>	
-						<td nowrap>{{ row.receipt_timestamp }} </td>	
-						<td>NA</td>	
-						<td>NIL</td>	
-						<td>NIL</td>	
-						<td>NIL</td>	
-						<td>NA</td>	
-						<td>NIL</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NIL</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td>NA</td>	
-						<td nowrap>{{ row.balance_quantity }} </td>	
-						<td nowrap>{{ row.balance_value }} </td>	
-						<td>NA</td>
-				</tr>
-				</tbody>
-			</table>
-			</div>
+</thead>
+<tbody>
+<tr ng-repeat="row in vm.searchByDateResults">
+<td nowrap>{{ row.bill_number }}<br/>Dt.{{ row.bill_date }} </td>	
+<td>{{ row.customs_station }}</td>	
+<td>{{ row.warehouse_details }}</td>	
+<td>{{ row.eou_details }}</td>	
+<td>{{ row.other_procurement_source }}</td>	
+<td nowrap>{{ row.b17_debit }}</td>	
+<td nowrap>{{ row.description }}</td>	
+<td nowrap>{{ row.invoice_no }}  Dt. {{ row.invoice_date }} </td>	
+<td nowrap>{{ row.procurement_certificate }}  Dt. {{ row.procurement_date }} </td>	
+<td nowrap>{{ row.unit }}, {{ row.weight }} <br/>{{ row.quantity }} </td>
+<td nowrap>{{ row.value }} </td>	
+<td nowrap>{{ row.duty }}</td>	
+<td nowrap>{{ row.transport_registration }} </td>	
+<td nowrap>{{ row.receipt_timestamp }} </td>	
+<td>NA</td>	
+<td>NIL</td>	
+<td>NIL</td>	
+<td>NIL</td>	
+<td>NA</td>	
+<td>NIL</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NIL</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td>NA</td>	
+<td nowrap>{{ row.balance_quantity }} </td>	
+<td nowrap>{{ row.balance_value }} </td>	
+<td>NA</td>
+</tr>
+</tbody>
+</table>
 </div>
