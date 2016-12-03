@@ -26,6 +26,38 @@
 		<script type="text/javascript" src="scripts/controllers/Customs.js"></script>
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/bootbox/4.4.0/bootbox.min.js"></script>
 
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
+<script type="text/javascript" src="http://cdn.uriit.ru/jsPDF/libs/adler32cs.js/adler32cs.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.addimage.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.standard_fonts_metrics.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.split_text_to_size.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.from_html.js"></script>
+<script>
+$(function () {
+
+    var specialElementHandlers = {
+        '#editor': function (element,renderer) {
+            return true;
+        }
+    };
+ $('#cmd').click(function () {
+        var doc = new jsPDF();
+        doc.fromHTML($('#reportforcustoms').html(), 15, 15, {
+            'width': 170,'elementHandlers': specialElementHandlers
+        });
+        doc.save('sample-file.pdf');
+    });  
+});
+</script>
+		
+		
+		
+		
 		</head>
 	<body ng-app="customsregister" ng-controller="CustomsRecordManager as vm" data-ng-init="vm.init()">
 		<div id="navbar"></div>
@@ -95,9 +127,10 @@
 			</div>
 
 			<div ng-if="vm.showReport">
-				<reportforcustoms vm="vm"></reportforcustoms>
+				<reportforcustoms id="reportforcustoms" vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
 				<hr>
+				<button id="cmd">generate PDF</button>
 				<table><tr ng-click="vm.togggleReportView()"><td><h4>Report generated on -- {{ vm.reportDate }}</h4></td></tr></table>
 			</div>
 			
