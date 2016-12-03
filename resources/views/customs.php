@@ -128,7 +128,7 @@ $(function () {
 				</div>
 			</div>
 
-			<div ng-if="vm.showReport">
+			<div ng-if="!vm.showReport">
 			
 				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
