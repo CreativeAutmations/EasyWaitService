@@ -63,7 +63,7 @@ $(function () {
 				<button id="cmd">generate PDF</button>
 		<div id="navbar"></div>
 		<!-- Grid System      ====================================== -->
-		<div class="container-fluid">
+		<div id="crap" class="container-fluid">
 			<div class="row">
 				<h3></h3>
 				<h3></h3>
@@ -90,7 +90,7 @@ $(function () {
 				</div>
 
 
-				<div id="crap" ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization && !vm.viewProfile">
+				<div ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization && !vm.viewProfile">
 
 					
 					<div class="btn-group btn-group-justified">
