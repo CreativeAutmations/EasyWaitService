@@ -37,23 +37,7 @@
 <script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.standard_fonts_metrics.js"></script>
 <script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.split_text_to_size.js"></script>
 <script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.from_html.js"></script>
-<script>
-$(function () {
-
-    var specialElementHandlers = {
-        '#editor': function (element,renderer) {
-            return true;
-        }
-    };
- $('#cmd').click(function () {
-        var doc = new jsPDF();
-        doc.fromHTML($('#crap').html(), 15, 15, {
-            'width': 170,'elementHandlers': specialElementHandlers
-        });
-        doc.save('sample-file.pdf');
-    });  
-});
-</script>
+<script type="text/javascript" src="scripts/testpdf.js"></script>
 		
 		
 		
