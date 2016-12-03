@@ -11,7 +11,7 @@ $(function () {
  $('#cmd').click(function () {
         var doc = new jsPDF();
         doc.fromHTML($('#crap').html(), 15, 15, {
-            'width': 170,'elementHandlers': specialElementHandlers
+            'width': 2400,'elementHandlers': specialElementHandlers
         });
         doc.save('sample-file.pdf');
     });  
