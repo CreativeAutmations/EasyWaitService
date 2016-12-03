@@ -47,7 +47,7 @@ $(function () {
     };
  $('#cmd').click(function () {
         var doc = new jsPDF();
-        doc.fromHTML($('#reportforcustoms').html(), 15, 15, {
+        doc.fromHTML($('#customsreport').html(), 15, 15, {
             'width': 170,'elementHandlers': specialElementHandlers
         });
         doc.save('sample-file.pdf');
@@ -128,7 +128,7 @@ $(function () {
 			</div>
 
 			<div ng-if="vm.showReport">
-				<reportforcustoms id="reportforcustoms" vm="vm"></reportforcustoms>
+				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
 				<hr>
 				<button id="cmd">generate PDF</button>
