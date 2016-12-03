@@ -47,7 +47,7 @@ $(function () {
     };
  $('#cmd').click(function () {
         var doc = new jsPDF();
-        doc.fromHTML($('#customsreport').html(), 15, 15, {
+        doc.fromHTML($('#crap').html(), 15, 15, {
             'width': 170,'elementHandlers': specialElementHandlers
         });
         doc.save('sample-file.pdf');
@@ -90,7 +90,7 @@ $(function () {
 				</div>
 
 
-				<div ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization && !vm.viewProfile">
+				<div id="crap" ng-if="vm.isAuthenticated && vm.isMemberOfAnOrganization && !vm.viewProfile">
 
 					
 					<div class="btn-group btn-group-justified">
@@ -131,7 +131,6 @@ $(function () {
 				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
 				<hr>
-				<button id="cmd">generate PDF</button>
 				<table><tr ng-click="vm.togggleReportView()"><td><h4>Report generated on -- {{ vm.reportDate }}</h4></td></tr></table>
 			</div>
 			
