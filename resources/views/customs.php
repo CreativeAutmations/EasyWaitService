@@ -129,12 +129,13 @@ $(function () {
 			</div>
 
 			<div ng-if="vm.showReport">
+			
 				<reportforcustoms vm="vm"></reportforcustoms>
 				<br/><br/><br/><br/><br/>
 				<hr>
 				<table><tr ng-click="vm.togggleReportView()"><td><h4>Report generated on -- {{ vm.reportDate }}</h4></td></tr></table>
 			</div>
-			
+		</div>	
 	</body>
 </html>
 
