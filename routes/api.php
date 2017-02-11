@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Response as HttpResponse;
-
+use App\Receipts as Receipts;
+use App\Audit as Audit;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,13 +24,21 @@ Route::post('/signup', function () {
 	
        $user = User::create($credentials);
    } catch (Exception $e) {
-     return Response::json($e); 
-	//	return Response::json(['error' => 'User already exists.'], HttpResponse::HTTP_CONFLICT);
+		return response('Sign Up Failed', 401)
+		  ->header('Content-Type', 'application/json')
+		  ->setContent($e);
    }
 
    $token = JWTAuth::fromUser($user);
+   $user = JWTAuth::toUser($token);
 
-   return Response::json(compact('token'));
+	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['token' => $token,
+					'id' => $user->id,
+					'name' => $user->name,
+					'email' => $user->email]);
+
 });
 
 Route::post('/signin', function () {
@@ -38,30 +47,17 @@ Route::post('/signin', function () {
    if ( ! $token = JWTAuth::attempt($credentials)) {
        return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
    }
+   $user = JWTAuth::toUser($token);
 
-   return Response::json(compact('token'));
+	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['token' => $token,
+					'id' => $user->id,
+					'name' => $user->name,
+					'email' => $user->email]);
 });
 
-Route::get('/restricted', [
-   'before' => 'jwt-auth',
-   function () {
-       $token = JWTAuth::getToken();
-      try { 
-	
-	$user = JWTAuth::toUser($token);
-
-       return Response::json([
-           'data' => [
-               'email' => $user->email,
-               'registered_at' => $user->created_at->toDateTimeString()
-           ]
-       ]);
-	} catch (Exception $e) {
-      		 return Response::json(['error' => 'Unauthorized Access']);
-   	}	
-   }
-]);
-
+## Logging out of the server
 Route::get('/signout', [
    'before' => 'jwt-auth',
    function () {
@@ -69,9 +65,20 @@ Route::get('/signout', [
 	JWTAuth::invalidate(JWTAuth::getToken());	  
 	return Response::json(['status' => 'User Logged Out']);
      } catch (Exception $e) {
-	return Response::json(['error' => 'Unauthorized Access']);
+	       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
      }
    }
 ]);
 
+Route::post('/receipts', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@CreateReceipt']);
+Route::put('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@UpdateReceipt']);
+Route::get('/receipts/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetReceiptByBillNumber']);
+Route::post('/receipts/search', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@SearchReceipts']);
+Route::get('/audit/{bill_number}', ['before' => 'jwt-auth', 'uses' => 'ReceiptsController@GetAuditTrailForABill']);
+
+Route::post('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@CreateOrganization']);
+Route::put('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@UpdateOrganization']);
+Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetOrganization']);
+Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
+Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
 

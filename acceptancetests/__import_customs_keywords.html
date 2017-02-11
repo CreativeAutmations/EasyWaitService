@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Initialization File</title>
+</head>
+<body>
+
+	<table border>
+		<tbody>
+			<tr class="c4">
+				<td>Settings</td>
+			</tr>
+
+
+			<tr>
+				<td>Library</td>
+				<td>./keywords/import_record/ReceiptManager.py</td>
+				<td>${HOSTNAME}</td>
+				<td>${PORT}</td>
+			</tr>
+			<tr>
+				<td>Library</td>
+				<td>./keywords/import_record/OrganizationManager.py</td>
+				<td>${HOSTNAME}</td>
+				<td>${PORT}</td>
+			</tr>
+			<tr>
+				<td>Library</td>
+				<td>./authentication/libraries/AuthenticationManager.py</td>
+				<td>${HOSTNAME}</td>
+				<td>${PORT}</td>
+			</tr>
+			<tr>
+				<td>Library</td>
+				<td>./keywords/utilities/UtilityKeywords.py</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h4>Keywords:</h4>
+	
+	<table border="1" class="keywords">
+		<thead>
+			<tr>
+				<th colspan="6">Keywords</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Change Own Password</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>[Arguments]</td>
+				<td>${a1}</td>
+				<td>${a2}</td>
+				<td>${a3}</td>
+				<td>${a4}</td>
+				<td>${a5}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Log</td>
+				<td>${a1}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Create User</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>[Arguments]</td>
+				<td>${a1}</td>
+				<td>${a2}</td>
+				<td>${a3}</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Log</td>
+				<td>${a1}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Change Other Password</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>[Arguments]</td>
+				<td>${a1}</td>
+				<td>${a2}</td>
+				<td>${a3}</td>
+				<td>${a4}</td>
+				<td>${a5}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Log</td>
+				<td>${a1}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Change User Role</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>[Arguments]</td>
+				<td>${a1}</td>
+				<td>${a2}</td>
+				<td>${a3}</td>
+				<td>${a4}</td>
+				<td>${a5}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Log</td>
+				<td>${a1}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+<tr>	<td>Create Users And Assign Roles</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>admin</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>viewer</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>accountant</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_admin}=</td>	<td>Sign In</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_admin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	<td>Dummy Tax Commissioner</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${org_id}=</td>	<td>Get Organization Id</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accounts2@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Approve Organization Membership For All</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+
+<tr>	<td>Create Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Verify Value In Dictionary</td>	<td>${create_receipt_response}</td>	<td>message</td>	<td>${server_message}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt As Administrator</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>admin_user@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Verify Value In Dictionary</td>	<td>${create_receipt_response}</td>	<td>message</td>	<td>${server_message}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td>Create Receipt As Viewer</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>viewer@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Verify Value In Dictionary</td>	<td>${create_receipt_response}</td>	<td>code</td>	<td>12</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+<tr>	<td>Create Receipt Without Authentication</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${server_message}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt Should Fail</td>	<td>${bill_details}</td>	<td>NA</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+			
+<tr>	<td>Update Receipt As Accountant</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${bill_details}</td>	<td>${fields_to_update}</td>	<td>${updated_bill}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${create_receipt_response}=</td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${bill_number}=</td>	<td>Extract Value From Dictionary</td>	<td>${bill_details}</td>	<td>bill_number</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${fields_to_update}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${receipt}=</td>	<td>Get Receipt</td>	<td>${bill_number}</td>	<td>${access_token}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Verify Subset In Dictionary</td>	<td>${receipt}</td>	<td>${fields_to_update}</td>	<td></td>	<td></td>	<td></td>	</tr>
+
+<tr>	<td>Verify Audit Trail</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${added_by}</td>	<td>${bill_details}</td>	<td>${first_update_by}</td>	<td>${first_update}</td>	<td>${second_update_by}</td>	<td>${second_update}</td>	<td>${expected_audit_trail}</td>	</tr>
+<tr>	<td></td>	<td>${access_token_added_by}=</td>	<td>Sign In</td>	<td>${added_by}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token_first_upd_by}=</td>	<td>Sign In</td>	<td>${first_update_by}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${access_token_second_upd_by}=</td>	<td>Sign In</td>	<td>${second_update_by}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${bill_details}</td>	<td>${access_token_added_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${bill_number}=</td>	<td>Extract Value From Dictionary</td>	<td>${bill_details}</td>	<td>bill_number</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${first_update}</td>	<td>${access_token_first_upd_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Receipt</td>	<td>${bill_number}</td>	<td>${second_update}</td>	<td>${access_token_second_upd_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${audit_trail}=</td>	<td>Get Audit Trail</td>	<td>${bill_number}</td>	<td>${access_token_added_by}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${record_count}=</td>	<td>Get Record Count From Dictionary</td>	<td>${audit_trail}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Should Be True</td>	<td>${record_count} == 3</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+<tr>	<td>Record And Retrieve Receipts For Retrieval Verification</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${receipt1}</td>	<td>${receipt2}</td>	<td>${receipt3}</td>	<td>${query_date}</td>	<td>${expected_receipts}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>accountant@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt1}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt2}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Receipt</td>	<td>${receipt3}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${retrieved_receipts}=</td>	<td>Get Receipts On Or After Bill Date</td>	<td>${query_date}</td>	<td>${auth_token}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${record_count}=</td>	<td>Get Record Count From Dictionary</td>	<td>${retrieved_receipts}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Should Be True</td>	<td>${record_count} == 2</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+
+<tr>	<td>Register With System</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${email}</td>	<td>${password}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+
+<tr>	<td>Create Organization After Sign In</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email}=</td>	<td>Get Mail From Name</td>	<td>${user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Create Organization</td>	<td>${auth_token}</td>	<td>${org_name}</td>	<td>${address}</td>	<td>${tax_registration}</td>	<td>${tax_commissionar}</td>	<td></td>	<td></td>	</tr>
+
+
+<tr>	<td>Approve Membership To Organization</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${user_name}</td>	<td>${admin_user_name}</td>	<td>${expected_result}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email}=</td>	<td>Get Mail From Name</td>	<td>${user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${admin_email}=</td>	<td>Get Mail From Name</td>	<td>${admin_user_name}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${user_name}</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${admin_user_name}</td>	<td>${admin_email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>${email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_admin}=</td>	<td>Sign In</td>	<td>${admin_email}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_admin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	<td>Dummy Tax Commissioner</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${org_id}=</td>	<td>Get Organization Id</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Request Organization Membership</td>	<td>${auth_token}</td>	<td>${org_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Approve Organization Membership For All</td>	<td>${auth_token_admin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
+<tr>	<td>Create And Update Organization</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>[Arguments]</td>	<td>${orgadmin}</td>	<td>${expected_result}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${email_orgadmin}=</td>	<td>Get Mail From Name</td>	<td>${orgadmin}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>${orgadmin}</td>	<td>${email_orgadmin}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${auth_token_orgadmin}=</td>	<td>Sign In</td>	<td>${email_orgadmin}</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Create Organization</td>	<td>${auth_token_orgadmin}</td>	<td>Dummy Org Name</td>	<td>Dummy Org Address</td>	<td>Dummy Tax Registration</td>	<td>Dummy Tax Commissioner</td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Update Organization</td>	<td>${auth_token_orgadmin}</td>	<td>Dummy Org Name Updated</td>	<td>Dummy Org Address Updated</td>	<td>Dummy Tax Registration Updated</td>	<td>Dummy Tax Commissioner Updated</td>	<td></td>	<td></td>	</tr>
+
+			
+		</tbody>
+	</table>
+
+</body>
+</html>
