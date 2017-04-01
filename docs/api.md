@@ -140,13 +140,13 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
   
 *  **URL Params**
 
-	**Required:**
-
-	name=[string] 
+	None
 
 * **Data Params**
 
-	None
+	**Required:**
+
+	name=[string] 
  
 * **Success Response:**
   
@@ -188,4 +188,63 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 ----
 ----
   
+**Move to next position in the queue**
+
+Move to the next position in queue, specified in the URL. This API requires *Authorization Header*
+
+----
+/api/queue/:queue
+
+
+* **Method:**
+  
+  `POST` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+  * **Required:** 
+	action='movenext'
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , position : 24}`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/queue/' + queueid;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'action': 'movenext'},
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
   
