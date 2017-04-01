@@ -366,3 +366,71 @@ Get the current state of a queue. Current position of the queue, appointment sta
 ----
 ----
  
+**Appointment Administration**
+
+Start or stop accepting *Appointment* requestus, clear all Appointments. This API requires *Authorization Header*
+
+----
+/api/:queue/appointment
+
+
+* **Method:**
+  
+  `POST` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+  * **Required:** <br />
+	action='open' | action='close' | action='reset'   
+
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , appointments : {status : "open" , availableposition : 14}}`
+	
+	OR
+	
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , appointments : {status : "open" , availableposition : 1}}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 Not Found <br />
+    **Content:** `{ error : "Requested queue could not be found" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/' + queueid + '/appointment';
+		return $http({
+			url: url,
+			method: "GET",
+	  		data: { 'action': action},
+	  		headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
+  
