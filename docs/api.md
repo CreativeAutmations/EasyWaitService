@@ -248,7 +248,7 @@ Move to the next position in queue, specified in the URL. This API requires *Aut
 ----
 ----
   
-**Reset the queue position **
+**Reset the queue position**
 
 Reset the Queue position to 0, indicating the queue is inactive to its consumers, queue id is specified in the URL. This API requires *Authorization Header*
 
