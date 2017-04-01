@@ -581,4 +581,77 @@ Authenticated users should be able to retrieve an appointment with a reference i
 ----
 ----
   
+**Cancel Appointment**
+
+Authenticated users who made an appointment, can cancel the same. This API requires Authorization Header.
+
+----
+/api/:queue/appointment/:position
+
+
+* **Method:**
   
+  `DELETE` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	None
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+	
+ 
+* **Error Response:**
+	
+	when the request made without signin 
+
+	* **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+
+
+	OR when the request was made on a queue that is not available
+
+	* **Code:** 404 Not Found <br />
+    **Content:** `{ error : "Requested queue could not be found" }`
+
+	OR when the request was made on an appointment not booked bu current user
+
+	* **Code:** 403 Forbidden <br />
+    **Content:** `{ error : "Sorry only the users made the appointment can cancel" }`
+	
+	
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/' + queueid + '/appointment/' + position;
+		return $http({
+			url: url,
+			method: "DELETE",
+	  		headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
+    
