@@ -91,7 +91,7 @@ This is required to sign in a previously registered user. When successful API re
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `{ token : "SU282865982.GTisis82sf.jsgiug29...",  id : 12, name : "creative automations", email : "creative@creative.com"}`
+    **Content:** `{ token : "SU282865982.GTisis82sf.jsgiug29...",  id : 12, name : "creative automations", email : "creative@creative.com" , queuelist : [ {id: 110, name : "Queue 1"} , {id: 124, name : "Queue 2"}] }`
  
 * **Error Response:**
 
@@ -151,7 +151,7 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `{ id : 124 , name : "My Queue"}`
+    **Content:** `{ id : 124 , name : "Queue 2" , queuelist : [ {id: 110, name : "Queue 1"} , {id: 124, name : "Queue 2"}] }`
  
 * **Error Response:**
 
@@ -206,7 +206,7 @@ Move to the next position in queue, specified in the URL. This API requires *Aut
 
 * **Data Params**
 
-  * **Required:** 
+  * **Required:** <br />
 	action='movenext'
  
 * **Success Response:**
@@ -247,4 +247,66 @@ Move to the next position in queue, specified in the URL. This API requires *Aut
 ----
 ----
 ----
+  
+**Reset the queue position **
+
+Reset the Queue position to 0, indicating the queue is inactive to its consumers, queue id is specified in the URL. This API requires *Authorization Header*
+
+----
+/api/queue/:queue
+
+
+* **Method:**
+  
+  `POST` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+  * **Required:** <br />
+	action='reset'
+
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , position : 0}`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/queue/' + queueid;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'action': 'reset'},
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
   
