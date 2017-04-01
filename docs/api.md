@@ -1,4 +1,4 @@
-# REST API authentication and headers
+## REST API authentication and headers
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
@@ -309,7 +309,7 @@ Reset the Queue position to 0, indicating the queue is inactive to its consumers
 ----
 ----
   
-**Get the current state of a queue **
+**Get the current state of a queue**
 
 Get the current state of a queue. Current position of the queue, appointment status \& next available slot, average time to serve each customer, start time and current time.  
 
