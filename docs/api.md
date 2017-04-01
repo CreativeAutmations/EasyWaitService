@@ -458,7 +458,7 @@ Authorized users should be able to book an appointment with a reference id. This
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `{ id : 124 , position : 65 }`
+    **Content:** `{ id : 124 , position : 65 , reference : "Amit - AY 182 2016/11" }`
 	
  
 * **Error Response:**
@@ -511,3 +511,74 @@ Authorized users should be able to book an appointment with a reference id. This
 ----
   
     
+**Retrieve Appointments**
+
+Authenticated users should be able to retrieve an appointment with a reference id. This API requires Authorization Header. When request is made by queue owner all appointments for this queue are returned. Else the appointments made by signed in user to the requested queue is returned
+
+----
+/api/:queue/appointment
+
+
+* **Method:**
+  
+  `GET` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	None
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , appointments : [{position : 23 , reference : "Amit - AY 182 2016/11" }, {position : 27 , reference : "Jatin - BS 04 2016/11" } ] }`
+	
+ 
+* **Error Response:**
+	
+	when the request made without signin 
+
+	* **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+
+
+	OR when the request was made on a queue that is not available
+
+	* **Code:** 404 Not Found <br />
+    **Content:** `{ error : "Requested queue could not be found" }`
+
+	
+	
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/' + queueid + '/appointment';
+		return $http({
+			url: url,
+			method: "GET",
+	  		headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
+  
