@@ -309,4 +309,60 @@ Reset the Queue position to 0, indicating the queue is inactive to its consumers
 ----
 ----
   
+ **Get the current state of a queue **
+
+Get the current state of a queue. Current position of the queue, appointment status \& next available slot, average time to serve each customer, start time and current time.  
+
+----
+/api/queue/:queue
+
+
+* **Method:**
   
+  `GET` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+  * **Required:** <br />
+	action='reset'
+
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , position : 78 , servicestarted : 67258298629629 , timenow : 288529858258, timepercustomer : 187 , appointments : {status : "open" , availableposition : 94}}`
+ 
+* **Error Response:**
+
+  * **Code:** 404 Not Found <br />
+    **Content:** `{ error : "Requested queue could not be found" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/queue/' + queueid;
+		return $http({
+			url: url,
+			method: "GET"
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+ 
