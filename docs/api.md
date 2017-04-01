@@ -2,6 +2,10 @@
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
+----
+----
+----
+
 **Sign Up**
 ----
 /api/signup
@@ -54,3 +58,7 @@ To make a REST API call, you must include request headers including the Authoriz
 * **Notes:**
 
 	To be updated after the API has been implemented 
+----
+----
+----
+
