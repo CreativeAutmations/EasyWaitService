@@ -309,7 +309,7 @@ Reset the Queue position to 0, indicating the queue is inactive to its consumers
 ----
 ----
   
- **Get the current state of a queue **
+**Get the current state of a queue **
 
 Get the current state of a queue. Current position of the queue, appointment status \& next available slot, average time to serve each customer, start time and current time.  
 
