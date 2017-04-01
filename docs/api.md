@@ -1,4 +1,4 @@
-**REST API authentication and headers**
+# REST API authentication and headers
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
@@ -7,7 +7,9 @@ To make a REST API call, you must include request headers including the Authoriz
 ----
 
 **Sign Up**
+
 This is required to sign up a new user. When successful API returns an access token. This token must be used as an authentication token before with API's that require authenticated users.
+
 ----
 /api/signup
 
@@ -63,12 +65,10 @@ This is required to sign up a new user. When successful API returns an access to
 ----
 ----
 
-**REST API authentication and headers**
-
-To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
-
 **Sign In**
+
 This is required to sign in a previously registered user. When successful API returns an access token. This token must be used as an authentication token before with API's that require authenticated users.
+
 ----
 /api/signin
 
@@ -122,4 +122,70 @@ This is required to sign in a previously registered user. When successful API re
 ----
 ----
 ----
+  
+----
+----
+----
+**Create A New Queue**
+
+Users can create a new *Queue* using this API call. This API requires *Authorization Header*
+
+----
+/api/queue
+
+
+* **Method:**
+  
+  `POST` 
+  
+*  **URL Params**
+
+	**Required:**
+
+	name=[string] 
+
+* **Data Params**
+
+	None
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , name : "My Queue"}`
+ 
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/queue' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'name': name},
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
   
