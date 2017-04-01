@@ -7,6 +7,7 @@ To make a REST API call, you must include request headers including the Authoriz
 ----
 
 **Sign Up**
+This is required to sign up a new user. When successful API returns an access token. This token must be used as an authentication token before with API's that require authenticated users.
 ----
 /api/signup
 
@@ -19,7 +20,7 @@ To make a REST API call, you must include request headers including the Authoriz
 
    None 
 
-* **Data Params**
+* **Data Paramsbefoe**
 
    **Required:**
  
@@ -66,7 +67,8 @@ To make a REST API call, you must include request headers including the Authoriz
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
-**Sign Up**
+**Sign In**
+This is required to sign in a previously registered user. When successful API returns an access token. This token must be used as an authentication token before with API's that require authenticated users.
 ----
 /api/signin
 
