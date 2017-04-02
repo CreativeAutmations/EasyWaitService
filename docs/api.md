@@ -22,7 +22,7 @@ This is required to sign up a new user. When successful API returns an access to
 
    None 
 
-* **Data Paramsbefoe**
+* **Data Params**
 
    **Required:**
  
@@ -654,4 +654,87 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 ----
 ----
   
-    
+**Get or Set Queue Preferences**
+
+Queue administrators can update and retrieve the settings usnig this API. This API requires Authorization Header.
+
+----
+/api/:queue/preferences
+
+
+* **Method:**
+  
+  `GET` | `POST` | `PUT` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+   **GET request:**
+	
+	None
+	
+   **POST or PUT request:**
+ 
+	one or more of the following settings and their value
+   `startposition=[number]` |  `nthfreeslot=[number]`
+   
+   startposition: Initial free slots after which the appointments start
+   
+   nthfreeslot: Every 'n'th slot will be a free slot to support emergencies
+   
+ 
+* **Success Response:**
+  
+  When used with POST or PUT
+  
+  * **Code:** 200 <br />
+
+	OR when used for GET
+	
+  * **Code:** 200 <br />
+    **Content:** `{ id : 124 , startposition : 3 , nthfreeslot : 10 }`
+	
+ 
+* **Error Response:**
+	
+	when the request made without signin 
+
+	* **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+
+	
+	
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/' + queueid + '/preferences' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'startposition': 6, 'nthfreeslot' : 10},
+	  		headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
+----
+----
+----
+  
+      
