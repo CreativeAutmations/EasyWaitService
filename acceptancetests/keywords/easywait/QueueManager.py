@@ -12,7 +12,6 @@ class QueueManager(object):
     def create_queue(self, access_token , qname ):
         url = self._hostURL +'/api/queue'
         print url
-        bill_detaials_array = bill_details.split(',')
         json_payload_list['name'] = qname
         print json_payload_list
 
@@ -26,7 +25,6 @@ class QueueManager(object):
     def perform_queue_action(self, access_token , qid , action ):
         url = self._hostURL +'/api/queue/'+qid
         print url
-        bill_detaials_array = bill_details.split(',')
         json_payload_list['action'] = action
         print json_payload_list
 
