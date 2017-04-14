@@ -421,11 +421,7 @@ class OrganizationController extends Controller
 			->header('Content-Type', 'application/json')
 			->setContent([
 			'id' => 124,
-			'name' => "Queue 2" ,
-			'queuelist' => [
-				['id' => 110, name =>  "Queue 1"] ,
-				['id' => 124, name =>  "Queue 2"]
-			]);
+			'name' => "Queue 2" ]);
 	}
 
 }
