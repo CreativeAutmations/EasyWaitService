@@ -82,7 +82,37 @@ Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationCon
 Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
 
-Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@CreateQueue']);
+## Logging out of the server
+Route::post('/queue', [
+   function () {
+		return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['id' => 100,
+					'name' => 'my name']);
 
+   }
+]);
+
+
+
+Route::post('/queue/{queueid}', [
+   function ( $queueid ) {
+		return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['id' => $queueid,
+					'position' => 24]);
+
+   }
+]);
+
+Route::get('/queue/{queueid}', [
+   function ( $queueid ) {
+		return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['id' => $queueid,
+					'position' => 24]);
+
+   }
+]);
 
 
