@@ -414,4 +414,18 @@ class OrganizationController extends Controller
 					'details'  => ['message'   => 'Invalid Token']]);
 		} 
 	}
+	
+	   public function CreateQueue()    {
+		
+		return response('OK', 200)
+			->header('Content-Type', 'application/json')
+			->setContent([
+			'id' => 124,
+			'name' => "Queue 2" ,
+			'queuelist' => [
+				['id' => 110, name =>  "Queue 1"] ,
+				['id' => 124, name =>  "Queue 2"]
+			]);
+	}
+
 }

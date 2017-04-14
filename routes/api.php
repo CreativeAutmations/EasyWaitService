@@ -82,8 +82,7 @@ Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationCon
 Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
 
-Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'QueueController@CreateQueue']);
-Route::post('/queue/{queueid}', ['before' => 'jwt-auth', 'uses' => 'QueueController@ManageQueue']);
+Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@CreateQueue']);
 
 
 
