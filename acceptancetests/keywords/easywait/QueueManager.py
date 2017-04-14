@@ -24,7 +24,7 @@ class QueueManager(object):
         return server_response["id"]
 
     def perform_queue_action(self, access_token , qid , action ):
-        url = self._hostURL +'/api/queue/'+qid
+        url = self._hostURL +'/api/queue/'+ str(qid)
         print url
         json_payload_list = {}
         json_payload_list['action'] = action
