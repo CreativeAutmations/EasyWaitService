@@ -100,7 +100,8 @@ Route::post('/queue/{queueid}', [
 		return response('OK', 200)
 	  ->header('Content-Type', 'application/json')
 	  ->setContent(['id' => $queueid,
-					'position' => 24]);
+					'type' => 'POST',
+					'position' => P 24]);
 
    }
 ]);
@@ -110,7 +111,8 @@ Route::get('/queue/{queueid}', [
 		return response('OK', 200)
 	  ->header('Content-Type', 'application/json')
 	  ->setContent(['id' => $queueid,
-					'position' => 24]);
+					'type' => 'GET',
+					'position' => G 24]);
 
    }
 ]);
