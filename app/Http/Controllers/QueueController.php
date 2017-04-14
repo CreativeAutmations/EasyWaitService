@@ -77,15 +77,6 @@ class QueueController extends Controller
 	 * @return Response
 	 */
    public function CreateQueue()    {
-		$JWTValidationResult = $this->checkToken();
-		if ( $JWTValidationResult['error'] ) {
-				return response('Unauthorized', 401)
-                  ->header('Content-Type', 'application/json')
-				  ->setContent($JWTValidationResult);
-		}
-
-		$token = $JWTValidationResult['token'];
-		$user = JWTAuth::toUser($token);
 		
 		return response('OK', 200)
 			->header('Content-Type', 'application/json')
