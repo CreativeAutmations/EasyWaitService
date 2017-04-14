@@ -2,7 +2,7 @@ __version__ = '0.1'
 import requests
 import json
 
-class QueueManagement(object):
+class QueueManager(object):
 
     def __init__(self, host, port=8000):
         self._host = host
@@ -36,5 +36,3 @@ class QueueManagement(object):
         print server_response
         r.raise_for_status()
         return server_response["position"]
-
-
