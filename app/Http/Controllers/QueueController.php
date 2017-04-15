@@ -122,4 +122,62 @@ class QueueController extends Controller
 					'details'  => ['message'   => 'Invalid Token']]);
 		} 
 	}
+
+    //
+   public function UpdateQueueStatus($queue_id)    {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		
+		# If caller is queue administrator, take required action and return queue state
+	    $callparams = Input::only('action');
+		$action = $callparams['action']
+		
+		if ( $action != "movenext"  && $action != "reset" ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Unsupported Action']]);
+		}
+
+		try {
+			$queue = Queue::find($queue_id)
+			
+			if ( $action == "movenext" ) {
+				$queue->current_position = $queue->current_position + 1;
+			}
+
+			if ( $action == "reset" ) {
+				$queue->current_position = 0;
+			}
+			
+			$queue->save();
+
+			# Content: { id : 124 , position : 0}
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'id' => $queue->id,
+					'position' => $queue->current_position,
+					'name' => $queue->name]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Invalid Token']]);
+		} 
+	}
+	
 }
