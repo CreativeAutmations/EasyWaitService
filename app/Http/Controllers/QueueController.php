@@ -203,7 +203,7 @@ class QueueController extends Controller
 						'error' => true,
 						'details'  => ['message'   => 'Queue not found']]);
 		}
-	 
+	  $queue = $queue->first();
 		return response('OK', 200)
 			->header('Content-Type', 'application/json')
 			->setContent([
