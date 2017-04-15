@@ -95,9 +95,10 @@ Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'Orga
 
 Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'QueueController@CreateQueue']);
 Route::post('/queue/{queueid}', ['before' => 'jwt-auth', 'uses' => 'QueueController@UpdateQueueStatus']);
+Route::get('/queue/{queueid}', ['uses' => 'QueueController@GetQueueStatus']);
 
 
-Route::get('/queue/{queueid}', [
+Route::get('/queue/{queueid1}', [
    function ( $queueid ) {
 		return response('OK', 200)
 	  ->header('Content-Type', 'application/json')

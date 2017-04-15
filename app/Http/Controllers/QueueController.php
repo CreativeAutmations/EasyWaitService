@@ -124,7 +124,8 @@ class QueueController extends Controller
 	}
 
     //
-   public function UpdateQueueStatus($queue_id)    {
+   public function UpdateQueueStatus($queue_id)    
+   {
 		$JWTValidationResult = $this->checkToken();
 		if ( $JWTValidationResult['error'] ) {
 				return response('Unauthorized', 401)
@@ -188,5 +189,34 @@ class QueueController extends Controller
 					'details'  => ['message'   => 'Invalid Token', 'exception' => $e ]]);
 		} 
 	}
-	
+    //
+
+	public function GetQueueStatus($queue_id)    
+   {
+		
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		$queue = Queue::where('id',$queue_id)->get();
+		if ( $queue->isEmpty() ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Queue not found']]);
+		}
+	 
+		return response('OK', 200)
+			->header('Content-Type', 'application/json')
+			->setContent([
+				'error' => false,
+				'id' => $queue->id,
+				'position' => $queue->current_position,
+				'servicestarted' => $queue->start_time,
+				'lastupdate' => $queue->update_time,
+				'timepercustomer' => 0,
+				'accepting_appointments' => $queue->accepting_appointments,
+				'initial_free_slots' => $queue->initial_free_slots,
+				'recurring_free_slot' => $queue->recurring_free_slot,
+				'next_available_slot' => $queue->next_available_slot,
+				'name' => $queue->name]);
+	}	
 }
