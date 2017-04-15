@@ -14,8 +14,9 @@ class CreateQueueAdminsTable extends Migration
     public function up()
     {
         Schema::create('queue_admins', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('id');
+			$table->integer('user_id');
+			$table->primary(array('id', 'user_id'));
         });
     }
 
