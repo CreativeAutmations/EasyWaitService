@@ -94,19 +94,8 @@ Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'Org
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
 
 Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'QueueController@CreateQueue']);
-Route::post('/tempqueue/{queueid}', ['before' => 'jwt-auth', 'uses' => 'QueueController@UpdateQueueStatus']);
+Route::post('/queue/{queueid}', ['before' => 'jwt-auth', 'uses' => 'QueueController@UpdateQueueStatus']);
 
-
-Route::post('/queue/{queueid}', [
-   function ( $queueid ) {
-		return response('OK', 200)
-	  ->header('Content-Type', 'application/json')
-	  ->setContent(['id' => $queueid,
-					'type' => 'POST',
-					'position' => 927]);
-
-   }
-]);
 
 Route::get('/queue/{queueid}', [
    function ( $queueid ) {

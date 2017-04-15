@@ -136,6 +136,15 @@ class QueueController extends Controller
 		$user = JWTAuth::toUser($token);
 		
 		# if the authenticatd user is not an administrator for the queue, return with exception
+		$qadmin = QueueAdmin::where([['user_id',$user->id], ['id',$queue_id]])->get();
+		if ( $qadmin->isEmpty() ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Invalid Queue or Unauthorized Access']]);
+		}
+		 
 		
 		# If caller is queue administrator, take required action and return queue state
 	    $callparams = Input::only('action');
@@ -176,7 +185,7 @@ class QueueController extends Controller
 				->setContent([
 					'error' => true,
 					'code'  => 12,
-					'details'  => ['message'   => 'Invalid Token']]);
+					'details'  => ['message'   => 'Invalid Token', 'exception' => $e ]]);
 		} 
 	}
 	
