@@ -13,6 +13,7 @@ class QueueAdmin extends Model
      */
     protected $table = 'queue_admins';    //
 
+	public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *

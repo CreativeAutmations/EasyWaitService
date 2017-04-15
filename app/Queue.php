@@ -13,6 +13,8 @@ class Queue extends Model
      */
     protected $table = 'queues';    //
 
+	public $timestamps = false;
+	
     /**
      * The attributes that are mass assignable.
      *
