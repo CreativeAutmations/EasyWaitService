@@ -17,6 +17,17 @@ use App\Audit as Audit;
 |
 */
 
+Route::post('/signupcrap', function () {
+   $credentials = Input::only('name','email', 'password');
+ 	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['name' => $credentials['name'],
+					'email' => $credentials['email'],
+					'password' => $credentials['password']]);
+
+});
+
+
 Route::post('/signup', function () {
    $credentials = Input::only('name','email', 'password');
    $credentials['password'] = Hash::make($credentials['password']);
@@ -26,7 +37,7 @@ Route::post('/signup', function () {
    } catch (Exception $e) {
 		return response('Sign Up Failed', 401)
 		  ->header('Content-Type', 'application/json')
-		  ->setContent($e);
+		  ->setContent(['exception' => $e ]);
    }
 
    $token = JWTAuth::fromUser($user);
