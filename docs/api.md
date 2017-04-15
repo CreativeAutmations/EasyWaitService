@@ -334,8 +334,9 @@ Get the current state of a queue. Current position of the queue, appointment sta
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `{ id : 124 , position : 78 , servicestarted : 67258298629629 , timenow : 288529858258, timepercustomer : 187 , appointments : {status : "open" , availableposition : 94}}`
- 
+    **Content:** `{  "error": false, "id": 2, "position": 3,  "servicestarted": 67258298629629,   "lastupdate": 288529858258,  "timepercustomer": 120,   "accepting_appointments": 0,  "initial_free_slots": 0,   "recurring_free_slot": 0, "next_available_slot": 1, "name": "Vasundhara"}`
+
+	
 * **Error Response:**
 
   * **Code:** 404 Not Found <br />
