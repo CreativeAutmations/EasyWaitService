@@ -139,7 +139,7 @@ class QueueController extends Controller
 		
 		# If caller is queue administrator, take required action and return queue state
 	    $callparams = Input::only('action');
-		$action = $callparams['action']
+		$action = $callparams['action'];
 		
 		if ( $action != "movenext"  && $action != "reset" ) {
 				return response('Unauthorized', 401)
@@ -150,7 +150,7 @@ class QueueController extends Controller
 		}
 
 		try {
-			$queue = Queue::find($queue_id)
+			$queue = Queue::find($queue_id);
 			
 			if ( $action == "movenext" ) {
 				$queue->current_position = $queue->current_position + 1;
