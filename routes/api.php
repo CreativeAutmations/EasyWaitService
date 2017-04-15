@@ -93,6 +93,9 @@ Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationCon
 Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
 
+Route::post('/tempqueue', ['before' => 'jwt-auth', 'uses' => 'QueueController@CreateQueue']);
+
+
 ## Logging out of the server
 Route::post('/queue', [
    function () {
