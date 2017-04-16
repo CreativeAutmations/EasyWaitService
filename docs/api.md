@@ -151,7 +151,27 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `{ id : 124 , name : "Queue 2" , queuelist : [ {id: 110, name : "Queue 1"} , {id: 124, name : "Queue 2"}] }`
+    **Content:** 
+	
+	`{
+  "error": false,
+  "id": 5,
+  "name": "Olive",
+  "queuelist": [
+    {
+      "id": 3,
+      "user_id": 13
+    },
+    {
+      "id": 4,
+      "user_id": 13
+    },
+    {
+      "id": 5,
+      "user_id": 13
+    }
+  ]
+}`
  
 * **Error Response:**
 
