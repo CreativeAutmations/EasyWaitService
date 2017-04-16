@@ -226,7 +226,8 @@ Users can get the list of all queues that user manages. This API requires *Autho
 			}`
 
 	<br />
-    **Content:** When user has any queues created
+	
+    **Content:** When user does not have any queues created
  
 			 ` {'error' :true,
 				'code' : 101,
@@ -244,17 +245,17 @@ Users can get the list of all queues that user manages. This API requires *Autho
 		'message' : 'User not found by given token']}`
 
 
-		`{'error' :true,
+		{'error' :true,
 		'code' : 11,
-		'message' : 'Token Expired']}`
+		'message' : 'Token Expired']}
 
 
-		`{'error' :true,
+		{'error' :true,
 		'code' : 12,
-		'message' : 'Invalid Token']}`
+		'message' : 'Invalid Token']}
 
 
-		`{'error' :true,
+		{'error' :true,
 		'code' : 13,
 		'message' : 'Token absent']}`
 
@@ -265,8 +266,7 @@ Users can get the list of all queues that user manages. This API requires *Autho
 	    var url = 'api/queue' ;
 		return $http({
 			url: url,
-			method: "POST",
-			data: { 'name': name},
+			method: "GET",
 			headers: {
 				'Authorization': "Bearer ".concat(token)
 			}
