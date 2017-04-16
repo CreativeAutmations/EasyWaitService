@@ -274,7 +274,7 @@
 
 <tr>	<td>Manage Queue State</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>[Arguments]</td>	<td>${CurrentPosition}</td>	<td>${action}</td>	<td>${ExpectedPosition}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
-<tr>	<td></td>	<td>Register User</td>	<td>vendor1</td>	<td>vendor1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>vendor1</td>	<td>vendor1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${auth_token}=</td>	<td>Sign In</td>	<td>vendor1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${queue_id}=</td>	<td>Create Queue</td>	<td>${auth_token}</td>	<td>My Queue</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
 <tr>	<td></td>	<td>${retrieved_position}=</td>	<td>Perform Queue Action</td>	<td>${auth_token}</td>	<td>${queue_id}</td>	<td>${action}</td>	<td></td>	<td></td>	<td></td>	</tr>
