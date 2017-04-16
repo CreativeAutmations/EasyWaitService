@@ -2,9 +2,9 @@
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
+
 ----
-----
-----
+
 
 **Sign Up**
 
@@ -61,8 +61,8 @@ This is required to sign up a new user. When successful API returns an access to
 * **Notes:**
 
 	To be updated after the API has been implemented 
-----
-----
+
+
 ----
 
 **Sign In**
@@ -119,12 +119,12 @@ This is required to sign in a previously registered user. When successful API re
 * **Notes:**
 
 	To be updated after the API has been implemented 
-----
-----
-----
+
+
+
   
-----
-----
+
+
 ----
 **Create A New Queue**
 
@@ -184,8 +184,8 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Move to next position in the queue**
@@ -244,8 +244,8 @@ Move to the next position in queue, specified in the URL. This API requires *Aut
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Reset the queue position**
@@ -305,8 +305,8 @@ Reset the Queue position to 0, indicating the queue is inactive to its consumers
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Get the current state of a queue**
@@ -363,8 +363,8 @@ Get the current state of a queue. Current position of the queue, appointment sta
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
  
 **Appointment Administration**
@@ -430,8 +430,8 @@ Start or stop accepting *Appointment* requestus, clear all Appointments. This AP
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Booking an Appointment**
@@ -507,8 +507,8 @@ Authorized users should be able to book an appointment with a reference id. This
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
     
@@ -578,8 +578,8 @@ Authenticated users should be able to retrieve an appointment with a reference i
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Cancel Appointment**
@@ -651,8 +651,8 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
 **Get or Set Queue Preferences**
@@ -734,8 +734,8 @@ Queue administrators can update and retrieve the settings usnig this API. This A
 
 	To be updated after the API has been implemented 
   
-----
-----
+
+
 ----
   
       

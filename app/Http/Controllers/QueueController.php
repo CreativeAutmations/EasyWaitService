@@ -190,6 +190,39 @@ class QueueController extends Controller
 		} 
 	}
     //
+	
+	
+   public function GetQueues()    
+   {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		$qadmin = QueueAdmin::where('user_id',$user->id)->get();
+		if ( $qadmin->isEmpty() ) {
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code' => 101,
+					'message' => 'no queues available']);
+		} else 
+		{
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'queues' => $qadmin]);
+		}
+		 
+	}
 
 	public function GetQueueStatus($queue_id)    
    {
