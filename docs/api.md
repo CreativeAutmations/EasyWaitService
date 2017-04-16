@@ -185,6 +185,100 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 	To be updated after the API has been implemented 
   
 
+----
+/api/queue
+
+
+* **Method:**
+  
+  `GET` 
+  
+*  **URL Params**
+
+	None
+
+* **Data Params**
+
+	**Required:** 
+ 
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** When user has any queues created
+ 
+			 `{
+			  "error": false,
+			  "queues": [
+				{
+				  "id": 3,
+				  "user_id": 13
+				},
+				{
+				  "id": 4,
+				  "user_id": 13
+				}
+			  ]
+			}`
+
+	<br />
+    **Content:** When user has any queues created
+ 
+			 ` {'error' :true,
+				'code' : 101,
+				'message' : 'no queues available']}`
+	<br />
+	* **Code:** 401 <br />
+    **Content:** On Authorization Failure
+	 ` {'error' :true,
+		'code' : 10,
+		'message' : 'User not found by given token']}`
+	<br />
+	 ` {'error' :true,
+		'code' : 11,
+		'message' : 'Token Expired']}`
+	<br />
+	 ` {'error' :true,
+		'code' : 12,
+		'message' : 'Invalid Token']}`
+	<br />
+	 ` {'error' :true,
+		'code' : 13,
+		'message' : 'Token absent']}`
+	<br />
+	
+
+			
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Authentication required to perform this call" }`
+  
+* **Sample Call:**
+
+  ```javascript
+	    var url = 'api/queue' ;
+		return $http({
+			url: url,
+			method: "POST",
+			data: { 'name': name},
+			headers: {
+				'Authorization': "Bearer ".concat(token)
+			}
+
+		})
+		.then(function(response) {
+				// success
+				return response;
+		}, 
+		function(response) { // optional
+				// failed
+				return response;
+		});
+  ```
+* **Notes:**
+
+	To be updated after the API has been implemented 
+  
 
 ----
   
