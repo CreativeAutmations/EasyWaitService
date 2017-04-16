@@ -186,6 +186,11 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
   
 
 ----
+**Get List of Queues Managed By User**
+
+Users can get the list of all queues that user manages. This API requires *Authorization Header*
+
+----
 /api/queue
 
 
@@ -229,22 +234,30 @@ Users can create a new *Queue* using this API call. This API requires *Authoriza
 	<br />
 	* **Code:** 401 <br />
     **Content:** On Authorization Failure
-	 ` {'error' :true,
+
+	` {'error' :true,
 		'code' : 10,
 		'message' : 'User not found by given token']}`
-	<br />
-	 ` {'error' :true,
+
+		<br />
+
+		` {'error' :true,
 		'code' : 11,
 		'message' : 'Token Expired']}`
-	<br />
-	 ` {'error' :true,
+
+		<br />
+
+		` {'error' :true,
 		'code' : 12,
 		'message' : 'Invalid Token']}`
-	<br />
-	 ` {'error' :true,
+
+		<br />
+
+		` {'error' :true,
 		'code' : 13,
 		'message' : 'Token absent']}`
-	<br />
+
+		<br />
 	
 
 			
