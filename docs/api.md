@@ -232,39 +232,32 @@ Users can get the list of all queues that user manages. This API requires *Autho
 				'code' : 101,
 				'message' : 'no queues available']}`
 	<br />
-	* **Code:** 401 <br />
-    **Content:** On Authorization Failure
-
-	` {'error' :true,
-		'code' : 10,
-		'message' : 'User not found by given token']}`
-
-		<br />
-
-		` {'error' :true,
-		'code' : 11,
-		'message' : 'Token Expired']}`
-
-		<br />
-
-		` {'error' :true,
-		'code' : 12,
-		'message' : 'Invalid Token']}`
-
-		<br />
-
-		` {'error' :true,
-		'code' : 13,
-		'message' : 'Token absent']}`
-
-		<br />
-	
 
 			
 * **Error Response:**
 
   * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Authentication required to perform this call" }`
+    **Content:** 
+	
+		`{'error' :true,
+		'code' : 10,
+		'message' : 'User not found by given token']}`
+
+
+		`{'error' :true,
+		'code' : 11,
+		'message' : 'Token Expired']}`
+
+
+		`{'error' :true,
+		'code' : 12,
+		'message' : 'Invalid Token']}`
+
+
+		`{'error' :true,
+		'code' : 13,
+		'message' : 'Token absent']}`
+
   
 * **Sample Call:**
 
