@@ -187,7 +187,7 @@ class QueueController extends Controller
 				->setContent([
 					'error' => true,
 					'code'  => 12,
-					'details'  => ['message'   => 'Invalid Token', 'exception' => $e ]]);
+					'details'  => ['message'   => 'Queue Status Update Failed', 'exception' => $e ]]);
 		} 
 	}
     //
