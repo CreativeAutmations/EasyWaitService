@@ -119,8 +119,7 @@ class QueueController extends Controller
 				->setContent([
 					'error' => true,
 					'code'  => 12,
-					'details'  => ['message'   => 'Error Createing Queue'],
-					'exception' => $e	]);
+					'details'  => ['message'   => 'Error Createing Queue', 'exception' => $e]]);
 		} 
 	}
 
