@@ -119,7 +119,8 @@ class QueueController extends Controller
 				->setContent([
 					'error' => true,
 					'code'  => 12,
-					'details'  => ['message'   => 'Invalid Token']]);
+					'details'  => ['message'   => 'Error Createing Queue'],
+					'exception' => $e	]);
 		} 
 	}
 
