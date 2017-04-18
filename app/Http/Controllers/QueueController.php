@@ -23,6 +23,7 @@ class QueueController extends Controller
 {
 	    public function checkToken()
     {
+		$authorization_header = Request::header('Authorization');
         try 
         {
             if (! $user = JWTAuth::parseToken()->authenticate())
@@ -52,7 +53,8 @@ class QueueController extends Controller
                 'error' => true,
                 'code'  => 12,
                 'details'  => [
-                    'message'   => 'Invalid Token'
+                    'message'   => 'Invalid Token',
+					'token' => $authorization_header
                 ]
             ];
 
