@@ -527,7 +527,7 @@ Start or stop accepting *Appointment* requestus, clear all Appointments. This AP
 * **Sample Call:**
 
   ```javascript
-	    var url = 'api/' + queueid + '/appointment';
+	    var url = 'api/queue/' + queueid + '/appointment';
 		return $http({
 			url: url,
 			method: "GET",
@@ -749,7 +749,7 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 * **Sample Call:**
 
   ```javascript
-	    var url = 'api/' + queueid + '/appointment/' + position;
+	    var url = 'api/queue/' + queueid + '/appointment/' + position;
 		return $http({
 			url: url,
 			method: "DELETE",

@@ -101,6 +101,9 @@ Route::get('/queue/{queueid}', ['uses' => 'QueueController@GetQueueStatus']);
 Route::post('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@SetPreferences']);
 Route::get('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@GetPreferences']);
 
+Route::post('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@SetPreferences']);
+Route::post('/queue/{queueid}/appointment', ['before' => 'jwt-auth', 'uses' => 'QueueController@ManageAppointments']);
+
 
 
 Route::get('/queue/{queueid1}', [

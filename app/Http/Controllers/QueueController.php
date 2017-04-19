@@ -280,6 +280,39 @@ class QueueController extends Controller
 		} 
    }
 
+   
+	public function ManageAppointments($queue_id)    
+   {
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+	    $callparams = Input::only('action','reference');
+
+		
+		# return if not authenticated
+		
+		# If action is 'book' 
+
+		# If action is either of action='open' | action='close' | action='reset'
+		# Retrurn if the user is not an administrator of the queue
+		if ( ! $this->isAdmin($user->id, $queue_id) ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Invalid Queue or Unauthorized Access']]);
+		}
+		
+		
+		
+   }   
 	public function SetPreferences($queue_id)    
    {
 		
