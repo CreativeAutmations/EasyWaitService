@@ -451,7 +451,14 @@ class QueueController extends Controller
    {
 		try 
 		{
-			Appointment::where([['user_id',$user_id], ['queue_id',$queue_id], ['position',$position]])->delete();
+			if ( $this->isAdmin($user_id, $queue_id) ) {
+				Appointment::where([['queue_id',$queue_id], ['position',$position]])->delete();
+			} 
+			else 
+			{
+				Appointment::where([['user_id',$user_id], ['queue_id',$queue_id], ['position',$position]])->delete();
+			}
+
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
 				->setContent([
