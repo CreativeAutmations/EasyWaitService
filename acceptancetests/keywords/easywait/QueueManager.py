@@ -41,8 +41,8 @@ class QueueManager(object):
         url = self._hostURL +'/api/queue/'+ str(qid) + '/preferences'
         print url
         json_payload_list = {}
-        json_payload_list['startposition'] = initial_free_slots
-        json_payload_list['nthfreeslot'] = recurring_free_slot
+        json_payload_list['initial_free_slots'] = initial_free_slots
+        json_payload_list['recurring_free_slot'] = recurring_free_slot
         print json_payload_list
 
         call_headers = {'Authorization': 'Bearer '+ access_token}
