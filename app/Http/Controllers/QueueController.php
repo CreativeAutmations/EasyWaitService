@@ -390,7 +390,7 @@ class QueueController extends Controller
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => false,
-					'appointments' => $appointments);
+					'appointments' => $appointments]);
 		} 
 		catch (\Illuminate\Database\QueryException $e) 
 		{
@@ -411,7 +411,7 @@ class QueueController extends Controller
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => false,
-					'appointments' => $appointments);
+					'appointments' => $appointments]);
 		} 
 		catch (\Illuminate\Database\QueryException $e) 
 		{
