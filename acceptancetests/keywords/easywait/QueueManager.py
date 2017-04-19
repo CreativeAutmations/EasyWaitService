@@ -75,7 +75,7 @@ class QueueManager(object):
         print url
         json_payload_list = {}
         json_payload_list['action'] = 'book'
-        json_payload_list['reference'] = 'reference'
+        json_payload_list['reference'] = reference
         print json_payload_list
 
         call_headers = {'Authorization': 'Bearer '+ access_token}
@@ -103,10 +103,12 @@ class QueueManager(object):
 
         print url
         json_payload_list = {}
+        json_payload_list['action'] = 'cancel'
+        json_payload_list['position'] = booked_position
         print json_payload_list
 
         call_headers = {'Authorization': 'Bearer '+ access_token}
-        r = requests.delete(url, json=json_payload_list, headers=call_headers)
+        r = requests.post(url, json=json_payload_list, headers=call_headers)
         server_response = r.json()
         print server_response
         r.raise_for_status()

@@ -447,6 +447,26 @@ class QueueController extends Controller
 	   
    }
    
+   public function cancelAppointment($user_id, $queue_id, $position)
+   {
+		try 
+		{
+			Appointment::where([['user_id',$user_id], ['queue_id',$queue_id], ['position',$$position]])->delete();
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false]);
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to cancel appointments', 'exception' => $e ]]);
+		} 			
+   }
 	public function ManageAppointments($queue_id)    
    {
 		# return if not authenticated
@@ -460,7 +480,12 @@ class QueueController extends Controller
 		$token = $JWTValidationResult['token'];
 		$user = JWTAuth::toUser($token);
 		
-	    $callparams = Input::only('action','reference');
+	    $callparams = Input::only('action','reference','position');
+		if ( $callparams['action'] == 'cancel' ) 
+		{
+			return $this->cancelAppointment($user->id, $queue_id, $callparams['position']);
+			
+		}
 
 		if ( $callparams['action'] == 'book' ) 
 		{
