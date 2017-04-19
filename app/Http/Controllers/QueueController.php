@@ -251,7 +251,7 @@ class QueueController extends Controller
 		
 		# Retrurn if the user is not an administrator of the queue
 		# if the authenticatd user is not an administrator for the queue, return with exception
-		if ( ! $this->isAdmin() ) {
+		if ( ! $this->isAdmin($user->id, $queue_id) ) {
 				return response('Unauthorized', 401)
                   ->header('Content-Type', 'application/json')
 					->setContent([
@@ -295,7 +295,7 @@ class QueueController extends Controller
 		
 		# Retrurn if the user is not an administrator of the queue
 		# if the authenticatd user is not an administrator for the queue, return with exception
-		if ( ! $this->isAdmin() ) {
+		if ( ! $this->isAdmin($user->id, $queue_id) ) {
 				return response('Unauthorized', 401)
                   ->header('Content-Type', 'application/json')
 					->setContent([
