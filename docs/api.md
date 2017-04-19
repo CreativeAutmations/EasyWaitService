@@ -707,12 +707,12 @@ Authenticated users should be able to retrieve an appointment with a reference i
 Authenticated users who made an appointment, can cancel the same. This API requires Authorization Header.
 
 ----
-/api/queue/:queue/appointment/:position
+/api/queue/:queue/appointment
 
 
 * **Method:**
   
-  `DELETE` 
+  `POST` 
   
 *  **URL Params**
 
@@ -720,7 +720,8 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 
 * **Data Params**
 
-	None
+  * **Required:** <br />
+	action='cancel'   |  position=[number]
  
 * **Success Response:**
   
@@ -749,10 +750,11 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 * **Sample Call:**
 
   ```javascript
-	    var url = 'api/queue/' + queueid + '/appointment/' + position;
+	    var url = 'api/queue/' + queueid + '/appointment' ;
 		return $http({
 			url: url,
-			method: "DELETE",
+			method: "POST",
+	  		data: { 'action': 'cancel' , 'position' : position},
 	  		headers: {
 				'Authorization': "Bearer ".concat(token)
 			}
