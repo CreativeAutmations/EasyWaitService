@@ -452,13 +452,13 @@ class QueueController extends Controller
 		
 		if ( $callparams['action'] == 'open' ) 
 		{
-			return setAppointmentStatus($queue_id , 1);
+			return $this->setAppointmentStatus($queue_id , 1);
 		} else if ( $callparams['action'] == 'close') 
 		{
-			return setAppointmentStatus($queue_id , 0);
+			return $this->setAppointmentStatus($queue_id , 0);
 		} else if ( $callparams['action'] == 'reset' ) 
 		{
-			return removeAllAppointments($queue_id );
+			return $this->removeAllAppointments($queue_id );
 		}
    }   
 
