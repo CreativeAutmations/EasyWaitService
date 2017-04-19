@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Queue as Queue;
 use App\QueueAdmin as QueueAdmin;
+use App\Appointment as Appointment;
+
 
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -281,8 +283,113 @@ class QueueController extends Controller
    }
 
    
+   public function setAppointmentStatus($queue_id, $status) 
+   {
+		try 
+		{
+			$queue = Queue::find($queue_id);
+			$queue->accepting_appointments  = $status;			
+			$queue->save();
+
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'id' => $queue_id,
+					'accepting_appointments' => $queue->accepting_appointments]);
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to get appointment status', 'exception' => $e ]]);
+		} 			
+   }
+   
+   public function removeAllAppointments($queue_id) 
+   {
+		try 
+		{
+			Appointment::where('queue_id', $queue_id)->delete();
+	
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'id' => $queue_id]);
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to delete all appointments', 'exception' => $e ]]);
+		} 			
+   }
+
+   
+   public function areAppointmentsAccepted($queue_id) 
+   {
+		try 
+		{
+			$queue = Queue::find($queue_id);
+			return $queue->accepting_appointments ; 
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to get appointment status', 'exception' => $e ]]);
+		} 			
+   }
+   
+   
+   public function useAvailablePosition($queue_id) 
+   {
+		try 
+		{
+			$queue = Queue::find($queue_id);
+
+			$queue->next_available_slot = $queue->next_available_slot + 1;
+
+			# Minimum alloted position should be higher than the initial free slots
+			if ( $queue->next_available_slot <  $queue->initial_free_slots ) 
+			{
+				$queue->next_available_slot = $queue->initial_free_slots + 1;
+				$queue->save();
+				return $queue->next_available_slot;
+			}	else if (  ($queue->next_available_slot % $queue->recurring_free_slot) == 0 ) 
+			{
+				$queue->next_available_slot = $queue->initial_free_slots + 1;
+				$queue->save();
+				return $queue->next_available_slot;
+			} else 
+			{
+				return 		$queue->next_available_slot ;
+			}
+		} catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to get next available position', 'exception' => $e ]]);
+		} 			
+
+   }
+   
 	public function ManageAppointments($queue_id)    
    {
+		# return if not authenticated
 		$JWTValidationResult = $this->checkToken();
 		if ( $JWTValidationResult['error'] ) {
 				return response('Unauthorized', 401)
@@ -295,11 +402,44 @@ class QueueController extends Controller
 		
 	    $callparams = Input::only('action','reference');
 
-		
-		# return if not authenticated
-		
-		# If action is 'book' 
+		if ( $callparams['action'] == 'book' ) 
+		{
+				if ( ! $this->areAppointmentsAccepted($queue_id) ) 
+				{
+					return response('Unauthorized', 401)
+						->header('Content-Type', 'application/json')
+						->setContent([
+							'error' => true,
+							'code'  => 12,
+							'details'  => ['message'   => 'Bookings closed', 'exception' => $e ]]);
+				}
+				
+				try {
+					$appointment = new Appointment();
+					$appointment->user_id = $user->id;
+					$appointment->queue_id = $queue_id;
+					$appointment->position = $this->getAvailablePosition($queue_id);
+					$appointment->reference = $callparams['reference'];
+					$appointment->save();
 
+					return response('OK', 200)
+						->header('Content-Type', 'application/json')
+						->setContent([
+							'error' => false,
+							'id' => $queue_id,
+							'position' => $appointment->position,
+							'reference' => $appointment->reference]);
+				} catch (\Illuminate\Database\QueryException $e) {
+					return response('Unauthorized', 401)
+						->header('Content-Type', 'application/json')
+						->setContent([
+							'error' => true,
+							'code'  => 12,
+							'details'  => ['message'   => 'Failed to book appointment', 'exception' => $e ]]);
+				} 			
+		}
+		
+		
 		# If action is either of action='open' | action='close' | action='reset'
 		# Retrurn if the user is not an administrator of the queue
 		if ( ! $this->isAdmin($user->id, $queue_id) ) {
@@ -310,10 +450,19 @@ class QueueController extends Controller
 						'details'  => ['message'   => 'Invalid Queue or Unauthorized Access']]);
 		}
 		
-		
-		
+		if ( $callparams['action'] == 'open' ) 
+		{
+			return setAppointmentStatus($queue_id , 1);
+		} else if ( $callparams['action'] == 'close') 
+		{
+			return setAppointmentStatus($queue_id , 0);
+		} else if ( $callparams['action'] == 'reset' ) 
+		{
+			return removeAllAppointments($queue_id );
+		}
    }   
-	public function SetPreferences($queue_id)    
+
+   public function SetPreferences($queue_id)    
    {
 		
 		$JWTValidationResult = $this->checkToken();

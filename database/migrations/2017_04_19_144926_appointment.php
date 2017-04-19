@@ -13,6 +13,12 @@ class Appointment extends Migration
      */
     public function up()
     {
+        Schema::create('appointment', function (Blueprint $table) {
+            $table->integer('user_id');
+			$table->integer('queue_id');
+			$table->integer('position');
+			$table->string('reference');
+        });
         //
     }
 
@@ -23,6 +29,6 @@ class Appointment extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('queue_admins');
     }
 }
