@@ -800,11 +800,11 @@ Queue administrators can update and retrieve the settings usnig this API. This A
    **POST or PUT request:**
  
 	one or more of the following settings and their value
-   `startposition=[number]` |  `nthfreeslot=[number]`
+   `initial_free_slots=[number]` |  `recurring_free_slot=[number]`
    
-   startposition: Initial free slots after which the appointments start
+   initial_free_slots: Initial free slots after which the appointments start
    
-   nthfreeslot: Every 'n'th slot will be a free slot to support emergencies
+   recurring_free_slot: Every 'n'th slot will be a free slot to support emergencies
    
  
 * **Success Response:**
@@ -816,7 +816,7 @@ Queue administrators can update and retrieve the settings usnig this API. This A
 	OR when used for GET
 	
   * **Code:** 200 <br />
-    **Content:** `{ id : 124 , startposition : 3 , nthfreeslot : 10 }`
+    **Content:** `{ id : 124 , initial_free_slots : 3 , recurring_free_slot : 10 }`
 	
  
 * **Error Response:**
@@ -831,11 +831,11 @@ Queue administrators can update and retrieve the settings usnig this API. This A
 * **Sample Call:**
 
   ```javascript
-	    var url = 'api/' + queueid + '/preferences' ;
+	    var url = 'api/queue/' + queueid + '/preferences' ;
 		return $http({
 			url: url,
 			method: "POST",
-			data: { 'startposition': 6, 'nthfreeslot' : 10},
+			data: { 'initial_free_slots': 6, 'recurring_free_slot' : 10},
 	  		headers: {
 				'Authorization': "Bearer ".concat(token)
 			}

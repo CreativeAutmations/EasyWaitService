@@ -21,7 +21,7 @@ use Response;
 
 class QueueController extends Controller
 {
-	    public function checkToken()
+	public function checkToken()
     {
         try 
         {
@@ -121,6 +121,18 @@ class QueueController extends Controller
 					'code'  => 12,
 					'details'  => ['message'   => 'Error Createing Queue', 'exception' => $e]]);
 		} 
+	}
+
+	public function isAdmin( $user_id, $queue_id)
+	{
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		$qadmin = QueueAdmin::where([['user_id',$user_id], ['id',$queue_id]])->get();
+		if ( $qadmin->isEmpty() ) 
+		{
+				return false;
+		}
+		
+		return true;
 	}
 
     //
@@ -224,6 +236,108 @@ class QueueController extends Controller
 		 
 	}
 
+	public function GetPreferences($queue_id)    
+   {
+		
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# Retrurn if the user is not an administrator of the queue
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		if ( ! $this->isAdmin() ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Invalid Queue or Unauthorized Access']]);
+		}
+		
+
+		try {
+			$queue = Queue::find($queue_id);
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'id' => $queue->id,
+					'initial_free_slots' => $queue->initial_free_slots,
+					'recurring_free_slot' => $queue->recurring_free_slot,
+					'name' => $queue->name]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Queue Preference Update Failed', 'exception' => $e ]]);
+		} 
+   }
+
+	public function SetPreferences($queue_id)    
+   {
+		
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+		
+		# Retrurn if the user is not an administrator of the queue
+		# if the authenticatd user is not an administrator for the queue, return with exception
+		if ( ! $this->isAdmin() ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'details'  => ['message'   => 'Invalid Queue or Unauthorized Access']]);
+		}
+		
+		# Retrieve Queue Record
+	    $preferences = Input::only('initial_free_slots','recurring_free_slot');
+
+		try {
+			$queue = Queue::find($queue_id);
+			
+			if ( ! empty($preferences['initial_free_slots'])) 
+			{
+				$queue->initial_free_slots = $preferences['initial_free_slots'];
+			}
+			if ( ! empty($preferences['recurring_free_slot'])) 
+			{
+				$queue->recurring_free_slot = $preferences['recurring_free_slot'];
+			}
+
+			$queue->save();
+
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'id' => $queue->id,
+					'initial_free_slots' => $queue->initial_free_slots,
+					'recurring_free_slot' => $queue->recurring_free_slot,
+					'name' => $queue->name]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Queue Preference Update Failed', 'exception' => $e ]]);
+		} 
+   }
+   
 	public function GetQueueStatus($queue_id)    
    {
 		
