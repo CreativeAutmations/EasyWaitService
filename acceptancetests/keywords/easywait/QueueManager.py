@@ -75,7 +75,7 @@ class QueueManager(object):
         print url
         json_payload_list = {}
         json_payload_list['action'] = 'book'
-        json_payload_list['reference'] = reference
+        json_payload_list['reference'] = str(reference)
         print json_payload_list
 
         call_headers = {'Authorization': 'Bearer '+ access_token}
@@ -104,7 +104,7 @@ class QueueManager(object):
         print url
         json_payload_list = {}
         json_payload_list['action'] = 'cancel'
-        json_payload_list['position'] = booked_position
+        json_payload_list['position'] = str(booked_position)
         print json_payload_list
 
         call_headers = {'Authorization': 'Bearer '+ access_token}
