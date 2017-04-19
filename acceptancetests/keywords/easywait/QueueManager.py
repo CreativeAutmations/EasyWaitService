@@ -54,6 +54,7 @@ class QueueManager(object):
     def start_session(self, access_token , qid ):
         self.perform_queue_action( access_token , qid , 'reset' )
         self.set_appointment_status(access_token , qid ,  'reset')
+        self.set_appointment_status(access_token , qid ,  'open')
 
     def set_appointment_status(self, access_token , qid ,  action):
         url = self._hostURL +'/api/queue/'+ str(qid)+'/appointment'
