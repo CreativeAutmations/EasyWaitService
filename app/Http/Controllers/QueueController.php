@@ -377,12 +377,7 @@ class QueueController extends Controller
 			}
 		} catch (\Illuminate\Database\QueryException $e) 
 		{
-			return response('Unauthorized', 401)
-				->header('Content-Type', 'application/json')
-				->setContent([
-					'error' => true,
-					'code'  => 12,
-					'details'  => ['message'   => 'Failed to get next available position', 'exception' => $e ]]);
+			return -1;
 		} 			
 
    }
@@ -418,7 +413,7 @@ class QueueController extends Controller
 					$appointment = new Appointment();
 					$appointment->user_id = $user->id;
 					$appointment->queue_id = $queue_id;
-					$appointment->position = $this->getAvailablePosition($queue_id);
+					$appointment->position = $this->useAvailablePosition($queue_id);
 					$appointment->reference = $callparams['reference'];
 					$appointment->save();
 
