@@ -99,7 +99,7 @@ class QueueManager(object):
 
 
     def cancel_appointment(self, access_token , qid ,  booked_position):
-        url = self._hostURL +'/api/queue/'+ str(qid)+'/appointment/'+str(booked_position)
+        url = self._hostURL +'/api/queue/'+ str(qid)+'/appointment'
 
         print url
         json_payload_list = {}
