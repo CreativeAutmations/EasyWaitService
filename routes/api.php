@@ -103,6 +103,7 @@ Route::get('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'Q
 
 Route::post('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@SetPreferences']);
 Route::post('/queue/{queueid}/appointment', ['before' => 'jwt-auth', 'uses' => 'QueueController@ManageAppointments']);
+Route::get('/queue/{queueid}/appointment', ['before' => 'jwt-auth', 'uses' => 'QueueController@RetrieveAppointments']);
 
 
 

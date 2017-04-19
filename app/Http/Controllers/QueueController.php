@@ -381,6 +381,71 @@ class QueueController extends Controller
 		} 			
 
    }
+   public function getAllAppointmentsOfQueue($queue_id)
+   {
+		try 
+		{
+			$appointments = Appointment::where('queue_id',6)->get();
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'appointments' => $appointments);
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to retrieve appointments', 'exception' => $e ]]);
+		} 			
+   }
+   public function getAllAppointmentsByUser($user_id, $queue_id)
+   {
+		try 
+		{
+			$appointments = Appointment::where([['queue_id',$queue_id],['user_id',$user_id]])->get();
+			return response('OK', 200)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => false,
+					'appointments' => $appointments);
+		} 
+		catch (\Illuminate\Database\QueryException $e) 
+		{
+			return response('Unauthorized', 401)
+				->header('Content-Type', 'application/json')
+				->setContent([
+					'error' => true,
+					'code'  => 12,
+					'details'  => ['message'   => 'Failed to retrieve appointments', 'exception' => $e ]]);
+		} 			
+	   
+   }
+   public function RetrieveAppointments($queue_id)
+   {
+		# return if not authenticated
+		$JWTValidationResult = $this->checkToken();
+		if ( $JWTValidationResult['error'] ) {
+				return response('Unauthorized', 401)
+                  ->header('Content-Type', 'application/json')
+				  ->setContent($JWTValidationResult);
+		}
+
+		$token = $JWTValidationResult['token'];
+		$user = JWTAuth::toUser($token);
+
+		if ( $this->isAdmin($user->id, $queue_id) ) {
+			return $this->getAllAppointmentsOfQueue($queue_id);
+		} 
+		else 
+		{
+			return $this->getAllAppointmentsByUser($user->id,$queue_id);
+		}	
+	   
+   }
    
 	public function ManageAppointments($queue_id)    
    {
