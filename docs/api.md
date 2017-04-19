@@ -492,7 +492,7 @@ Get the current state of a queue. Current position of the queue, appointment sta
 Start or stop accepting *Appointment* requestus, clear all Appointments. This API requires *Authorization Header*
 
 ----
-/api/:queue/appointment
+/api/queue/:queue/appointment
 
 
 * **Method:**
@@ -559,7 +559,7 @@ Start or stop accepting *Appointment* requestus, clear all Appointments. This AP
 Authorized users should be able to book an appointment with a reference id. This API requires *Authorization Header*
 
 ----
-/api/:queue/appointment
+/api/queue/:queue/appointment
 
 
 * **Method:**
@@ -637,7 +637,7 @@ Authorized users should be able to book an appointment with a reference id. This
 Authenticated users should be able to retrieve an appointment with a reference id. This API requires Authorization Header. When request is made by queue owner all appointments for this queue are returned. Else the appointments made by signed in user to the requested queue is returned
 
 ----
-/api/:queue/appointment
+/api/queue/:queue/appointment
 
 
 * **Method:**
@@ -707,7 +707,7 @@ Authenticated users should be able to retrieve an appointment with a reference i
 Authenticated users who made an appointment, can cancel the same. This API requires Authorization Header.
 
 ----
-/api/:queue/appointment/:position
+/api/queue/:queue/appointment/:position
 
 
 * **Method:**
@@ -780,7 +780,7 @@ Authenticated users who made an appointment, can cancel the same. This API requi
 Queue administrators can update and retrieve the settings usnig this API. This API requires Authorization Header.
 
 ----
-/api/:queue/preferences
+/api/queue/:queue/preferences
 
 
 * **Method:**

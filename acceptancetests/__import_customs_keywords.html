@@ -280,6 +280,21 @@
 <tr>	<td></td>	<td>${retrieved_position}=</td>	<td>Perform Queue Action</td>	<td>${auth_token}</td>	<td>${queue_id}</td>	<td>${action}</td>	<td></td>	<td></td>	<td></td>	</tr>
 
 
+<tr>	<td>Manage Appointments With Different Preferences</td>	<td>[Arguments]</td>	<td>${initial_free_slots}</td>	<td>${recurring_free_slot}</td>	<td>${last_booked_position}</td>	<td>${alloted_position}</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>vendor1</td>	<td>vendor1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Run Keyword And Ignore Error</td>	<td>Register User</td>	<td>customer1</td>	<td>customer1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${vendor_auth_token}=</td>	<td>Sign In</td>	<td>vendor1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${customer_auth_token}=</td>	<td>Sign In</td>	<td>customer1@mydomain.com</td>	<td>Test@123</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${queue_id}=</td>	<td>Create Queue</td>	<td>${vendor_auth_token}</td>	<td>Queue to test appointments</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Set Queue Preferences</td>	<td>${vendor_auth_token}</td>	<td>${queue_id}</td>	<td>${initial_free_slots}</td>	<td>${recurring_free_slot}</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Start Session</td>	<td>${vendor_auth_token}</td>	<td>${queue_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Set Appointment Status</td>	<td>${vendor_auth_token}</td>	<td>${queue_id}</td>	<td>on</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>${booked_position}=</td>	<td>Book Appointment</td>	<td>${customer_auth_token}</td>	<td>${queue_id}</td>	<td>reference</td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Retrieve Appointments</td>	<td>${customer_auth_token}</td>	<td>${queue_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Set Appointment Status</td>	<td>${vendor_auth_token}</td>	<td>off</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Cancel Appointment</td>	<td>${customer_auth_token}</td>	<td>${queue_id}</td>	<td>${booked_position}</td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+<tr>	<td></td>	<td>Finish Session</td>	<td>${vendor_auth_token}</td>	<td>${queue_id}</td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	</tr>
+
 
 
 		</tbody>
