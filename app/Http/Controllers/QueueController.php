@@ -366,13 +366,16 @@ class QueueController extends Controller
 				$queue->next_available_slot = $queue->initial_free_slots + 1;
 				$queue->save();
 				return $queue->next_available_slot;
-			}	else if (  ($queue->recurring_free_slot > 0) && ($queue->next_available_slot % $queue->recurring_free_slot) == 0 ) 
+			}	
+			else if (  ($queue->recurring_free_slot > 0) && ($queue->next_available_slot % $queue->recurring_free_slot) == 0 ) 
 			{
-				$queue->next_available_slot = $queue->initial_free_slots + 1;
+				$queue->next_available_slot = $queue->next_available_slot + 1;
 				$queue->save();
 				return $queue->next_available_slot;
-			} else 
+			} 
+			else 
 			{
+				$queue->save();
 				return 		$queue->next_available_slot ;
 			}
 		} catch (\Illuminate\Database\QueryException $e) 
