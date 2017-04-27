@@ -388,12 +388,23 @@ class QueueController extends Controller
    {
 		try 
 		{
-			$appointments = Appointment::where('queue_id',6)->get();
-			return response('OK', 200)
-				->header('Content-Type', 'application/json')
-				->setContent([
-					'error' => false,
-					'appointments' => $appointments]);
+			$appointments = Appointment::where('queue_id',$queue_id)->get();
+			
+			if ( $appointments->isEmpty() ) {
+				return response('No Content', 204)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'code' => 101,
+						'message' => 'No Appointments Yet']);
+			} else {
+				return response('OK', 200)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => false,
+						'appointments' => $appointments]);
+			}
+			
 		} 
 		catch (\Illuminate\Database\QueryException $e) 
 		{
@@ -410,11 +421,21 @@ class QueueController extends Controller
 		try 
 		{
 			$appointments = Appointment::where([['queue_id',$queue_id],['user_id',$user_id]])->get();
-			return response('OK', 200)
-				->header('Content-Type', 'application/json')
-				->setContent([
-					'error' => false,
-					'appointments' => $appointments]);
+
+			if ( $appointments->isEmpty() ) {
+				return response('No Content', 204)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'code' => 101,
+						'message' => 'No Appointments Yet']);
+			} else {
+				return response('OK', 200)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => false,
+						'appointments' => $appointments]);
+			}
 		} 
 		catch (\Illuminate\Database\QueryException $e) 
 		{
