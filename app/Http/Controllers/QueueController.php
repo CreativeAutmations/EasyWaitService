@@ -221,7 +221,7 @@ class QueueController extends Controller
 		# if the authenticatd user is not an administrator for the queue, return with exception
 		$qadmin = QueueAdmin::where('user_id',$user->id)->get();
 		if ( $qadmin->isEmpty() ) {
-			return response('OK', 200)
+			return response('No Content', 204)
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => true,
