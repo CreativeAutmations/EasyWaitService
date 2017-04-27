@@ -314,6 +314,9 @@ class QueueController extends Controller
 		try 
 		{
 			Appointment::where('queue_id', $queue_id)->delete();
+		    $queue = Queue::find($queue_id);
+			$queue->next_available_slot = 1;
+			$queue->save();
 	
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
