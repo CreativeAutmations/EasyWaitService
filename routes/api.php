@@ -56,7 +56,9 @@ Route::post('/signin', function () {
    $credentials = Input::only('email', 'password');
 
    if ( ! $token = JWTAuth::attempt($credentials)) {
-       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
+		return response('Sign In Failed', 401)
+		  ->header('Content-Type', 'application/json')
+		  ->setContent(['error' => 'invalid_credentials' ]);
    }
    $user = JWTAuth::toUser($token);
 
