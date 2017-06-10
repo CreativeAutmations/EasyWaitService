@@ -17,6 +17,17 @@ use App\Audit as Audit;
 |
 */
 
+Route::post('/signupcrap', function () {
+   $credentials = Input::only('name','email', 'password');
+ 	return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['name' => $credentials['name'],
+					'email' => $credentials['email'],
+					'password' => $credentials['password']]);
+
+});
+
+
 Route::post('/signup', function () {
    $credentials = Input::only('name','email', 'password');
    $credentials['password'] = Hash::make($credentials['password']);
@@ -26,7 +37,7 @@ Route::post('/signup', function () {
    } catch (Exception $e) {
 		return response('Sign Up Failed', 401)
 		  ->header('Content-Type', 'application/json')
-		  ->setContent($e);
+		  ->setContent(['exception' => $e ]);
    }
 
    $token = JWTAuth::fromUser($user);
@@ -45,7 +56,9 @@ Route::post('/signin', function () {
    $credentials = Input::only('email', 'password');
 
    if ( ! $token = JWTAuth::attempt($credentials)) {
-       return Response::json(false, HttpResponse::HTTP_UNAUTHORIZED);
+		return response('Sign In Failed', 401)
+		  ->header('Content-Type', 'application/json')
+		  ->setContent(['error' => 'invalid_credentials' ]);
    }
    $user = JWTAuth::toUser($token);
 
@@ -81,4 +94,30 @@ Route::put('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationCon
 Route::get('/organizations', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetOrganization']);
 Route::post('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@MembershipRequest']);
 Route::get('/organizations/membership', ['before' => 'jwt-auth', 'uses' => 'OrganizationController@GetMembershipStatus']);
+
+Route::post('/queue', ['before' => 'jwt-auth', 'uses' => 'QueueController@CreateQueue']);
+Route::get('/queue', ['before' => 'jwt-auth', 'uses' => 'QueueController@GetQueues']);
+Route::post('/queue/{queueid}', ['before' => 'jwt-auth', 'uses' => 'QueueController@UpdateQueueStatus']);
+Route::get('/queue/{queueid}', ['uses' => 'QueueController@GetQueueStatus']);
+
+Route::post('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@SetPreferences']);
+Route::get('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@GetPreferences']);
+
+Route::post('/queue/{queueid}/preferences', ['before' => 'jwt-auth', 'uses' => 'QueueController@SetPreferences']);
+Route::post('/queue/{queueid}/appointment', ['before' => 'jwt-auth', 'uses' => 'QueueController@ManageAppointments']);
+Route::get('/queue/{queueid}/appointment', ['before' => 'jwt-auth', 'uses' => 'QueueController@RetrieveAppointments']);
+
+
+
+Route::get('/queue/{queueid1}', [
+   function ( $queueid ) {
+		return response('OK', 200)
+	  ->header('Content-Type', 'application/json')
+	  ->setContent(['id' => $queueid,
+					'type' => 'GET',
+					'position' => 125]);
+
+   }
+]);
+
 
