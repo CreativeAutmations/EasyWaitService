@@ -1,5 +1,5 @@
 # Easy Wait Service
-
+This repository contains the service API
 
 ## Official Documentation
 
