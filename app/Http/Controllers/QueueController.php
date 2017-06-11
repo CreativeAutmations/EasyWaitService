@@ -94,6 +94,21 @@ class QueueController extends Controller
 		# Create Organization
 	    $qdetails = Input::only('name');
 		try {
+			$managed_queues = QueueAdmin::where('user_id', '=', $user->id )
+												->get();
+			
+			if ( $managed_queues->count() >= 5 ) 
+			{
+				return response('OK', 200)
+					->header('Content-Type', 'application/json')
+					->setContent([
+						'error' => true,
+						'code'  => 10010,
+						'details'  => ['message'   => 'You have exceeded the maximum queues that can be created']]);
+			} 
+
+
+
 			$queue = new Queue();
 			$queue['name'] = $qdetails['name'];
 			$queue->save();
@@ -104,9 +119,16 @@ class QueueController extends Controller
 			$qadmin->id = $queue->id;
 			$qadmin->save();
 
-			$queuelist = QueueAdmin::where('user_id', '=', $user->id )
+			$managed_queues = QueueAdmin::where('user_id', '=', $user->id )
 												->get();
 			# Content: { id : 124 , name : "Queue 2" , queuelist : [ {id: 110, name : "Queue 1"} , {id: 124, name : "Queue 2"}] }
+
+			$qidlist = array();
+			foreach ($managed_queues as $admin_record) {
+				$qidlist[] =  $admin_record->id;
+			}
+
+			$queuelist = Queue::find($qidlist);
 			
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
@@ -219,8 +241,8 @@ class QueueController extends Controller
 		$user = JWTAuth::toUser($token);
 		
 		# if the authenticatd user is not an administrator for the queue, return with exception
-		$qadmin = QueueAdmin::where('user_id',$user->id)->get();
-		if ( $qadmin->isEmpty() ) {
+		$managed_queues = QueueAdmin::where('user_id',$user->id)->get();
+		if ( $managed_queues->isEmpty() ) {
 			return response('No Content', 204)
 				->header('Content-Type', 'application/json')
 				->setContent([
@@ -229,11 +251,18 @@ class QueueController extends Controller
 					'message' => 'no queues available']);
 		} else 
 		{
+			$qidlist = array();
+			foreach ($managed_queues as $admin_record) {
+				$qidlist[] =  $admin_record->id;
+			}
+
+			$queuelist = Queue::find($qidlist);
+			
 			return response('OK', 200)
 				->header('Content-Type', 'application/json')
 				->setContent([
 					'error' => false,
-					'queues' => $qadmin]);
+					'queues' => $queuelist]);
 		}
 		 
 	}
