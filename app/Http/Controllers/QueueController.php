@@ -390,25 +390,29 @@ class QueueController extends Controller
 		{
 			$queue = Queue::find($queue_id);
 
-			$queue->next_available_slot = $queue->next_available_slot + 1;
+			# $queue->next_available_slot = $queue->next_available_slot + 1;
 
 			# Minimum alloted position should be higher than the initial free slots
 			if ( $queue->next_available_slot <  $queue->initial_free_slots ) 
 			{
-				$queue->next_available_slot = $queue->initial_free_slots + 1;
+				$available_position = $queue->initial_free_slots + 1;
+				$queue->next_available_slot = $available_position + 1;
 				$queue->save();
-				return $queue->next_available_slot;
+				return $available_position;
 			}	
 			else if (  ($queue->recurring_free_slot > 0) && ($queue->next_available_slot % $queue->recurring_free_slot) == 0 ) 
 			{
-				$queue->next_available_slot = $queue->next_available_slot + 1;
+				$available_position = $queue->next_available_slot + 1;
+				$queue->next_available_slot = $available_position + 1;
 				$queue->save();
-				return $queue->next_available_slot;
+				return $available_position;
 			} 
 			else 
 			{
+				$available_position = $queue->next_available_slot ;
+				$queue->next_available_slot = $available_position + 1;
 				$queue->save();
-				return 		$queue->next_available_slot ;
+				return $available_position;
 			}
 		} catch (\Illuminate\Database\QueryException $e) 
 		{
