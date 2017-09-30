@@ -1,31 +1,7 @@
-JIRA: https://jira.iontrading.com/browse/CISHD-57544
-PO: R63179
-
-Feeling
-- Non standard purchase requets
-- Delayed purchase approval
-- VPN Support
-- VPN Licenses
-- Folder Access
-- Delivery List Access
-- Rythem is missing
-- Working Agreements are missing
-
-
-Stats to collect
-- How many tickets are being assigned to Second Line by First Line
-- How many tickets are being closed by first line-height
-- Home long does it take per ticket to complete the work by first line
-
-
-
-# Consider only the tickets whic were either resolved by CIS First Line or assigned to second line by first line
-
-
-
-Id, Status , Effort , FirstLine, Type , Create Date, Update Date
-
-
+# Installation on Ubuntu 16.04.3
+Description:    Ubuntu 16.04.3 LTS
+Release:        16.04
+Codename:       xenial
 
 # Installed PHP
 https://tecadmin.net/install-php-7-on-ubuntu/
