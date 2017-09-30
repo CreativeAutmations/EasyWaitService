@@ -3,14 +3,14 @@ Description:    Ubuntu 16.04.3 LTS
 Release:        16.04
 Codename:       xenial
 
-# Installed PHP
+# Install PHP
 https://tecadmin.net/install-php-7-on-ubuntu/
 
 # Install MySQL
 https://www.linode.com/docs/databases/mysql/install-mysql-on-ubuntu-14-04
 Root Password: mysql
 
-# Install packages
+# Install PHP packages
 sudo apt-get install php-mbstring 
 sudo apt-get install php7.1-xml
 sudo apt-get  install zip unzip php7.0-zip
